@@ -8,6 +8,6 @@ Quer testar?
 
   2 - $ chmod +x makeplay
 
-  3 - ./makeplay
+  3 - $ ./makeplay
 
-  4 - ./game
+  4 - $ ./game
