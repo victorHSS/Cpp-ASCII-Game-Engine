@@ -11,3 +11,10 @@ Quer testar?
   3 - $ ./makeplay
 
   4 - $ ./game
+  
+Uma fotinha pra animar:
+![image](https://user-images.githubusercontent.com/25358179/233437912-96feeff2-2045-4130-a84b-327a49175707.png)
+
+Aí vai outra:
+![image](https://user-images.githubusercontent.com/25358179/233438055-31efd537-cd03-4850-9d40-82d79ede6761.png)
+
