@@ -11,7 +11,19 @@ Quer testar?
   3 - $ ./makeplay
 
   4 - $ ./game
-  
+
+Quer jogar?
+A dinâmica do jogo envolve o std::cin de C++, mais especificamente um getline. Portanto, a entrada envolve digitar uma letra + ENTER, para indicar o input do jogo.
+
+w -> CIMA
+s -> BAIXO
+a -> ESQUERDA
+d -> DIREITA
+q -> SAIR
+x -> SELECIONA 
+
+Não esquece o ENTER...
+
 Uma fotinha pra animar:
 ![image](https://user-images.githubusercontent.com/25358179/233437912-96feeff2-2045-4130-a84b-327a49175707.png)
 
