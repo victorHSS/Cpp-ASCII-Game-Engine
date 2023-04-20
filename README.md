@@ -15,12 +15,17 @@ Quer testar?
 Quer jogar?
 A dinâmica do jogo envolve o std::cin de C++, mais especificamente um getline. Portanto, a entrada envolve digitar uma letra + ENTER, para indicar o input do jogo.
 
-w -> CIMA
-s -> BAIXO
-a -> ESQUERDA
-d -> DIREITA
-q -> SAIR
-x -> SELECIONA 
+  w -> CIMA
+
+  s -> BAIXO
+
+  a -> ESQUERDA
+
+  d -> DIREITA
+  
+  q -> SAIR
+  
+  x -> SELECIONA 
 
 Não esquece o ENTER...
 
