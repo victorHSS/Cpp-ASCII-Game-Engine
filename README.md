@@ -4,7 +4,10 @@ Um jogo de Resgate (muito simples e apenas demonstrativo - por enquanto??!!) esc
 
 Quer testar?
 
-1 - Baixe o código.
-2 - $ chmod +x makeplay
-3 - ./makeplay
-4 - ./game
+  1 - Baixe o código.
+
+  2 - $ chmod +x makeplay
+
+  3 - ./makeplay
+
+  4 - ./game
