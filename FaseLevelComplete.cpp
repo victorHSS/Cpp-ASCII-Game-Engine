@@ -1,4 +1,5 @@
 #include "ASCII_Engine/TextSprite.hpp"
+#include "ASCII_Engine/Sound.hpp"
 #include "FaseLevelComplete.hpp"
 #include <string>
 #include <iostream>
@@ -18,6 +19,9 @@ unsigned FaseLevelComplete::run(SpriteBuffer &screen)
 {
 	std::string ent;
 	
+	Sound backMusic("rsc/sounds/GuitarChords1.mp3");
+	backMusic.playloop();
+	
 	system("clear");
 	this->draw(screen);
 	this->show(screen);
@@ -29,7 +33,10 @@ unsigned FaseLevelComplete::run(SpriteBuffer &screen)
 		getline(std::cin,ent);
 		if (ent == "q") break;
 		else if (ent == "x")
+		{
+			backMusic.stop();
 			return Fase::OP_1;
+		}
 			
 		
 		system("clear");
@@ -39,7 +46,7 @@ unsigned FaseLevelComplete::run(SpriteBuffer &screen)
 		
 		system("sleep .2");
 	}
-	
+	backMusic.stop();
 	return Fase::OP_1;
 }
 

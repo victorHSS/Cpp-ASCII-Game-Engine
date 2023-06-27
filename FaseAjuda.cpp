@@ -15,7 +15,8 @@ void FaseAjuda::init()
 	objs.push_back(new ObjetoDeJogo("Ajuda3",TextSprite("a     - LEFT"),27,74));
 	objs.push_back(new ObjetoDeJogo("Ajuda4",TextSprite("d     - RIGHT"),29,74));
 	objs.push_back(new ObjetoDeJogo("Ajuda5",TextSprite("x     - SELECT/RESCUE"),31,74));
-	objs.push_back(new ObjetoDeJogo("Ajuda6",TextSprite("ENTER - TURN"),33,74));
+	objs.push_back(new ObjetoDeJogo("Ajuda6",TextSprite("p     - PAUSE"),33,74));
+	objs.push_back(new ObjetoDeJogo("Ajuda6",TextSprite("ENTER - TURN"),35,74));
 	objs.push_back(new ObjetoDeJogo("AjudaAviso",TextSprite("Pressione x para voltar ao menu."),37,64));
 	
 
@@ -39,9 +40,9 @@ unsigned FaseAjuda::run(SpriteBuffer &screen)
 			return Fase::MENU;
 			
 		
-		system("clear");
 		this->update();
 		this->draw(screen);
+		system("clear");
 		this->show(screen);
 		
 		system("sleep .2");

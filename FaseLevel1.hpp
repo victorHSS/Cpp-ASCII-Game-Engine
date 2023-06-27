@@ -22,7 +22,7 @@ private:
 	SpriteBase *txtTanque, *txtCarga, *txtSalvos;
 	Pessoa *pessoa1, *pessoa2;
 	Fuel *fuel;
-	ObjetoDeJogo *baseResg;
+	ObjetoDeJogo *baseResg, *paused;
 };
 
 #endif // FASELEVEL1_HPP

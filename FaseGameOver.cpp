@@ -1,4 +1,5 @@
 #include "ASCII_Engine/TextSprite.hpp"
+#include "ASCII_Engine/Sound.hpp"
 #include "FaseGameOver.hpp"
 #include <string>
 #include <iostream>
@@ -18,6 +19,9 @@ unsigned FaseGameOver::run(SpriteBuffer &screen)
 {
 	std::string ent;
 	
+	Sound backMusic("rsc/sounds/Cave.mp3");
+	backMusic.playloop();
+	
 	system("clear");
 	this->draw(screen);
 	this->show(screen);
@@ -29,16 +33,20 @@ unsigned FaseGameOver::run(SpriteBuffer &screen)
 		getline(std::cin,ent);
 		if (ent == "q") break;
 		else if (ent == "x")
+		{
+			backMusic.stop();
 			return Fase::MENU;
+		}
 			
 		
-		system("clear");
 		this->update();
 		this->draw(screen);
+		system("clear");
 		this->show(screen);
 		
 		system("sleep .2");
 	}
 	
+	backMusic.stop();
 	return Fase::END_GAME;
 }

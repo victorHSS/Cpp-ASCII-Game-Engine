@@ -6,7 +6,7 @@
 class Pessoa : public ObjetoDeJogo
 {
 public:
-	Pessoa(const ObjetoDeJogo &o, unsigned peso):ObjetoDeJogo(o) , peso(peso),resgatada(false){}
+	Pessoa(const ObjetoDeJogo &o, unsigned peso):ObjetoDeJogo(o), peso(peso), resgatada(false){}
 	virtual ~Pessoa(){}
 	
 	unsigned getPeso() const {return peso;}

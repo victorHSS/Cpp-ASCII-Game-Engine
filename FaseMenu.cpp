@@ -1,4 +1,5 @@
 #include "ASCII_Engine/TextSprite.hpp"
+#include "ASCII_Engine/Sound.hpp"
 #include "FaseMenu.hpp"
 #include <string>
 #include <iostream>
@@ -27,6 +28,9 @@ unsigned FaseMenu::run(SpriteBuffer &screen)
 {
 	std::string ent;
 	
+	Sound backMusic("rsc/sounds/Techno2.mp3");
+	backMusic.playloop();
+	
 	system("clear");
 	this->draw(screen);
 	this->show(screen);
@@ -50,7 +54,10 @@ unsigned FaseMenu::run(SpriteBuffer &screen)
 			pSelD->moveTo(23 + (op - Fase::OP_1) * 2, 87);
 		}
 		else if (ent == "x")
+		{
+			backMusic.stop();
 			return op;
+		}
 			
 		
 		system("clear");
@@ -60,6 +67,6 @@ unsigned FaseMenu::run(SpriteBuffer &screen)
 		
 		system("sleep .2");
 	}
-	
+	backMusic.stop();
 	return Fase::END_GAME;
 }
