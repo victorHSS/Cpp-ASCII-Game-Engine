@@ -25,11 +25,11 @@ public:
 	ObjetoDeJogo(std::string name, const SpriteBuffer &s, unsigned posL, unsigned posC) :
 		name(name),pSprite(new SpriteBuffer(s)),posL(posL),posC(posC),active(true) {}
 	
-	ObjetoDeJogo(const ObjetoDeJogo&o);
+	ObjetoDeJogo(const ObjetoDeJogo&);
 	
 	virtual ~ObjetoDeJogo(){ delete pSprite;}
 	
-	const ObjetoDeJogo &operator=(const ObjetoDeJogo &o);
+	const ObjetoDeJogo &operator=(const ObjetoDeJogo &);
 	
 	bool colideCom(const ObjetoDeJogo &) const ;
 	
