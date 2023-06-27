@@ -1,6 +1,6 @@
 #include "ObjetoDeJogo.hpp"
 
-ObjetoDeJogo::ObjetoDeJogo(const ObjetoDeJogo&o) : name(o.name),posL(o.posL),posC(o.posC),active(true)
+ObjetoDeJogo::ObjetoDeJogo(const ObjetoDeJogo &o) : name(o.name),posL(o.posL),posC(o.posC),active(true)
 {
 	//trick
 	if (o.pSprite->whoami() == "Sprite")
