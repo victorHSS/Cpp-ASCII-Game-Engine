@@ -21,13 +21,13 @@ void FaseLevel1::init()
 	baseResg = objs.back();
 	
 	objs.push_back(new ObjetoDeJogo("TxtTanque",TextSprite("Tanque: [##########]"),1,3));
-	txtTanque = objs.back()->getSprite();
+	txtTanque = const_cast<SpriteBase*> (objs.back()->getSprite());
 	
 	objs.push_back(new ObjetoDeJogo("TxtCarga",TextSprite("Carga: [          ]"),1,33));
-	txtCarga = objs.back()->getSprite();
+	txtCarga = const_cast<SpriteBase*> (objs.back()->getSprite());
 	
 	objs.push_back(new ObjetoDeJogo("TxtSalvos",TextSprite("Resgatados: 0/2"),1,62));
-	txtSalvos = objs.back()->getSprite();
+	txtSalvos = const_cast<SpriteBase*> (objs.back()->getSprite());
 	
 	objs.push_back(new Pessoa(ObjetoDeJogo("Pessoa",SpriteAnimado("rsc/pessoa.anm"),30,120),70));
 	pessoa1 = dynamic_cast<Pessoa*> (objs.back());
