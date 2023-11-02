@@ -10,8 +10,10 @@ class TextSprite : public SpriteBase
 	//temporarios
 	friend std::ostream &operator<<(std::ostream &, const TextSprite &);
 public:
-	TextSprite(std::string text):SpriteBase(0,1) {this->text = text;this->largura = text.length();}
+	TextSprite(std::string text):SpriteBase(0,1) {setText(text);}
 	~TextSprite(){}
+	
+	void setText(std::string text) {this->text = text;this->largura = text.length();} //Update
 	
 	//SpriteBase
 	virtual void putAt(const SpriteBase &, unsigned = 0, unsigned = 0);
