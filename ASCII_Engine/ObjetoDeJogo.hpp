@@ -34,15 +34,15 @@ public:
 	bool colideCom(const ObjetoDeJogo &) const ;
 	
 	void moveTo(unsigned posL, unsigned posC){ this->posL = posL; this->posC = posC;}
-	void moveLeft()	{ moveTo(posL,posC-1); }
-	void moveRight(){ moveTo(posL,posC+1); }
-	void moveUp()	{ moveTo(posL-1,posC); }
-	void moveDown()	{ moveTo(posL+1,posC); }
+	void moveLeft(int qpos=1)	{ moveTo(posL,posC-qpos); } //modificado
+	void moveRight(int qpos=1)	{ moveTo(posL,posC+qpos); } //modificado
+	void moveUp(int qpos=1)		{ moveTo(posL-qpos,posC); } //modificado
+	void moveDown(int qpos=1)	{ moveTo(posL+qpos,posC); } //modificado
 	
 	std::string getName() const {return name;}
 	unsigned getPosL() const {return posL;}
 	unsigned getPosC() const {return posC;}
-	SpriteBase *getSprite() {return pSprite;}
+	const SpriteBase *getSprite() const {return pSprite;}
 	
 	void ativarObj() {this->active = true;};
 	void desativarObj() {this->active = false;};
