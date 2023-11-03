@@ -1,0 +1,3 @@
+#!/bin/bash
+
+clang++-8 --std=c++17 -o game *.cpp ASCII_Engine/*.cpp && ./game
