@@ -40,10 +40,10 @@ bool ObjetoDeJogo::colideCom(const ObjetoDeJogo &obj) const
 {
 	if (active && obj.active)
 		return (
-		(obj.posL <= posL + pSprite->getAltura() &&
-		 obj.posL + obj.getSprite()->getAltura() >= posL) &&
-		(obj.posC <= posC + pSprite->getLargura() &&
-		 obj.posC + obj.getSprite()->getLargura() >= posC)
+		(obj.posL < posL + pSprite->getAltura() &&
+		 obj.posL + obj.getSprite()->getAltura() > posL) &&
+		(obj.posC < posC + pSprite->getLargura() &&
+		 obj.posC + obj.getSprite()->getLargura() > posC)
 		);
 	
 	return false;
