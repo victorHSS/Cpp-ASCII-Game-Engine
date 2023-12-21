@@ -28,7 +28,7 @@ void FaseLevel1::init()
 	porta = new Door(ObjetoDeJogo("Door",SpriteAnimado("rsc/door.anm"),31,182));
 	objs.push_back(porta);
 	
-	tapetePorta = new ObjetoDeJogo("Tapete",SpriteBuffer(17,1),35,182);
+	tapetePorta = new ObjetoDeJogo("Tapete",SpriteBuffer(17,1),36,182);
 	objs.push_back(tapetePorta);
 	
 	hero = new Hero(ObjetoDeJogo("Hero",SpriteAnimado("rsc/hero.anm",2),39,108));
