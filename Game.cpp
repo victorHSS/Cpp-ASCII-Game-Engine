@@ -1,7 +1,7 @@
 #include "Game.hpp"
 
 #include "ASCII_Engine/Fase.hpp"
-#include "FaseTeste.hpp"
+//#include "FaseTeste.hpp"
 #include "FaseMenu.hpp"
 #include "FaseLevel1.hpp"
 #include "FaseAjuda.hpp"
