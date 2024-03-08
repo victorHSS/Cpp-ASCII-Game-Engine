@@ -1,0 +1,3 @@
+#!/bin/bash
+
+g++ --std=c++17 -o game src/*.cpp src/ASCII_Engine/*.cpp && ./game
