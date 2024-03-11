@@ -2,15 +2,17 @@
 
 Um jogo de Resgate (muito simples e apenas demonstrativo - por enquanto??!!) escrito em C++ usando a ASCII Game Engine.
 
-Quer testar?
+Preferível no Linux.
 
-  1 - Baixe o código.
+Quer rodar?
 
-  2 - $ chmod +x makeplay
+  1) Baixe o código.
 
-  3 - $ ./makeplay
+  2) `chmod +x makeplay`
 
-  4 - $ ./game
+  3) `./makeplay`
+
+  4) Divirta-se
 
 Quer jogar?
 A dinâmica do jogo envolve o std::cin de C++, mais especificamente um getline. Portanto, a entrada envolve digitar uma letra + ENTER, para indicar o input do jogo.
