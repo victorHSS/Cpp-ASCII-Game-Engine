@@ -2,12 +2,13 @@
 #define SPRITEBASE_HPP
 
 #include "RenderBase.hpp"
+#include "Cores.hpp"
 #include <string>
 
 class SpriteBase : public RenderBase
 {
 public:
-	SpriteBase(unsigned largura=0, unsigned altura=0):largura(largura),alturaSprite(altura){}
+	SpriteBase(unsigned largura=0, unsigned altura=0):largura(largura),alturaSprite(altura),colorido(false),cor(COR::PADRAO){}
 	virtual ~SpriteBase(){}
 	
 	unsigned getLargura() const {return this->largura;}
@@ -30,9 +31,16 @@ public:
 	
 	virtual void draw(SpriteBase &screen, unsigned x, unsigned y){screen.putAt(*this,x,y);}
 	
+	//Cores
+	void setCor(COR::COR cor) { colorido = true; this->cor = cor; }
+	
 
 protected:
 	unsigned largura, alturaSprite;
+	
+	//Coloração
+	bool colorido;
+	COR::COR cor;
 	
 };
 

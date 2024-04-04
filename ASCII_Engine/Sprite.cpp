@@ -1,10 +1,13 @@
 #include "Sprite.hpp"
 #include <fstream>
 
+#include <stdexcept>
+#include <algorithm>
+
 std::ostream &operator<<(std::ostream &out, const Sprite &s)
 {
 	for (auto it = s.sprt.begin() ; it != s.sprt.end() ; ++it)
-		std::cout << *it << std::endl;
+		std::cout << (s.colorido?s.cor:"") << *it << (s.colorido?COR::PADRAO:"") << std::endl;
 	
 	return out;
 }
@@ -39,10 +42,7 @@ void Sprite::loadFromFile(std::ifstream &fsprt)
 	this->sprt.clear();
 	
 	if (!fsprt.is_open())
-	{	
-		std::cout << "Erro ao ler arquivo..." << std::endl;
-		return;
-	}
+		throw std::runtime_error("Erro ao ler arquivo de Sprite...");
 	
 	this->largura = 0;
 	
@@ -65,26 +65,22 @@ void Sprite::loadFromFile(std::ifstream &fsprt, unsigned n)
 	this->sprt.clear();
 	
 	if (!fsprt.is_open())
-	{	
-		std::cout << "Erro ao ler arquivo..." << std::endl;
-		return;
-	}
+		throw std::runtime_error("Erro ao ler arquivo de Sprite...");
 	
 	this->largura = 0;
 	
 	std::string tmp;
-	
-	//std::cout << "Carregado Sprite..." << n << std::endl; //apagar
-	
+		
 	while(getline(fsprt,tmp) && n--)
 	{
 		sprt.push_back(tmp);
-		
-		//std::cout << ">" << tmp << "<" << std::endl; //apagar
-		
+				
 		if (tmp.length() > this->largura)
 			this->largura = tmp.length();
 	}
+	
+	if (n > 0)
+		throw std::runtime_error("Sprite Incompleto...");
 	
 	this->alturaSprite = this->sprt.size();
 }
@@ -99,33 +95,21 @@ std::string Sprite::getLinha(unsigned l) const
 
 void Sprite::putAt(const SpriteBase &sprt, unsigned l, unsigned c)
 {
-	//std::cout << "Entrei..." << std::endl; //apagar
-	if (c >= this->largura)
+	if (c >= this->largura)	//se o objeto a ser desenhando estiver além da largura do destino, não faz nada.
 		return;
-	
-	//std::cout << "Passei da largura..." << std::endl; //apagar
-	
-	//std::cout << sprt.getAltura() << std::endl; //apagar
+
 	for (int i = 0 ; i < sprt.getAltura() ; i++)
 	{
-		//std::cout << "No looop..." << std::endl; //apagar
 		
-		if (i + l >= this->sprt.size())
+		if (i + l >= this->sprt.size()) //se o pedaço do sprite ultrapassar a altura do sprite destino, para
 			break;
 		
-		//std::cout << "Passei do if da linha..." << std::endl; //apagar
-			
 		std::string linha = sprt.getLinha(i);
 		std::string alvo = this->sprt[l+i];
-		this->sprt[l+i] = alvo.substr(0,c);
-		this->sprt[l+i] += linha.substr(0,alvo.length()-c);
-		this->sprt[l+i] += alvo.substr(c+linha.length(),alvo.length()-(c+linha.length()));
+		this->sprt[l+i] = alvo.substr(0,c); //aproveita a linha base até o ponto onde vamos inserir o sprite novo
+		this->sprt[l+i] += linha.substr(0,alvo.length()-c); //pega a porção do sprite novo que cabe na linha destino
 		
-		//if (c+linha.length() < alvo.length())
-		//	this->sprt[l+i] += alvo.substr(c+linha.length(),alvo.length()-(c+linha.length()));
-		
-		
-		//std::cout << this->sprt[l+i] << std::endl;
+		if ( c + linha.length() < alvo.length() ) //pega restante da base (alvo) se ainda puder
+			this->sprt[l+i] += alvo.substr(c+linha.length(),alvo.length()-(c+linha.length()));
 	}
-	//std::cout << "Saindo..." << std::endl; //apagar
 }

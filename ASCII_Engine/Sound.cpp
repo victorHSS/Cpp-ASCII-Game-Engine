@@ -7,6 +7,15 @@
 #include <signal.h>
 #include <unistd.h>
 
+Sound::Sound(std::string soundName) : soundName(soundName),PID_child(-1),paused(false)
+{
+	//verificando existência de arquivo.
+	std::ifstream fTeste(soundName.c_str(), std::ios::in);
+	if (!fTeste.is_open())
+		throw std::runtime_error("Erro ao ler arquivo de música...");
+	fTeste.close();
+}
+
 Sound::~Sound()
 {
 	if (isplaying())
@@ -24,9 +33,12 @@ bool Sound::play(unsigned times)
 		std::ostringstream sTimes;
 		sTimes.str(std::string());
 		sTimes << "-l" << times;
-		char *argv[] = {"/usr/bin/mpg321","-q",const_cast<char*>(sTimes.str().c_str()),
-						const_cast<char*>(soundName.c_str()),
-						nullptr};
+		char *const argv[] = {	const_cast<char*>("/usr/bin/mpg321"),
+								const_cast<char*>("-q"),
+								const_cast<char*>(sTimes.str().c_str()),
+								const_cast<char*>(soundName.c_str()),
+								nullptr };
+
 		execv(argv[0],argv);
 		exit(1); // se chegar aqui é porque deu erro no execv
 	}
