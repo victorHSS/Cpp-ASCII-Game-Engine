@@ -6,7 +6,6 @@
 
 class TextSprite : public SpriteBase
 {
-	//temporarios
 	friend std::ostream &operator<<(std::ostream &, const TextSprite &);
 public:
 	TextSprite(std::string text):SpriteBase(text.length(),1) {this->text = text;}

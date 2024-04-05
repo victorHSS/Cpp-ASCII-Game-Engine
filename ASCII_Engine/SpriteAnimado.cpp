@@ -6,7 +6,7 @@
 std::ostream &operator<<(std::ostream &out, const SpriteAnimado &sa)
 {
 	//printa apenas o sprite atual da animacao
-	std::cout << (sa.colorido?sa.cor:"") << sa.sprites[sa.iSpriteAnim] << (sa.colorido?COR::PADRAO:"") << std::endl;
+	std::cout << sa.sprites[sa.iSpriteAnim] << std::endl;
 
 	return out;
 }

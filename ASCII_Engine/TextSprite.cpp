@@ -3,7 +3,7 @@
 
 std::ostream &operator<<(std::ostream &out, const TextSprite &ts)
 {
-	out << (ts.colorido?ts.cor:"") << ts.text << (ts.colorido?COR::PADRAO:"") << std::endl;
+	out << ts.text << std::endl;
 	return out;
 }
 

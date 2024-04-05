@@ -6,7 +6,6 @@
 
 class SpriteBuffer : public SpriteBase
 {
-	//temporarios
 	friend std::ostream &operator<<(std::ostream &, const SpriteBuffer &);
 public:
 	SpriteBuffer(unsigned , unsigned );

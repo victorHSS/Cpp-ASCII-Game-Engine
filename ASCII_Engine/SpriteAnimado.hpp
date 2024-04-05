@@ -8,7 +8,6 @@
 
 class SpriteAnimado : public SpriteBase
 {
-	//temporarios
 	friend std::ostream &operator<<(std::ostream &, const SpriteAnimado &);
 public:
 	SpriteAnimado(std::string, unsigned = 1);

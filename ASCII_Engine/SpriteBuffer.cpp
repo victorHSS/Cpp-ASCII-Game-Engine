@@ -40,6 +40,8 @@ void SpriteBuffer::clear()
 	sprt.clear();
 	for (unsigned i = 0 ; i < alturaSprite ; i++)
 		sprt.push_back(std::string(largura,' '));
+	
+	clearMapaCores(); // limpando cores
 }
 
 std::string SpriteBuffer::getLinha(unsigned l) const
