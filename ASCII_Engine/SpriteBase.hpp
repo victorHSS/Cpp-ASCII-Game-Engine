@@ -5,10 +5,16 @@
 #include "Cores.hpp"
 #include <string>
 
+#include <vector>
+#include <map>
+
 class SpriteBase : public RenderBase
 {
+	using MapaDeCores = std::vector< std::map<int,COR::Cor> >;
+	
 public:
-	SpriteBase(unsigned largura=0, unsigned altura=0):largura(largura),alturaSprite(altura),colorido(false),cor(COR::PADRAO){}
+	SpriteBase(unsigned largura=0, unsigned altura=0):largura(largura),alturaSprite(altura),
+													colorido(false),cor(COR::PADRAO){clearMapaCores();}
 	virtual ~SpriteBase(){}
 	
 	unsigned getLargura() const {return this->largura;}
@@ -32,7 +38,12 @@ public:
 	virtual void draw(SpriteBase &screen, unsigned x, unsigned y){screen.putAt(*this,x,y);}
 	
 	//Cores
-	void setCor(COR::COR cor) { colorido = true; this->cor = cor; }
+	void setCor(COR::Cor cor) { colorido = true; this->cor = cor; clearMapaCores(); }
+	bool estaColorido() const { return colorido; }
+	
+	void mergeCores(const MapaDeCores &, unsigned, unsigned, unsigned, unsigned);
+	const MapaDeCores &getMapaCores() const { return mapaCores; }
+	void clearMapaCores();
 	
 
 protected:
@@ -40,7 +51,10 @@ protected:
 	
 	//Coloração
 	bool colorido;
-	COR::COR cor;
+	COR::Cor cor; //cor base
+	
+	//mapa de cores
+	MapaDeCores mapaCores;
 	
 };
 

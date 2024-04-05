@@ -3,19 +3,21 @@
 
 namespace COR
 {
-	extern const char *PADRAO;
-	extern const char *BRANCA;
-	extern const char *PRETA;
-	extern const char *VERMELHA;
-	extern const char *VERDE;
-	extern const char *AZUL;
-	extern const char *ROSA;
-	extern const char *MARROM;
-	extern const char *MARROM_ESCURO;
-	extern const char *CINZA;
-	extern const char *CINZA_ESCURO;
+	//alias amigável para o "tipo" cor
+	using Cor = const char*;
 	
-	using COR = const char*;
+	//exportanto as cores
+	extern const char *const PADRAO;
+	extern const char *const BRANCA;
+	extern const char *const PRETA;
+	extern const char *const VERMELHA;
+	extern const char *const VERDE;
+	extern const char *const AZUL;
+	extern const char *const ROSA;
+	extern const char *const MARROM;
+	extern const char *const MARROM_ESCURO;
+	extern const char *const CINZA;
+	extern const char *const CINZA_ESCURO;
 	
 	//defina mais cores aqui...
 }
