@@ -23,7 +23,7 @@ SpriteAnimado::SpriteAnimado(std::string nameFile, unsigned velAnim):SpriteBase(
 	if (!fanm.is_open())
 		throw std::runtime_error("Erro ao ler arquivo de SpriteAnimado...");
 	
-	if (!(fanm >> numSprites >> alturaSprite))
+	if (!(fanm >> numSprites >> altura))
 		throw std::runtime_error("Erro na estrutura de arquivo de SpriteAnimado...");
 	
 	fanm.ignore(1,'\n');	// ignorando o \n que ficou no input da linha anterior
@@ -32,7 +32,7 @@ SpriteAnimado::SpriteAnimado(std::string nameFile, unsigned velAnim):SpriteBase(
 	while (ns--)
 	{
 		try {
-			sprites.push_back(Sprite(fanm,alturaSprite));
+			sprites.push_back(Sprite(fanm,altura));
 		} catch(std::runtime_error &e) {
 			throw std::runtime_error("Erro na estrutura de arquivo de SpriteAnimado. Sprite incompleto...");
 		}

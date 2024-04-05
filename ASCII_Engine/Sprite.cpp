@@ -57,7 +57,7 @@ void Sprite::loadFromFile(std::ifstream &fsprt)
 		
 	}
 	
-	this->alturaSprite = this->sprt.size();
+	this->altura = this->sprt.size();
 }
 
 void Sprite::loadFromFile(std::ifstream &fsprt, unsigned n)
@@ -82,7 +82,7 @@ void Sprite::loadFromFile(std::ifstream &fsprt, unsigned n)
 	if (n > 0)
 		throw std::runtime_error("Sprite Incompleto...");
 	
-	this->alturaSprite = this->sprt.size();
+	this->altura = this->sprt.size();
 }
 
 std::string Sprite::getLinha(unsigned l) const

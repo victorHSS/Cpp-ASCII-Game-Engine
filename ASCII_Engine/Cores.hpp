@@ -7,6 +7,7 @@ namespace COR
 	using Cor = const char*;
 	
 	//exportanto as cores
+	extern const char *const NULL_COLOR;
 	extern const char *const PADRAO;
 	extern const char *const BRANCA;
 	extern const char *const PRETA;
@@ -19,7 +20,8 @@ namespace COR
 	extern const char *const CINZA;
 	extern const char *const CINZA_ESCURO;
 	
-	//defina mais cores aqui...
+	
+	//declare mais cores aqui...
 }
 
 #endif // CORES_HPP

@@ -38,7 +38,7 @@ SpriteBuffer::SpriteBuffer(unsigned largura, unsigned altura) : SpriteBase(largu
 void SpriteBuffer::clear()
 {
 	sprt.clear();
-	for (unsigned i = 0 ; i < alturaSprite ; i++)
+	for (unsigned i = 0 ; i < altura ; i++)
 		sprt.push_back(std::string(largura,' '));
 	
 	clearMapaCores(); // limpando cores
@@ -71,5 +71,5 @@ void SpriteBuffer::putAt(const SpriteBase &sprt, unsigned l, unsigned c)
 		if ( c + linha.length() < alvo.length() ) //pega restante da base (alvo) se ainda puder
 			this->sprt[l+i] += alvo.substr(c+linha.length(),alvo.length()-(c+linha.length()));
 	}
-	mergeCores(sprt.getMapaCores(),l,c,0,0);
+	mergeCores(sprt.getMapaCores(),l,c);
 }

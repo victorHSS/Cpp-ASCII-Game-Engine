@@ -8,11 +8,11 @@ void SpriteBase::clearMapaCores()
 	//std::map<int,COR::Cor> map = { {0,cor}, {largura,COR::PADRAO} };
 	mapaCores.clear();
 	
-	for (int i = 0 ; i < alturaSprite ; i++)
+	for (int i = 0 ; i < altura ; i++)
 		mapaCores.push_back( { {0,cor}, {largura,COR::PADRAO} } );
 }
 
-void SpriteBase::mergeCores(const MapaDeCores &oMapCol, unsigned l, unsigned c, unsigned a, unsigned b)
+void SpriteBase::mergeCores(const MapaDeCores &oMapCol, unsigned l, unsigned c)
 {
 	//std::cout << "Entrei no mergeCores." << std::endl;
 	unsigned alt  = oMapCol.size();
@@ -23,7 +23,7 @@ void SpriteBase::mergeCores(const MapaDeCores &oMapCol, unsigned l, unsigned c, 
 	
 	for (int iL = l ; iL < l + alt ; iL++)
 	{
-		if (iL >= this->alturaSprite)
+		if (iL >= this->altura)
 			break;
 		
 		//std::cout << " Linha: " << iL << std::endl;

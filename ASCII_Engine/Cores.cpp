@@ -4,7 +4,8 @@ namespace COR
 {
 	const char *const PADRAO = 			"\e[0m";
 	
-	//Modo de cores 24-bit true color (R, G, B)
+	//Modo de cores 24-bit true color (R, G, B) ==> "\e[38;2; R ; G ; B m"
+	const char *const NULL_COLOR 		= "";
 	const char *const BRANCA 			= "\e[38;2;255;255;255m";
 	const char *const PRETA 			= "\e[38;2;0;0;0m";
 	const char *const VERMELHA 			= "\e[38;2;255;0;0m";
@@ -15,6 +16,7 @@ namespace COR
 	const char *const MARROM_ESCURO		= "\e[38;2;92;64;51m";
 	const char *const CINZA		 		= "\e[38;2;192;192;192m";
 	const char *const CINZA_ESCURO 		= "\e[38;2;84;84;84m";
+	
 	
 	//defina mais cores aqui...
 }

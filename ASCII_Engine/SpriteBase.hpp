@@ -13,12 +13,12 @@ class SpriteBase : public RenderBase
 	using MapaDeCores = std::vector< std::map<int,COR::Cor> >;
 	
 public:
-	SpriteBase(unsigned largura=0, unsigned altura=0):largura(largura),alturaSprite(altura),
-													colorido(false),cor(COR::PADRAO){clearMapaCores();}
+	SpriteBase(unsigned largura=0, unsigned altura=0):largura(largura),altura(altura),
+													cor(COR::PADRAO){clearMapaCores();}
 	virtual ~SpriteBase(){}
 	
 	unsigned getLargura() const {return this->largura;}
-	unsigned getAltura() const {return this->alturaSprite;}
+	unsigned getAltura() const {return this->altura;}
 	
 	virtual void putAt(const SpriteBase &, unsigned , unsigned) = 0;
 	//virtual void putCenter(const SpriteBase &, unsigned) = 0; //acho que essas eu consiga ja implementar aqui
@@ -38,19 +38,17 @@ public:
 	virtual void draw(SpriteBase &screen, unsigned x, unsigned y){screen.putAt(*this,x,y);}
 	
 	//Cores
-	void setCor(COR::Cor cor) { colorido = true; this->cor = cor; clearMapaCores(); }
-	bool estaColorido() const { return colorido; }
+	void setCor(COR::Cor cor) { this->cor = cor; clearMapaCores(); }
 	
-	void mergeCores(const MapaDeCores &, unsigned, unsigned, unsigned, unsigned);
+	void mergeCores(const MapaDeCores &, unsigned, unsigned);
 	const MapaDeCores &getMapaCores() const { return mapaCores; }
 	void clearMapaCores();
 	
 
 protected:
-	unsigned largura, alturaSprite;
+	unsigned largura, altura;
 	
 	//Coloração
-	bool colorido;
 	COR::Cor cor; //cor base
 	
 	//mapa de cores
