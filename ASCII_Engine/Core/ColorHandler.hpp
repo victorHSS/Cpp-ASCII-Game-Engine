@@ -19,6 +19,8 @@ public:
 				largura(largura),altura(altura) { setCor(cor); }
 				
 	void setCor(COR::Cor cor) { this->cor = cor; clearMapaCores(); }
+	COR::Cor getCorBase() const { return cor; }
+	
 	unsigned getAltura() const { return altura; }
 	unsigned getLargura() const { return largura; }
 	
