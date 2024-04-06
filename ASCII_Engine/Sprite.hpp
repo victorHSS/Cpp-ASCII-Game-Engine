@@ -15,9 +15,9 @@ class Sprite : public SpriteBase
 	friend std::ostream &operator<<(std::ostream &, const Sprite &);
 	
 public:
-	Sprite(std::string);
-	Sprite(std::ifstream &);
-	Sprite(std::ifstream &,unsigned);
+	Sprite(std::string, COR::Cor = COR::PADRAO);
+	Sprite(std::ifstream &, COR::Cor = COR::PADRAO);
+	Sprite(std::ifstream &,unsigned, COR::Cor = COR::PADRAO);
 	virtual ~Sprite(){}
 	
 	void loadFromFile(std::string);

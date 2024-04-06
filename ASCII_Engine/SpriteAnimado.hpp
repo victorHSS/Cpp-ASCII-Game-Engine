@@ -10,7 +10,7 @@ class SpriteAnimado : public SpriteBase
 {
 	friend std::ostream &operator<<(std::ostream &, const SpriteAnimado &);
 public:
-	SpriteAnimado(std::string, unsigned = 1);
+	SpriteAnimado(std::string, unsigned = 1, COR::Cor = COR::PADRAO);
 	virtual ~SpriteAnimado(){}
 	
 	unsigned size() const {return sprites.size();} //numero de Sprites da animacão

@@ -10,7 +10,7 @@ std::ostream &operator<<(std::ostream &out, const SpriteBuffer &s)
 	return out;
 }
 
-SpriteBuffer::SpriteBuffer(unsigned largura, unsigned altura) : SpriteBase(largura,altura)
+SpriteBuffer::SpriteBuffer(unsigned largura, unsigned altura, COR::Cor cor) : SpriteBase(largura,altura,cor)
 {
 	clearBuffer();
 }

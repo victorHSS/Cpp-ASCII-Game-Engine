@@ -11,7 +11,7 @@ std::ostream &operator<<(std::ostream &out, const SpriteAnimado &sa)
 	return out;
 }
 
-SpriteAnimado::SpriteAnimado(std::string nameFile, unsigned velAnim):SpriteBase()
+SpriteAnimado::SpriteAnimado(std::string nameFile, unsigned velAnim, COR::Cor cor):SpriteBase()
 { 
 	int ns;
 	
@@ -32,7 +32,7 @@ SpriteAnimado::SpriteAnimado(std::string nameFile, unsigned velAnim):SpriteBase(
 	while (ns--)
 	{
 		try {
-			sprites.push_back(Sprite(fanm,altura));
+			sprites.push_back(Sprite(fanm,altura,cor));
 		} catch(std::runtime_error &e) {
 			throw std::runtime_error("Erro na estrutura de arquivo de SpriteAnimado. Sprite incompleto...");
 		}
