@@ -2,7 +2,7 @@
 
 void FaseFinal::init()
 {
-	objs.push_back(new ObjetoDeJogo("Loving",SpriteAnimado("rsc/rescuePrincess.anm",4),24,30));
+	objs.push_back(new ObjetoDeJogo("Loving",SpriteAnimado("rsc/rescuePrincess.anm",4,COR::AMARELA),24,30));
 }
 
 unsigned FaseFinal::run(SpriteBuffer &screen)

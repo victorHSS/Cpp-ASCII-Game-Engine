@@ -4,10 +4,10 @@
 
 void FaseStart::init()
 {
-	heroMove1 = new ObjetoDeJogo("Hero1",SpriteAnimado("rsc/heroKnightHorse.anm",2),39,30);
+	heroMove1 = new ObjetoDeJogo("Hero1",SpriteAnimado("rsc/heroKnightHorse.anm",2,COR::AZUL),39,30);
 	objs.push_back(heroMove1);
 	
-	heroMove2 = new ObjetoDeJogo("Hero2",SpriteAnimado("rsc/littleKnight.anm",4),38,61);
+	heroMove2 = new ObjetoDeJogo("Hero2",SpriteAnimado("rsc/littleKnight.anm",4,COR::AZUL),38,61);
 	objs.push_back(heroMove2);
 	heroMove2->desativarObj();
 }

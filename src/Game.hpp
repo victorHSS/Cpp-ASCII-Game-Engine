@@ -6,6 +6,7 @@
 #include "FaseFinal.hpp"
 #include "../ASCII_Engine/Sprite.hpp"
 #include "../ASCII_Engine/SpriteAnimado.hpp"
+#include "../ASCII_Engine/Cores.hpp"
 
 class Game
 {
@@ -17,8 +18,8 @@ public:
 	{
 		SpriteBuffer buffer(250,57);
 	
-		FaseStart start("FaseStart",SpriteAnimado("rsc/castleMedieval.anm",3));
-		FaseLevel1 fase1("Fase1",Sprite("rsc/fase2.img"));
+		FaseStart start("FaseStart",SpriteAnimado("rsc/castleMedieval.anm",3,COR::VERMELHA));
+		FaseLevel1 fase1("Fase1",Sprite("rsc/fase2.img",COR::VERMELHA));
 		FaseFinal faseFinal("Fase1",Sprite("rsc/title1Gothic.img"));
 		
 		start.init();

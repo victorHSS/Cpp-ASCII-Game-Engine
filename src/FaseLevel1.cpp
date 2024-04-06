@@ -7,34 +7,34 @@
 void FaseLevel1::init()
 {	
 	//Objetos de jogo
-	princesa = new ObjetoDeJogo("Princess",SpriteAnimado("rsc/littlePrincess.anm",2),16,196);
+	princesa = new ObjetoDeJogo("Princess",SpriteAnimado("rsc/littlePrincess.anm",2,COR::ROSA),16,196);
 	objs.push_back(princesa);
 	
-	guardas[0] = new Enemy(ObjetoDeJogo("Enemy1",SpriteAnimado("rsc/enemy3.anm",3),20,20));
+	guardas[0] = new Enemy(ObjetoDeJogo("Enemy1",SpriteAnimado("rsc/enemy3.anm",3,COR::VERDE),20,20));
 	objs.push_back(guardas[0]);
 	
-	guardas[1] = new Enemy(ObjetoDeJogo("Enemy2",SpriteAnimado("rsc/enemy2.anm",2),35,180));
+	guardas[1] = new Enemy(ObjetoDeJogo("Enemy2",SpriteAnimado("rsc/enemy2.anm",2,COR::VERDE),35,180));
 	objs.push_back(guardas[1]);
 	
-	objs.push_back(new ObjetoDeJogo("Cama",Sprite("rsc/bed.img"),12,168));
+	objs.push_back(new ObjetoDeJogo("Cama",Sprite("rsc/bed.img",COR::MARROM),12,168));
 	
-	chave = new ObjetoDeJogo("Chave",Sprite("rsc/key.img"),12,140);
+	chave = new ObjetoDeJogo("Chave",Sprite("rsc/key.img",COR::AMARELA),12,140);
 	objs.push_back(chave);
 	
-	miniChave = new ObjetoDeJogo("MiniChave",TextSprite("O=;"),7,118);
+	miniChave = new ObjetoDeJogo("MiniChave",TextSprite("O=;",COR::AMARELA),7,118);
 	objs.push_back(miniChave);
 	miniChave->desativarObj();
 	
-	porta = new Door(ObjetoDeJogo("Door",SpriteAnimado("rsc/door.anm"),31,182));
+	porta = new Door(ObjetoDeJogo("Door",SpriteAnimado("rsc/door.anm",1,COR::MARROM),31,182));
 	objs.push_back(porta);
 	
 	tapetePorta = new ObjetoDeJogo("Tapete",SpriteBuffer(17,1),36,182);
 	objs.push_back(tapetePorta);
 	
-	hero = new Hero(ObjetoDeJogo("Hero",SpriteAnimado("rsc/hero.anm",2),39,108));
+	hero = new Hero(ObjetoDeJogo("Hero",SpriteAnimado("rsc/hero.anm",2,COR::AZUL),39,108));
 	objs.push_back(hero);
 	
-	portao = new ObjetoDeJogo("frontDoor",Sprite("rsc/frontDoor.img"),49,102);
+	portao = new ObjetoDeJogo("frontDoor",Sprite("rsc/frontDoor.img",COR::MARROM),49,102);
 	objs.push_back(portao);
 													 //std::string(20,'#')
 	objs.push_back(new ObjetoDeJogo("Life",TextSprite("####################"),7,85));
@@ -42,28 +42,28 @@ void FaseLevel1::init()
 	life = dynamic_cast<TextSprite*> (tmp);
 	
 	//blocos
-	objs.push_back(new ObjetoDeJogo("B1",Sprite("rsc/castleBlock1.img"),18,38));
+	objs.push_back(new ObjetoDeJogo("B1",Sprite("rsc/castleBlock1.img",COR::VERMELHA),18,38));
 	colisoes.push_back(objs.back());
 	
-	objs.push_back(new ObjetoDeJogo("B2",Sprite("rsc/castleBlock2.img"),33,38));
+	objs.push_back(new ObjetoDeJogo("B2",Sprite("rsc/castleBlock2.img",COR::VERMELHA),33,38));
 	colisoes.push_back(objs.back());
 	
-	objs.push_back(new ObjetoDeJogo("B3",Sprite("rsc/castleBlock3.img"),33,132));
+	objs.push_back(new ObjetoDeJogo("B3",Sprite("rsc/castleBlock3.img",COR::VERMELHA),33,132));
 	colisoes.push_back(objs.back());
 	
-	objs.push_back(new ObjetoDeJogo("B4",Sprite("rsc/castleBlock4.img"),18,45));
+	objs.push_back(new ObjetoDeJogo("B4",Sprite("rsc/castleBlock4.img",COR::VERMELHA),18,45));
 	colisoes.push_back(objs.back());
 	
-	objs.push_back(new ObjetoDeJogo("B5",Sprite("rsc/castleBlock5.img"),18,120));
+	objs.push_back(new ObjetoDeJogo("B5",Sprite("rsc/castleBlock5.img",COR::VERMELHA),18,120));
 	colisoes.push_back(objs.back());
 	
-	objs.push_back(new ObjetoDeJogo("B6",Sprite("rsc/castleBlock6.img"),10,158));
+	objs.push_back(new ObjetoDeJogo("B6",Sprite("rsc/castleBlock6.img",COR::VERMELHA),10,158));
 	colisoes.push_back(objs.back());
 	
-	objs.push_back(new ObjetoDeJogo("B7",Sprite("rsc/castleBlock7.img"),31,158));
+	objs.push_back(new ObjetoDeJogo("B7",Sprite("rsc/castleBlock7.img",COR::VERMELHA),31,158));
 	colisoes.push_back(objs.back());
 	
-	objs.push_back(new ObjetoDeJogo("B8",Sprite("rsc/castleBlock8.img"),31,199));
+	objs.push_back(new ObjetoDeJogo("B8",Sprite("rsc/castleBlock8.img",COR::VERMELHA),31,199));
 	colisoes.push_back(objs.back());
 	
 }
