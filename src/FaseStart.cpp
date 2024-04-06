@@ -1,5 +1,7 @@
 #include "FaseStart.hpp"
 
+#include "../ASCII_Engine/Cores.hpp"
+
 void FaseStart::init()
 {
 	heroMove1 = new ObjetoDeJogo("Hero1",SpriteAnimado("rsc/heroKnightHorse.anm",2),39,30);
