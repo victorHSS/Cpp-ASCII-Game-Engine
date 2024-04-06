@@ -13,7 +13,7 @@ std::ostream &operator<<(std::ostream &out, const SpriteAnimado &sa)
 
 SpriteAnimado::SpriteAnimado(std::string nameFile, unsigned velAnim):SpriteBase()
 { 
-	unsigned ns;
+	int ns;
 	
 	this->velAnim = this->stepAnim = velAnim;
 	this->iSpriteAnim = 0;

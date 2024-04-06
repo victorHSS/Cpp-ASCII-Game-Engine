@@ -74,8 +74,9 @@ void Sprite::loadFromFile(std::ifstream &fsprt, unsigned n)
 	this->largura = 0;
 	
 	std::string tmp;
-		
-	while(getline(fsprt,tmp) && n--)
+	
+	int nn = n;
+	while(getline(fsprt,tmp) && nn--)
 	{
 		sprt.push_back(tmp);
 				
@@ -83,7 +84,7 @@ void Sprite::loadFromFile(std::ifstream &fsprt, unsigned n)
 			this->largura = tmp.length();
 	}
 	
-	if (n > 0)
+	if ( (!fsprt && nn > 0) || (fsprt && nn >= 0) )
 		throw std::runtime_error("Sprite Incompleto...");
 	
 	this->altura = this->sprt.size();
