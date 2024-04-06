@@ -43,7 +43,7 @@ SpriteAnimado::SpriteAnimado(std::string nameFile, unsigned velAnim, COR::Cor co
 	
 	fanm.close();
 	
-	colorHandler = sprites[0].getColorHandler();
+	colorHandler = ColorHandler(this->largura, this->altura, sprites[0].getColorHandler().getCorBase());
 }
 
 
