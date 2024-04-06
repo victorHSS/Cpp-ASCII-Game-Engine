@@ -12,8 +12,8 @@ class SpriteBase : public RenderBase
 	//using MapaDeCores = std::vector< std::map<int,COR::Cor> >;
 	
 public:
-	SpriteBase(unsigned largura=0, unsigned altura=0):largura(largura), altura(altura),
-													colorHandler(largura, altura, COR::PADRAO) {}
+	SpriteBase(unsigned largura=0, unsigned altura=0, COR::Cor cor = COR::PADRAO):largura(largura), altura(altura),
+													colorHandler(largura, altura, cor) {}
 	virtual ~SpriteBase(){}
 	
 	unsigned getLargura() const {return this->largura;}
