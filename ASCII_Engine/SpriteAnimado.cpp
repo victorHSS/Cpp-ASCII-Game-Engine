@@ -73,4 +73,12 @@ void SpriteAnimado::putAt(const SpriteBase &sprt, unsigned l, unsigned c)
 {
 	for (int i = 0 ; i < sprites.size() ; i++)
 		sprites[i].putAt(sprt,l,c);
+	colorHandler = sprites[0].colorHandler;
+}
+
+void SpriteAnimado::setCor(COR::Cor cor)
+{
+	SpriteBase::setCor(cor);
+	for (int i = 0 ; i < sprites.size() ; i++)
+		sprites[i].colorHandler = colorHandler;
 }

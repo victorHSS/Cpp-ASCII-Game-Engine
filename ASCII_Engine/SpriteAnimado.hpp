@@ -19,6 +19,7 @@ public:
 	
 	//SpriteBase
 	virtual void putAt(const SpriteBase &, unsigned = 0, unsigned = 0);
+	virtual void setCor(COR::Cor cor);
 	virtual std::string whoami() const {return "SpriteAnimado";}
 	
 	//RenderBase

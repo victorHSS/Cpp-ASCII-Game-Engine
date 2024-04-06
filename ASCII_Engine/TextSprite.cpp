@@ -3,7 +3,7 @@
 
 std::ostream &operator<<(std::ostream &out, const TextSprite &ts)
 {
-	out << ts.text << std::endl;
+	out << ts.colorHandler.colorir(ts.text, 0) << std::endl;
 	return out;
 }
 
@@ -28,4 +28,6 @@ void TextSprite::putAt(const SpriteBase &sprt, unsigned l, unsigned c)
 	
 	if ( c + linha.length() < alvo.length() ) //pega restante da base (alvo) se ainda puder
 		this->text += alvo.substr(c+linha.length(),alvo.length()-(c+linha.length()));
+	
+	colorHandler.mergeCores(sprt.getColorHandler(),l,c);
 }

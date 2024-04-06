@@ -6,8 +6,9 @@
 
 std::ostream &operator<<(std::ostream &out, const Sprite &s)
 {
+	unsigned li{0};
 	for (auto it = s.sprt.begin() ; it != s.sprt.end() ; ++it)
-		out << *it << std::endl;
+		out << s.colorHandler.colorir(*it, li++) << std::endl;
 	
 	return out;
 }
@@ -115,4 +116,5 @@ void Sprite::putAt(const SpriteBase &sprt, unsigned l, unsigned c)
 		if ( c + linha.length() < alvo.length() ) //pega restante da base (alvo) se ainda puder
 			this->sprt[l+i] += alvo.substr(c+linha.length(),alvo.length()-(c+linha.length()));
 	}
+	colorHandler.mergeCores(sprt.getColorHandler(),l,c);
 }

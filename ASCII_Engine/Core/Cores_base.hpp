@@ -17,9 +17,9 @@ namespace COR
 	extern const char *const AMARELA;
 	extern const char *const ROSA;
 	extern const char *const MARROM;
-	extern const char *const MARROM_ESCURO;
+	extern const char *const MARROM_ESCURA;
 	extern const char *const CINZA;
-	extern const char *const CINZA_ESCURO;
+	extern const char *const CINZA_ESCURA;
 	extern const char *const CIANO;
 	extern const char *const MAGENTA;
 	

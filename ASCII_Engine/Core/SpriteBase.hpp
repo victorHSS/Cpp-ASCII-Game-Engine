@@ -37,7 +37,7 @@ public:
 	virtual void draw(SpriteBase &screen, unsigned x, unsigned y){screen.putAt(*this,x,y);}
 	
 	//Cores
-	void setCor(COR::Cor cor) { colorHandler.setCor(cor); }
+	virtual void setCor(COR::Cor cor) { colorHandler.setCor(cor); }
 	const ColorHandler &getColorHandler() const { return colorHandler; } 
 	
 	//void mergeCores(const MapaDeCores &, unsigned, unsigned);

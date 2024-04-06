@@ -4,30 +4,9 @@
 
 std::ostream &operator<<(std::ostream &out, const SpriteBuffer &s)
 {
-	/*
 	unsigned li{0};
 	for (auto it = s.sprt.begin() ; it != s.sprt.end() ; ++it)
 			out << s.colorHandler.colorir(*it, li++) << std::endl;
-			//out << *it << std::endl;
-	return out;
-	 * */
-	int li = 0;
-	for (auto it = s.sprt.begin() ; it != s.sprt.end() ; ++it){
-		auto itCores = s.getColorHandler().getMapaCores()[li].cbegin();
-		auto itCoresFim = s.getColorHandler().getMapaCores()[li].cend();
-		int i;
-		for (i = 0 ; i < it->size() ; i++){
-			while (itCores != itCoresFim && itCores->first < i) ++itCores;
-			if (itCores != itCoresFim && itCores->first == i)
-				std::cout << itCores->second;
-			//auto itCor = s.mapaCores[li].find(i);
-			//if (itCor != itCoresFim)
-			//	out << itCor->second;
-			out << (*it)[i];
-		}
-		out << std::endl;
-		li++;
-	}
 	return out;
 }
 
