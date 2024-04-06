@@ -3,6 +3,8 @@
 #include <string>
 #include <cstring>
 
+#include <iostream>
+
 std::string ColorHandler::colorir(const std::string &linha, unsigned li) const
 {
 	//std::string lColorida(linha.size() + mapaCores[li].size()*strlen(COR::BRANCA),'\0');
@@ -13,6 +15,7 @@ std::string ColorHandler::colorir(const std::string &linha, unsigned li) const
 		lColorida.insert(itL->first, itL->second);
 	
 	return lColorida;
+
 }
 
 

@@ -4,11 +4,14 @@
 
 std::ostream &operator<<(std::ostream &out, const SpriteBuffer &s)
 {
+	/*
 	unsigned li{0};
 	for (auto it = s.sprt.begin() ; it != s.sprt.end() ; ++it)
 			std::cout << s.colorHandler.colorir(*it, li++) << std::endl;
 			//std::cout << *it << std::endl;
 	return out;
+	 * */
+	
 }
 
 SpriteBuffer::SpriteBuffer(unsigned largura, unsigned altura) : SpriteBase(largura,altura)
