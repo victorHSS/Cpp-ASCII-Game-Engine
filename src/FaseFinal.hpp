@@ -1,7 +1,7 @@
 #ifndef FASEFINAL_HPP
 #define FASEFINAL_HPP
 
-#include "ASCII_Engine/Fase.hpp"
+#include "../ASCII_Engine/Fase.hpp"
 
 class FaseFinal : public Fase
 {

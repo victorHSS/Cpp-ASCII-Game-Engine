@@ -1,7 +1,7 @@
 #ifndef ENEMY_HPP
 #define ENEMY_HPP
 
-#include "ASCII_Engine/ObjetoDeJogo.hpp"
+#include "../ASCII_Engine/ObjetoDeJogo.hpp"
 
 class Enemy : public ObjetoDeJogo
 {

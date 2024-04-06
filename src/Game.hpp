@@ -4,8 +4,8 @@
 #include "FaseLevel1.hpp"
 #include "FaseStart.hpp"
 #include "FaseFinal.hpp"
-#include "ASCII_Engine/Sprite.hpp"
-#include "ASCII_Engine/SpriteAnimado.hpp"
+#include "../ASCII_Engine/Sprite.hpp"
+#include "../ASCII_Engine/SpriteAnimado.hpp"
 
 class Game
 {

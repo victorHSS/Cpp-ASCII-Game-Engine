@@ -1,7 +1,7 @@
 #ifndef DOOR_HPP
 #define DOOR_HPP
 
-#include "ASCII_Engine/ObjetoDeJogo.hpp"
+#include "../ASCII_Engine/ObjetoDeJogo.hpp"
 
 class Door : public ObjetoDeJogo
 {

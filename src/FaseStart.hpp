@@ -1,7 +1,7 @@
 #ifndef FASESTART_HPP
 #define FASESTART_HPP
 
-#include "ASCII_Engine/Fase.hpp"
+#include "../ASCII_Engine/Fase.hpp"
 
 class FaseStart : public Fase
 {
