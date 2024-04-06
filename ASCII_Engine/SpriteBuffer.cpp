@@ -11,7 +11,24 @@ std::ostream &operator<<(std::ostream &out, const SpriteBuffer &s)
 			//std::cout << *it << std::endl;
 	return out;
 	 * */
-	
+	int li = 0;
+	for (auto it = s.sprt.begin() ; it != s.sprt.end() ; ++it){
+		auto itCores = s.getColorHandler().getMapaCores()[li].cbegin();
+		auto itCoresFim = s.getColorHandler().getMapaCores()[li].cend();
+		int i;
+		for (i = 0 ; i < it->size() ; i++){
+			while (itCores != itCoresFim && itCores->first < i) ++itCores;
+			if (itCores != itCoresFim && itCores->first == i)
+				std::cout << itCores->second;
+			//auto itCor = s.mapaCores[li].find(i);
+			//if (itCor != itCoresFim)
+			//	std::cout << itCor->second;
+			std::cout << (*it)[i];
+		}
+		std::cout << std::endl;
+		li++;
+	}
+	return out;
 }
 
 SpriteBuffer::SpriteBuffer(unsigned largura, unsigned altura) : SpriteBase(largura,altura)
