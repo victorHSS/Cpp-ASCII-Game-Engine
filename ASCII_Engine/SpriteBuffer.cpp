@@ -7,8 +7,8 @@ std::ostream &operator<<(std::ostream &out, const SpriteBuffer &s)
 	/*
 	unsigned li{0};
 	for (auto it = s.sprt.begin() ; it != s.sprt.end() ; ++it)
-			std::cout << s.colorHandler.colorir(*it, li++) << std::endl;
-			//std::cout << *it << std::endl;
+			out << s.colorHandler.colorir(*it, li++) << std::endl;
+			//out << *it << std::endl;
 	return out;
 	 * */
 	int li = 0;
@@ -22,10 +22,10 @@ std::ostream &operator<<(std::ostream &out, const SpriteBuffer &s)
 				std::cout << itCores->second;
 			//auto itCor = s.mapaCores[li].find(i);
 			//if (itCor != itCoresFim)
-			//	std::cout << itCor->second;
-			std::cout << (*it)[i];
+			//	out << itCor->second;
+			out << (*it)[i];
 		}
-		std::cout << std::endl;
+		out << std::endl;
 		li++;
 	}
 	return out;

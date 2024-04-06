@@ -7,7 +7,7 @@
 std::ostream &operator<<(std::ostream &out, const Sprite &s)
 {
 	for (auto it = s.sprt.begin() ; it != s.sprt.end() ; ++it)
-		std::cout << *it << std::endl;
+		out << *it << std::endl;
 	
 	return out;
 }

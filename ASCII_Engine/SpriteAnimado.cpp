@@ -6,7 +6,7 @@
 std::ostream &operator<<(std::ostream &out, const SpriteAnimado &sa)
 {
 	//printa apenas o sprite atual da animacao
-	std::cout << sa.sprites[sa.iSpriteAnim] << std::endl;
+	out << sa.sprites[sa.iSpriteAnim] << std::endl;
 
 	return out;
 }
