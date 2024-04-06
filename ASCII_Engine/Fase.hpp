@@ -1,7 +1,7 @@
 #ifndef FASE_HPP
 #define FASE_HPP
 
-#include "SpriteBase.hpp"
+#include "Core/SpriteBase.hpp"
 #include "SpriteBuffer.hpp"
 #include "ObjetoDeJogo.hpp"
 #include "Sprite.hpp"

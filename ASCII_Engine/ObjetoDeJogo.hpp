@@ -1,8 +1,8 @@
 #ifndef OBJETODEJOGO_HPP
 #define OBJETODEJOGO_HPP
 
-#include "RenderBase.hpp"
-#include "SpriteBase.hpp"
+#include "Core/RenderBase.hpp"
+#include "Core/SpriteBase.hpp"
 #include "SpriteBuffer.hpp"
 #include "Sprite.hpp"
 #include "SpriteAnimado.hpp"

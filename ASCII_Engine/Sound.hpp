@@ -7,7 +7,7 @@
 class Sound
 {
 public:
-	Sound(std::string soundName) : soundName(soundName),PID_child(-1),paused(false){}
+	Sound(std::string );
 	~Sound();
 
 	bool play(unsigned = 1);

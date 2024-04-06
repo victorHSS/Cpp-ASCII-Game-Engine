@@ -2,16 +2,22 @@
 #define SPRITEBASE_HPP
 
 #include "RenderBase.hpp"
+#include "ColorHandler.hpp"
+#include "Cores_base.hpp"
+
 #include <string>
 
 class SpriteBase : public RenderBase
 {
+	//using MapaDeCores = std::vector< std::map<int,COR::Cor> >;
+	
 public:
-	SpriteBase(unsigned largura=0, unsigned altura=0):largura(largura),alturaSprite(altura){}
+	SpriteBase(unsigned largura=0, unsigned altura=0):largura(largura), altura(altura),
+													colorHandler(largura, altura, COR::PADRAO) {}
 	virtual ~SpriteBase(){}
 	
 	unsigned getLargura() const {return this->largura;}
-	unsigned getAltura() const {return this->alturaSprite;}
+	unsigned getAltura() const {return this->altura;}
 	
 	virtual void putAt(const SpriteBase &, unsigned , unsigned) = 0;
 	//virtual void putCenter(const SpriteBase &, unsigned) = 0; //acho que essas eu consiga ja implementar aqui
@@ -30,9 +36,25 @@ public:
 	
 	virtual void draw(SpriteBase &screen, unsigned x, unsigned y){screen.putAt(*this,x,y);}
 	
+	//Cores
+	virtual void setCor(COR::Cor cor) { colorHandler.setCor(cor); }
+	const ColorHandler &getColorHandler() const { return colorHandler; } 
+	
+	//void mergeCores(const MapaDeCores &, unsigned, unsigned);
+	//const MapaDeCores &getMapaCores() const { return mapaCores; }
+	//void clearMapaCores();
+	
 
 protected:
-	unsigned largura, alturaSprite;
+	unsigned largura, altura;
+	
+	ColorHandler colorHandler;
+	
+	//Coloração
+	//COR::Cor cor; //cor base
+	
+	//mapa de cores
+	//MapaDeCores mapaCores;
 	
 };
 

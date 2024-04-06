@@ -1,12 +1,11 @@
 #ifndef SPRITEBUFFER_HPP
 #define SPRITEBUFFER_HPP
 
-#include "SpriteBase.hpp"
+#include "Core/SpriteBase.hpp"
 #include <vector>
 
 class SpriteBuffer : public SpriteBase
 {
-	//temporarios
 	friend std::ostream &operator<<(std::ostream &, const SpriteBuffer &);
 public:
 	SpriteBuffer(unsigned , unsigned );
@@ -24,6 +23,8 @@ public:
 	
 private:
 	std::vector<std::string> sprt;
+	
+	void clearBuffer();
 	
 	//SpriteBase
 	virtual std::string getLinha(unsigned) const;
