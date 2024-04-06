@@ -24,6 +24,8 @@ public:
 private:
 	std::vector<std::string> sprt;
 	
+	void clearBuffer();
+	
 	//SpriteBase
 	virtual std::string getLinha(unsigned) const;
 };

@@ -42,6 +42,8 @@ SpriteAnimado::SpriteAnimado(std::string nameFile, unsigned velAnim):SpriteBase(
 	}
 	
 	fanm.close();
+	
+	colorHandler = sprites[0].getColorHandler();
 }
 
 

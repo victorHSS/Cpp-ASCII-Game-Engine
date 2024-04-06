@@ -16,16 +16,19 @@ std::ostream &operator<<(std::ostream &out, const Sprite &s)
 Sprite::Sprite(std::string nameFile) : SpriteBase()
 {
 	this->loadFromFile(nameFile);
+	colorHandler = ColorHandler(this->largura, this->altura, COR::PADRAO);
 }
 
 Sprite::Sprite(std::ifstream &fsprt) : SpriteBase()
 {
 	this->loadFromFile(fsprt);
+	colorHandler = ColorHandler(this->largura, this->altura, COR::PADRAO);
 }
 
 Sprite::Sprite(std::ifstream &fsprt, unsigned n) : SpriteBase()
 {
 	this->loadFromFile(fsprt, n);
+	colorHandler = ColorHandler(this->largura, this->altura, COR::PADRAO);
 }
 
 void Sprite::loadFromFile(std::string nameFile)
