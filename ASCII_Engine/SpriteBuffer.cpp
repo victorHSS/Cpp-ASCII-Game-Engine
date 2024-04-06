@@ -4,29 +4,10 @@
 
 std::ostream &operator<<(std::ostream &out, const SpriteBuffer &s)
 {
-	
-	//
-	//  Ficou um pouco custoso, o print dessa forma. Analisar como fazer otimizações e como se comporta num jogo real
-	//	Talvez injetar primeiro na string as cores antes de printar otimize, mas não sei
-	//
-	
-	int li = 0;
-	for (auto it = s.sprt.begin() ; it != s.sprt.end() ; ++it){
-		auto itCores = s.mapaCores[li].cbegin();
-		auto itCoresFim = s.mapaCores[li].cend();
-		int i;
-		for (i = 0 ; i < it->size() ; i++){
-			while (itCores != itCoresFim && itCores->first < i) ++itCores;
-			if (itCores != itCoresFim && itCores->first == i)
-				std::cout << itCores->second;
-			//auto itCor = s.mapaCores[li].find(i);
-			//if (itCor != itCoresFim)
-			//	std::cout << itCor->second;
-			std::cout << (*it)[i];
-		}
-		std::cout << std::endl;
-		li++;
-	}
+	unsigned li{0};
+	for (auto it = s.sprt.begin() ; it != s.sprt.end() ; ++it)
+			std::cout << s.colorHandler.colorir(*it, li++) << std::endl;
+			//std::cout << *it << std::endl;
 	return out;
 }
 
@@ -41,7 +22,7 @@ void SpriteBuffer::clear()
 	for (unsigned i = 0 ; i < altura ; i++)
 		sprt.push_back(std::string(largura,' '));
 	
-	clearMapaCores(); // limpando cores
+	colorHandler.clearMapaCores(); // limpando cores
 }
 
 std::string SpriteBuffer::getLinha(unsigned l) const
@@ -71,5 +52,5 @@ void SpriteBuffer::putAt(const SpriteBase &sprt, unsigned l, unsigned c)
 		if ( c + linha.length() < alvo.length() ) //pega restante da base (alvo) se ainda puder
 			this->sprt[l+i] += alvo.substr(c+linha.length(),alvo.length()-(c+linha.length()));
 	}
-	mergeCores(sprt.getMapaCores(),l,c);
+	colorHandler.mergeCores(sprt.getColorHandler(),l,c);
 }

@@ -1,7 +1,7 @@
 #ifndef SPRITEBUFFER_HPP
 #define SPRITEBUFFER_HPP
 
-#include "SpriteBase.hpp"
+#include "Core/SpriteBase.hpp"
 #include <vector>
 
 class SpriteBuffer : public SpriteBase

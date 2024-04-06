@@ -1,7 +1,7 @@
 #ifndef SPRITEANIMADO_HPP
 #define SPRITEANIMADO_HPP
 
-#include "SpriteBase.hpp"
+#include "Core/SpriteBase.hpp"
 #include "Sprite.hpp"
 #include <vector>
 #include <string>

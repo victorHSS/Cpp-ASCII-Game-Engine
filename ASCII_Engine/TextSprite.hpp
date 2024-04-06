@@ -2,7 +2,7 @@
 #define TEXTSPRITE_HPP
 
 #include <string>
-#include "SpriteBase.hpp"
+#include "Core/SpriteBase.hpp"
 
 class TextSprite : public SpriteBase
 {

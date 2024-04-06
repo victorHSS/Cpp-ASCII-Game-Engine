@@ -2,19 +2,18 @@
 #define SPRITEBASE_HPP
 
 #include "RenderBase.hpp"
-#include "Cores.hpp"
-#include <string>
+#include "ColorHandler.hpp"
+#include "Cores_base.hpp"
 
-#include <vector>
-#include <map>
+#include <string>
 
 class SpriteBase : public RenderBase
 {
-	using MapaDeCores = std::vector< std::map<int,COR::Cor> >;
+	//using MapaDeCores = std::vector< std::map<int,COR::Cor> >;
 	
 public:
-	SpriteBase(unsigned largura=0, unsigned altura=0):largura(largura),altura(altura),
-													cor(COR::PADRAO){clearMapaCores();}
+	SpriteBase(unsigned largura=0, unsigned altura=0):largura(largura), altura(altura),
+													colorHandler(largura, altura, COR::PADRAO) {}
 	virtual ~SpriteBase(){}
 	
 	unsigned getLargura() const {return this->largura;}
@@ -38,21 +37,24 @@ public:
 	virtual void draw(SpriteBase &screen, unsigned x, unsigned y){screen.putAt(*this,x,y);}
 	
 	//Cores
-	void setCor(COR::Cor cor) { this->cor = cor; clearMapaCores(); }
+	void setCor(COR::Cor cor) { colorHandler.setCor(cor); }
+	const ColorHandler &getColorHandler() const { return colorHandler; } 
 	
-	void mergeCores(const MapaDeCores &, unsigned, unsigned);
-	const MapaDeCores &getMapaCores() const { return mapaCores; }
-	void clearMapaCores();
+	//void mergeCores(const MapaDeCores &, unsigned, unsigned);
+	//const MapaDeCores &getMapaCores() const { return mapaCores; }
+	//void clearMapaCores();
 	
 
 protected:
 	unsigned largura, altura;
 	
+	ColorHandler colorHandler;
+	
 	//Coloração
-	COR::Cor cor; //cor base
+	//COR::Cor cor; //cor base
 	
 	//mapa de cores
-	MapaDeCores mapaCores;
+	//MapaDeCores mapaCores;
 	
 };
 

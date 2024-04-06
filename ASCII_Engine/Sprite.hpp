@@ -5,7 +5,7 @@
 #include <string>
 #include <iostream>
 
-#include "SpriteBase.hpp"
+#include "Core/SpriteBase.hpp"
 
 class Sprite : public SpriteBase
 {
