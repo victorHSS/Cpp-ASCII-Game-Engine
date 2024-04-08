@@ -6,6 +6,7 @@
 #include "Cores_base.hpp"
 
 #include <string>
+#include <vector>
 
 class SpriteBase : public RenderBase
 {
@@ -40,22 +41,14 @@ public:
 	virtual void setCor(COR::Cor cor) { colorHandler.setCor(cor); }
 	const ColorHandler &getColorHandler() const { return colorHandler; } 
 	
-	//void mergeCores(const MapaDeCores &, unsigned, unsigned);
-	//const MapaDeCores &getMapaCores() const { return mapaCores; }
-	//void clearMapaCores();
 	
 
 protected:
 	unsigned largura, altura;
 	
+	std::vector<int> front, end;
+	
 	ColorHandler colorHandler;
-	
-	//Coloração
-	//COR::Cor cor; //cor base
-	
-	//mapa de cores
-	//MapaDeCores mapaCores;
-	
 };
 
 #endif // SPRITEBASE_HPP
