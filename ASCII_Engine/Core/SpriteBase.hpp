@@ -45,8 +45,10 @@ public:
 
 protected:
 	unsigned largura, altura;
+
+	struct LIMITS { unsigned front, end;};
 	
-	std::vector<int> front, end;
+	std::vector< LIMITS > limits;
 	
 	ColorHandler colorHandler;
 };
