@@ -14,12 +14,13 @@ public:
 
 	using MapaDeCores = std::vector< std::map<int,COR::Cor> >;
 
-
+	ColorHandler():cor(COR::NULL_COLOR),altura(0),largura(0) {}
 	ColorHandler(unsigned largura, unsigned altura, COR::Cor cor = COR::NULL_COLOR):
 				largura(largura),altura(altura) { setCor(cor); }
 				
 	void setCor(COR::Cor cor) { this->cor = cor; clearMapaCores(); }
 	COR::Cor getCorBase() const { return cor; }
+	void pushCorLinha(unsigned front, unsigned larg, COR::Cor cor ) {mapaCores.push_back( { {front,cor}, {larg,cor} } );}
 	
 	unsigned getAltura() const { return altura; }
 	unsigned getLargura() const { return largura; }

@@ -18,7 +18,6 @@ std::string ColorHandler::colorir(const std::string &linha, unsigned li) const
 	}
 	
 	return lColorida;
-
 }
 
 
@@ -29,8 +28,6 @@ void ColorHandler::clearMapaCores()
 	for (int i = 0 ; i < altura ; i++)
 		mapaCores.push_back( { {0,cor}, {largura,COR::PADRAO} } ); //{ pair<int,COR::Cor>, pair<int,COR::Cor> }
 }
-
-#define DEBUG 0
 
 void ColorHandler::mergeCores(const ColorHandler &oCoHa, unsigned l, unsigned c)
 {

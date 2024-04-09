@@ -1,6 +1,8 @@
 #include "SpriteBuffer.hpp"
 #include <string>
 #include <iostream>
+#include <algorithm>
+
 
 std::ostream &operator<<(std::ostream &out, const SpriteBuffer &s)
 {
@@ -10,7 +12,7 @@ std::ostream &operator<<(std::ostream &out, const SpriteBuffer &s)
 	return out;
 }
 
-SpriteBuffer::SpriteBuffer(unsigned largura, unsigned altura, COR::Cor cor) : SpriteBase(largura,altura,cor)
+SpriteBuffer::SpriteBuffer(unsigned largura, unsigned altura, char backChar, COR::Cor cor) : SpriteBase(largura,altura,cor), backChar(backChar)
 {
 	clearBuffer();
 }
@@ -19,7 +21,7 @@ void SpriteBuffer::clearBuffer()
 {
 	sprt.clear();
 	for (unsigned i = 0 ; i < altura ; i++)
-		sprt.push_back(std::string(largura,' '));
+		sprt.push_back(std::string(largura,backChar));
 }
 
 void SpriteBuffer::clear()
@@ -50,11 +52,20 @@ void SpriteBuffer::putAt(const SpriteBase &sprt, unsigned l, unsigned c)
 		
 		std::string linha = sprt.getLinha(i);
 		std::string alvo = this->sprt[l+i];
+		
+		this->sprt[l+i] = alvo.substr(0,c+sprt.getLimits()[i].front); //aproveita a linha base até o ponto onde vamos inserir o sprite novo
+		this->sprt[l+i] += linha.substr(sprt.getLimits()[i].front,std::min(sprt.getLimits()[i].larg,static_cast<unsigned>(alvo.length()-c-sprt.getLimits()[i].front) )); //pega a porção do sprite novo que cabe na linha destino
+		
+		if ( c + linha.length() - sprt.getLimits()[i].tail < alvo.length() ) //pega restante da base (alvo) se ainda puder
+			this->sprt[l+i] += alvo.substr(c+linha.length() - sprt.getLimits()[i].tail,alvo.length()-(c+linha.length())+sprt.getLimits()[i].tail);
+		
+		/* antigo
 		this->sprt[l+i] = alvo.substr(0,c); //aproveita a linha base até o ponto onde vamos inserir o sprite novo
 		this->sprt[l+i] += linha.substr(0,alvo.length()-c); //pega a porção do sprite novo que cabe na linha destino
 		
 		if ( c + linha.length() < alvo.length() ) //pega restante da base (alvo) se ainda puder
 			this->sprt[l+i] += alvo.substr(c+linha.length(),alvo.length()-(c+linha.length()));
+		* */
 	}
 	colorHandler.mergeCores(sprt.getColorHandler(),l,c);
 }

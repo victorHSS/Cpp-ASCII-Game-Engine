@@ -8,10 +8,10 @@ class TextSprite : public SpriteBase
 {
 	friend std::ostream &operator<<(std::ostream &, const TextSprite &);
 public:
-	TextSprite(std::string text, COR::Cor cor = COR::PADRAO):SpriteBase(text.length(),1, cor) {this->text = text;}
+	TextSprite(std::string text, COR::Cor cor = COR::PADRAO):SpriteBase(text.length(),1, cor) {this->text = text;limits.push_back(LIMITS(text.find_first_not_of(' '),text.find_last_not_of(' '),text.length()));}
 	~TextSprite(){}
 	
-	void setText(std::string text) {this->text = text;this->largura = text.length();}
+	void setText(std::string text) {this->text = text;this->largura = text.length();limits[0] = (LIMITS(text.find_first_not_of(' '),text.find_last_not_of(' '),text.length()));}
 	
 	//SpriteBase
 	virtual void putAt(const SpriteBase &, unsigned = 0, unsigned = 0);

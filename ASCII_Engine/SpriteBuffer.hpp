@@ -8,7 +8,7 @@ class SpriteBuffer : public SpriteBase
 {
 	friend std::ostream &operator<<(std::ostream &, const SpriteBuffer &);
 public:
-	SpriteBuffer(unsigned , unsigned , COR::Cor = COR::PADRAO);
+	SpriteBuffer(unsigned , unsigned , char = ' ', COR::Cor = COR::PADRAO);
 	virtual ~SpriteBuffer(){}
 	
 	void clear();
@@ -23,6 +23,8 @@ public:
 	
 private:
 	std::vector<std::string> sprt;
+	
+	char backChar;
 	
 	void clearBuffer();
 	

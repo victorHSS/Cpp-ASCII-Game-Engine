@@ -17,7 +17,7 @@ class Sprite : public SpriteBase
 public:
 	Sprite(std::string, COR::Cor = COR::PADRAO);
 	Sprite(std::ifstream &, COR::Cor = COR::PADRAO);
-	Sprite(std::ifstream &,unsigned, COR::Cor = COR::PADRAO);
+	Sprite(std::ifstream &, unsigned, COR::Cor = COR::PADRAO);
 	virtual ~Sprite(){}
 	
 	void loadFromFile(std::string);

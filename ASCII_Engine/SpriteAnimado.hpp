@@ -22,6 +22,12 @@ public:
 	virtual void setCor(COR::Cor cor);
 	virtual std::string whoami() const {return "SpriteAnimado";}
 	
+	//Cores
+	virtual const ColorHandler &getColorHandler() const { return sprites[iSpriteAnim].getColorHandler(); } 
+	
+	//Transp
+	virtual const std::vector< LIMITS > &getLimits() const {return sprites[iSpriteAnim].getLimits();}
+	
 	//RenderBase
 	virtual void init() {};
 	virtual void update();
