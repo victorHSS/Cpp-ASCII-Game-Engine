@@ -17,19 +17,19 @@ std::ostream &operator<<(std::ostream &out, const Sprite &s)
 Sprite::Sprite(std::string nameFile, COR::Cor cor) : SpriteBase()
 {
 	this->loadFromFile(nameFile);
-	colorHandler = ColorHandler(this->largura, this->altura, cor);
+	colorHandler = ColorHandler(cor);
 }
 
 Sprite::Sprite(std::ifstream &fsprt, COR::Cor cor) : SpriteBase()
 {
 	this->loadFromFile(fsprt);
-	colorHandler = ColorHandler(this->largura, this->altura, cor);
+	colorHandler = ColorHandler(cor);
 }
 
 Sprite::Sprite(std::ifstream &fsprt, unsigned n, COR::Cor cor) : SpriteBase()
 {
 	this->loadFromFile(fsprt, n);
-	colorHandler = ColorHandler(this->largura, this->altura, cor);
+	colorHandler = ColorHandler(cor);
 }
 
 void Sprite::loadFromFile(std::string nameFile)
@@ -57,6 +57,7 @@ void Sprite::loadFromFile(std::ifstream &fsprt)
 		sprt.push_back(tmp);
 		
 		limits.push_back(LIMITS(tmp.find_first_not_of(' '),tmp.find_last_not_of(' '),tmp.length()));
+		colorHandler.pushCorLinha( limits.back().front, limits.back().end + 1 );
 		
 		if (tmp.length() > this->largura)
 			this->largura = tmp.length();
@@ -83,6 +84,7 @@ void Sprite::loadFromFile(std::ifstream &fsprt, unsigned n)
 		sprt.push_back(tmp);
 		
 		limits.push_back(LIMITS(tmp.find_first_not_of(' '),tmp.find_last_not_of(' '),tmp.length()));
+		colorHandler.pushCorLinha( limits.back().front, limits.back().end + 1 );
 		
 		if (tmp.length() > this->largura)
 			this->largura = tmp.length();

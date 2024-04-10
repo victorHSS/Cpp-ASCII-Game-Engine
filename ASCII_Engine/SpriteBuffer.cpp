@@ -20,8 +20,10 @@ SpriteBuffer::SpriteBuffer(unsigned largura, unsigned altura, char backChar, COR
 void SpriteBuffer::clearBuffer()
 {
 	sprt.clear();
-	for (unsigned i = 0 ; i < altura ; i++)
+	for (unsigned i = 0 ; i < altura ; i++) {
 		sprt.push_back(std::string(largura,backChar));
+		colorHandler.pushCorLinha( 0, largura );
+	}
 }
 
 void SpriteBuffer::clear()

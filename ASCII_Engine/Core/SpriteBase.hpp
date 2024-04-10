@@ -18,7 +18,7 @@ protected:
 	
 public:
 	SpriteBase(unsigned largura=0, unsigned altura=0, COR::Cor cor = COR::PADRAO):largura(largura), altura(altura),
-													colorHandler(largura, altura, cor) {}
+													colorHandler(cor) {}
 	virtual ~SpriteBase(){}
 	
 	unsigned getLargura() const {return this->largura;}

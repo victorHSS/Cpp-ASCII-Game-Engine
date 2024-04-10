@@ -5,6 +5,8 @@
 
 #include <iostream>
 
+#include <stdexcept>
+
 std::string ColorHandler::colorir(const std::string &linha, unsigned li) const
 {
 	std::string lColorida(linha.size() + mapaCores[li].size()*strlen(COR::BRANCA),'\0');
@@ -21,6 +23,13 @@ std::string ColorHandler::colorir(const std::string &linha, unsigned li) const
 }
 
 
+unsigned ColorHandler::getLargura(unsigned l) const
+{
+	if (l >= mapaCores.size())
+		throw std::runtime_error("Linha inexistente no mapa de cores.");
+	return mapaCores[l].rbegin()->first - mapaCores[l].begin()->first;
+}
+
 void ColorHandler::clearMapaCores()
 {
 	mapaCores.clear();
@@ -32,12 +41,14 @@ void ColorHandler::clearMapaCores()
 void ColorHandler::mergeCores(const ColorHandler &oCoHa, unsigned l, unsigned c)
 {
 	const MapaDeCores &oMapCol = oCoHa.getMapaCores();
-	unsigned larg = oCoHa.getLargura();
+	
 	
 	for (int iL = l ; iL < l + oCoHa.getAltura() ; iL++)
 	{
 		if (iL >= this->altura)
 			break;
+		
+		unsigned larg = oCoHa.getLargura(iL);
 		
 		auto itCorAnt = mapaCores[iL].cend();
 		auto itCorProx = mapaCores[iL].cbegin();
