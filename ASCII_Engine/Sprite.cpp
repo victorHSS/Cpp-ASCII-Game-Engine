@@ -14,22 +14,22 @@ std::ostream &operator<<(std::ostream &out, const Sprite &s)
 }
 
 
-Sprite::Sprite(std::string nameFile, COR::Cor cor) : SpriteBase()
+Sprite::Sprite(std::string nameFile, COR::Cor cor) : SpriteBase(cor)
 {
 	this->loadFromFile(nameFile);
-	colorHandler = ColorHandler(cor);
+	//colorHandler = ColorHandler(cor);
 }
 
-Sprite::Sprite(std::ifstream &fsprt, COR::Cor cor) : SpriteBase()
+Sprite::Sprite(std::ifstream &fsprt, COR::Cor cor) : SpriteBase(cor)
 {
 	this->loadFromFile(fsprt);
-	colorHandler = ColorHandler(cor);
+	//colorHandler = ColorHandler(cor);
 }
 
-Sprite::Sprite(std::ifstream &fsprt, unsigned n, COR::Cor cor) : SpriteBase()
+Sprite::Sprite(std::ifstream &fsprt, unsigned n, COR::Cor cor) : SpriteBase(cor)
 {
 	this->loadFromFile(fsprt, n);
-	colorHandler = ColorHandler(cor);
+	//colorHandler = ColorHandler(cor);
 }
 
 void Sprite::loadFromFile(std::string nameFile)

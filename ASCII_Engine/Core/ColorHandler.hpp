@@ -14,14 +14,14 @@ public:
 
 	using MapaDeCores = std::vector< std::map<int,COR::Cor> >;
 
-	ColorHandler(COR::Cor cor = COR::NULL_COLOR):cor(cor),altura(0),largura(0) {}
-	ColorHandler(unsigned largura, unsigned altura, COR::Cor cor = COR::NULL_COLOR):
-				largura(largura),altura(altura) { setCor(cor); }
+	//ColorHandler(COR::Cor cor = COR::NULL_COLOR):cor(cor),altura(0),largura(0) {}
+	ColorHandler(COR::Cor cor = COR::NULL_COLOR):cor(cor) {}
+	//ColorHandler(unsigned largura, unsigned altura, COR::Cor cor = COR::NULL_COLOR):largura(largura),altura(altura) { setCor(cor); }
 				
 	void setCor(COR::Cor cor) { this->cor = cor; clearMapaCores(); }
 	COR::Cor getCorBase() const { return cor; }
 	
-	void pushCorLinha(unsigned front, unsigned end ) {mapaCores.push_back( { {front,cor}, {end,cor} } );}
+	void pushCorLinha(unsigned front, unsigned end ) {mapaCores.push_back( { {front,cor}, {end,COR::PADRAO} } );}
 	
 	unsigned getAltura() const { return mapaCores.size(); }
 	unsigned getLargura(unsigned l) const;
@@ -33,11 +33,15 @@ public:
 	
 	std::string colorir(const std::string &, unsigned) const;
 	
-	void clearMapaCores();
+	void clear() { mapaCores.clear(); }
+	
+	//void clearMapaCores();
 
 private:
 	COR::Cor cor; //cor base
-	unsigned altura, largura; //altura e largura necessários?
+	//unsigned altura, largura; //altura e largura necessários?
+	
+	void clearMapaCores();
 	
 	MapaDeCores mapaCores;
 };

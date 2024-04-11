@@ -12,11 +12,13 @@ class SpriteBase : public RenderBase
 {
 	//using MapaDeCores = std::vector< std::map<int,COR::Cor> >;
 protected:
-	struct LIMITS { unsigned front, end, larg, tail;
+	struct LIMITS { unsigned front, end, larg, head, tail;
 					LIMITS(unsigned f, unsigned e, unsigned l):
-						  front(f),end(e),tail(l - e - 1), larg(l - f - (l - e - 1)) {} };
+						  front(f),end(e),head(f),
+						  tail(l - e - 1), larg(l - f - (l - e - 1)) {} };
 	
 public:
+	SpriteBase(COR::Cor cor = COR::PADRAO):largura(0), altura(0),colorHandler(cor) {}
 	SpriteBase(unsigned largura=0, unsigned altura=0, COR::Cor cor = COR::PADRAO):largura(largura), altura(altura),
 													colorHandler(cor) {}
 	virtual ~SpriteBase(){}

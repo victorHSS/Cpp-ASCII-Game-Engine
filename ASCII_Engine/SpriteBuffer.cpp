@@ -20,6 +20,7 @@ SpriteBuffer::SpriteBuffer(unsigned largura, unsigned altura, char backChar, COR
 void SpriteBuffer::clearBuffer()
 {
 	sprt.clear();
+	colorHandler.clear();
 	for (unsigned i = 0 ; i < altura ; i++) {
 		sprt.push_back(std::string(largura,backChar));
 		colorHandler.pushCorLinha( 0, largura );
@@ -30,7 +31,7 @@ void SpriteBuffer::clear()
 {
 	clearBuffer();					// limpando buffer
 	
-	colorHandler.clearMapaCores(); 	// limpando cores
+	//colorHandler.clearMapaCores(); 	// limpando cores
 }
 
 std::string SpriteBuffer::getLinha(unsigned l) const

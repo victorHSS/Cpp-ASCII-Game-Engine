@@ -11,7 +11,7 @@ std::ostream &operator<<(std::ostream &out, const SpriteAnimado &sa)
 	return out;
 }
 
-SpriteAnimado::SpriteAnimado(std::string nameFile, unsigned velAnim, COR::Cor cor):SpriteBase()
+SpriteAnimado::SpriteAnimado(std::string nameFile, unsigned velAnim, COR::Cor cor):SpriteBase(cor)
 { 
 	int ns;
 	
@@ -43,7 +43,8 @@ SpriteAnimado::SpriteAnimado(std::string nameFile, unsigned velAnim, COR::Cor co
 	
 	fanm.close();
 	
-	colorHandler = ColorHandler(this->largura, this->altura, sprites[0].getColorHandler().getCorBase());
+	//colorHandler = ColorHandler(this->largura, this->altura, sprites[0].getColorHandler().getCorBase());
+	colorHandler = sprites[0].getColorHandler();
 }
 
 

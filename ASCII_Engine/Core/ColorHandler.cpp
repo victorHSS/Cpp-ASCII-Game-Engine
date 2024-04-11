@@ -30,12 +30,25 @@ unsigned ColorHandler::getLargura(unsigned l) const
 	return mapaCores[l].rbegin()->first - mapaCores[l].begin()->first;
 }
 
+
+/* versao antiga --- apagar....
 void ColorHandler::clearMapaCores()
 {
 	mapaCores.clear();
 	
 	for (int i = 0 ; i < altura ; i++)
 		mapaCores.push_back( { {0,cor}, {largura,COR::PADRAO} } ); //{ pair<int,COR::Cor>, pair<int,COR::Cor> }
+}
+*/
+
+void ColorHandler::clearMapaCores() // ********* melhorar *********
+{	
+	for (int i = 0 ; i < getAltura() ; i++) {
+		//mapaCores[i].erase(++mapaCores[i].begin(),mapaCores[i].end());
+		for (auto iC = mapaCores[i].begin() ; iC != mapaCores[i].end() ; ++iC)
+			iC->second = cor;
+		mapaCores[i].rbegin()->second = COR::PADRAO;
+	}
 }
 
 void ColorHandler::mergeCores(const ColorHandler &oCoHa, unsigned l, unsigned c)
@@ -45,10 +58,10 @@ void ColorHandler::mergeCores(const ColorHandler &oCoHa, unsigned l, unsigned c)
 	
 	for (int iL = l ; iL < l + oCoHa.getAltura() ; iL++)
 	{
-		if (iL >= this->altura)
+		if (iL >= this->getAltura())
 			break;
 		
-		unsigned larg = oCoHa.getLargura(iL);
+		unsigned larg = oCoHa.getLargura(iL-l);
 		
 		auto itCorAnt = mapaCores[iL].cend();
 		auto itCorProx = mapaCores[iL].cbegin();
@@ -60,13 +73,13 @@ void ColorHandler::mergeCores(const ColorHandler &oCoHa, unsigned l, unsigned c)
 		
 		for (auto itC = oMapCol[iL-l].cbegin() ; itC != oMapCol[iL-l].cend() ; ++itC)
 		{
-			if (c + itC->first > this->largura)
+			if (c + itC->first > this->getLargura(iL))
 				break;
 				
 			mapaCores[iL][c + itC->first] = itC->second;
 		}
 		
-		if ( c + larg <= this->largura )
+		if ( c + larg <= this->getLargura(iL))
 			mapaCores[iL][c + larg] = corAnt;
 	}
 }
