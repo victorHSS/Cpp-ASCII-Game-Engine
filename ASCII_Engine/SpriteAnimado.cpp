@@ -44,7 +44,7 @@ SpriteAnimado::SpriteAnimado(std::string nameFile, unsigned velAnim, COR::Cor co
 	fanm.close();
 	
 	//colorHandler = ColorHandler(this->largura, this->altura, sprites[0].getColorHandler().getCorBase());
-	colorHandler = sprites[0].getColorHandler();
+	//colorHandler = sprites[0].getColorHandler();
 }
 
 
@@ -74,12 +74,13 @@ void SpriteAnimado::putAt(const SpriteBase &sprt, unsigned l, unsigned c)
 {
 	for (int i = 0 ; i < sprites.size() ; i++)
 		sprites[i].putAt(sprt,l,c);
-	colorHandler = sprites[iSpriteAnim].colorHandler;
+	//colorHandler = sprites[iSpriteAnim].colorHandler;
 }
 
 void SpriteAnimado::setCor(COR::Cor cor)
 {
-	SpriteBase::setCor(cor);
+	//SpriteBase::setCor(cor);
 	for (int i = 0 ; i < sprites.size() ; i++)
-		sprites[i].colorHandler = colorHandler; // o único que faz sentido deixar...
+		sprites[i].colorHandler.setCor(cor); // o único que faz sentido deixar...
+		//sprites[i].colorHandler = colorHandler; // o único que faz sentido deixar...
 }

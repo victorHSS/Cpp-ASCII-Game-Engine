@@ -15,7 +15,7 @@ protected:
 	struct LIMITS { unsigned front, end, larg, head, tail;
 					LIMITS(unsigned f, unsigned e, unsigned l):
 						  front(f),end(e),head(f),
-						  tail(l - e - 1), larg(l - f - (l - e - 1)) {} };
+						  tail(l - e - 1), larg(e - f + 1) {} };
 	
 public:
 	SpriteBase(COR::Cor cor = COR::PADRAO):largura(0), altura(0),colorHandler(cor) {}

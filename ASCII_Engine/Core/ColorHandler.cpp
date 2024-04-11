@@ -22,33 +22,17 @@ std::string ColorHandler::colorir(const std::string &linha, unsigned li) const
 	return lColorida;
 }
 
-
 unsigned ColorHandler::getLargura(unsigned l) const
 {
 	if (l >= mapaCores.size())
 		throw std::runtime_error("Linha inexistente no mapa de cores.");
-	return mapaCores[l].rbegin()->first - mapaCores[l].begin()->first;
+	return mapaCores[l].rbegin()->first;
 }
 
-
-/* versao antiga --- apagar....
 void ColorHandler::clearMapaCores()
-{
-	mapaCores.clear();
-	
-	for (int i = 0 ; i < altura ; i++)
-		mapaCores.push_back( { {0,cor}, {largura,COR::PADRAO} } ); //{ pair<int,COR::Cor>, pair<int,COR::Cor> }
-}
-*/
-
-void ColorHandler::clearMapaCores() // ********* melhorar *********
 {	
-	for (int i = 0 ; i < getAltura() ; i++) {
-		//mapaCores[i].erase(++mapaCores[i].begin(),mapaCores[i].end());
-		for (auto iC = mapaCores[i].begin() ; iC != mapaCores[i].end() ; ++iC)
-			iC->second = cor;
-		mapaCores[i].rbegin()->second = COR::PADRAO;
-	}
+	for (int i = 0 ; i < getAltura() ; i++) 
+		mapaCores[i] = std::map<int,COR::Cor>( { {mapaCores[i].begin()->first,cor}, {mapaCores[i].rbegin()->first,COR::PADRAO} } );
 }
 
 void ColorHandler::mergeCores(const ColorHandler &oCoHa, unsigned l, unsigned c)
@@ -73,8 +57,8 @@ void ColorHandler::mergeCores(const ColorHandler &oCoHa, unsigned l, unsigned c)
 		
 		for (auto itC = oMapCol[iL-l].cbegin() ; itC != oMapCol[iL-l].cend() ; ++itC)
 		{
-			if (c + itC->first > this->getLargura(iL))
-				break;
+			//if (c + itC->first > this->getLargura(iL)) //retirei e funcionou, mas revisar...
+			//	break;
 				
 			mapaCores[iL][c + itC->first] = itC->second;
 		}

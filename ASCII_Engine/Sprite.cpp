@@ -13,7 +13,6 @@ std::ostream &operator<<(std::ostream &out, const Sprite &s)
 	return out;
 }
 
-
 Sprite::Sprite(std::string nameFile, COR::Cor cor) : SpriteBase(cor)
 {
 	this->loadFromFile(nameFile);
