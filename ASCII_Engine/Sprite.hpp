@@ -20,10 +20,6 @@ public:
 	Sprite(std::ifstream &, unsigned, COR::Cor = COR::PADRAO);
 	virtual ~Sprite(){}
 	
-	void loadFromFile(std::string);
-	void loadFromFile(std::ifstream &);
-	void loadFromFile(std::ifstream &,unsigned);
-	
 	//SpriteBase
 	virtual void putAt(const SpriteBase &, unsigned = 0, unsigned = 0);
 	virtual std::string whoami() const {return "Sprite";}
@@ -35,6 +31,10 @@ public:
 
 private:
 	std::vector<std::string> sprt;
+	
+	void loadFromFile(std::string);
+	void loadFromFile(std::ifstream &);
+	void loadFromFile(std::ifstream &,unsigned);
 	
 	//SpriteBase
 	virtual std::string getLinha(unsigned) const;

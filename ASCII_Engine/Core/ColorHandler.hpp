@@ -14,19 +14,17 @@ public:
 
 	using MapaDeCores = std::vector< std::map<int,COR::Cor> >;
 
-	//ColorHandler(COR::Cor cor = COR::NULL_COLOR):cor(cor),altura(0),largura(0) {}
-	ColorHandler(COR::Cor cor = COR::NULL_COLOR):cor(cor) {}
-	//ColorHandler(unsigned largura, unsigned altura, COR::Cor cor = COR::NULL_COLOR):largura(largura),altura(altura) { setCor(cor); }
-				
+	ColorHandler(COR::Cor cor):cor(cor) {}
+
 	void setCor(COR::Cor cor) { this->cor = cor; clearMapaCores(); }
 	COR::Cor getCorBase() const { return cor; }
 	
 	void pushCorLinha(unsigned front, unsigned end ) {mapaCores.push_back( { {front,cor}, {end,COR::PADRAO} } );}
+	void pushLinhaSemCor() {mapaCores.push_back( { } );}
 	
 	unsigned getAltura() const { return mapaCores.size(); }
 	unsigned getLargura(unsigned l) const;
 	
-	//void mergeCores(const MapaDeCores &, unsigned, unsigned);
 	void mergeCores(const ColorHandler &, unsigned, unsigned);
 	
 	const MapaDeCores &getMapaCores() const { return mapaCores; }
@@ -39,7 +37,6 @@ public:
 
 private:
 	COR::Cor cor; //cor base
-	//unsigned altura, largura; //altura e largura necessários?
 	
 	void clearMapaCores();
 	

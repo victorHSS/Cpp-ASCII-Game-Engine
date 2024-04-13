@@ -23,17 +23,19 @@ protected:
 	};
 	
 public:
-	SpriteBase(COR::Cor cor = COR::PADRAO):largura(0), altura(0),colorHandler(cor) {}
-	SpriteBase(unsigned largura, unsigned altura, COR::Cor cor = COR::PADRAO):largura(largura), altura(altura),
-													colorHandler(cor) {}
+	//SpriteBase(COR::Cor cor = COR::NULL_COLOR):largura(0), altura(0),colorHandler(cor) {}
+	SpriteBase(COR::Cor cor = COR::NULL_COLOR):colorHandler(cor) {}
+	//SpriteBase(unsigned largura, unsigned altura, COR::Cor cor = COR::NULL_COLOR):largura(largura), altura(altura),
+	//												colorHandler(cor) {}
+	
 	virtual ~SpriteBase(){}
 	
 	//ajeitar a largura para contemplar a transparência
-	virtual unsigned getLargura(unsigned l = 0) const {return this->largura;}
+	virtual unsigned getLargura(unsigned l) const {return this->limits[l].largLinha;}
 	virtual unsigned getAltura() const {return this->limits.size();}
 	
 	virtual void putAt(const SpriteBase &, unsigned , unsigned) = 0;
-	virtual void putCenter(const SpriteBase &sprt, unsigned l) { putAt(sprt,l,(largura-sprt.getLimits()[l].largLinha)/2); }
+	virtual void putCenter(const SpriteBase &sprt, unsigned l) { putAt(sprt,l,(limits[l].largLinha-sprt.getLimits()[l].largLinha)/2); }
 	//virtual void putLeft(const SpriteBase &, unsigned) = 0;
 	//virtual void putRight(const SpriteBase &, unsigned) = 0;
 	//virtual void appendLeft(const SpriteBase &) = 0;
@@ -57,7 +59,7 @@ public:
 	virtual const std::vector< LIMITS > &getLimits() const {return limits;}
 
 protected:
-	unsigned largura, altura;
+	//unsigned largura, altura;
 	
 	std::vector< LIMITS > limits;
 	

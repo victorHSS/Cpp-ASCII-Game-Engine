@@ -16,19 +16,16 @@ std::ostream &operator<<(std::ostream &out, const Sprite &s)
 Sprite::Sprite(std::string nameFile, COR::Cor cor) : SpriteBase(cor)
 {
 	this->loadFromFile(nameFile);
-	//colorHandler = ColorHandler(cor);
 }
 
 Sprite::Sprite(std::ifstream &fsprt, COR::Cor cor) : SpriteBase(cor)
 {
 	this->loadFromFile(fsprt);
-	//colorHandler = ColorHandler(cor);
 }
 
 Sprite::Sprite(std::ifstream &fsprt, unsigned n, COR::Cor cor) : SpriteBase(cor)
 {
 	this->loadFromFile(fsprt, n);
-	//colorHandler = ColorHandler(cor);
 }
 
 void Sprite::loadFromFile(std::string nameFile)
@@ -43,11 +40,11 @@ void Sprite::loadFromFile(std::string nameFile)
 void Sprite::loadFromFile(std::ifstream &fsprt)
 {
 	this->sprt.clear();
+	this->limits.clear();
+	this->colorHandler.clear();
 	
 	if (!fsprt.is_open())
 		throw std::runtime_error("Erro ao ler arquivo de Sprite...");
-	
-	this->largura = 0;
 	
 	std::string tmp;
 	
@@ -56,24 +53,21 @@ void Sprite::loadFromFile(std::ifstream &fsprt)
 		sprt.push_back(tmp);
 		
 		limits.push_back(LIMITS(tmp.find_first_not_of(' '),tmp.find_last_not_of(' '),tmp.length()));
-		colorHandler.pushCorLinha( limits.back().front, limits.back().end + 1 );
-		
-		if (tmp.length() > this->largura)
-			this->largura = tmp.length();
-		
+		if (limits.back().larg != 0)
+			colorHandler.pushCorLinha( limits.back().front, limits.back().end + 1 );
+		else
+			colorHandler.pushLinhaSemCor();
 	}
-	
-	this->altura = this->sprt.size();
 }
 
 void Sprite::loadFromFile(std::ifstream &fsprt, unsigned n)
 {
 	this->sprt.clear();
+	this->limits.clear();
+	this->colorHandler.clear();
 	
 	if (!fsprt.is_open())
 		throw std::runtime_error("Erro ao ler arquivo de Sprite...");
-	
-	this->largura = 0;
 	
 	std::string tmp;
 	
@@ -83,16 +77,15 @@ void Sprite::loadFromFile(std::ifstream &fsprt, unsigned n)
 		sprt.push_back(tmp);
 		
 		limits.push_back(LIMITS(tmp.find_first_not_of(' '),tmp.find_last_not_of(' '),tmp.length()));
-		colorHandler.pushCorLinha( limits.back().front, limits.back().end + 1 );
 		
-		if (tmp.length() > this->largura)
-			this->largura = tmp.length();
+		if (limits.back().larg != 0)
+			colorHandler.pushCorLinha( limits.back().front, limits.back().end + 1 );
+		else
+			colorHandler.pushLinhaSemCor();
 	}
 	
 	if ( (!fsprt && nn > 0) || (fsprt && nn >= 0) )
 		throw std::runtime_error("Sprite Incompleto...");
-	
-	this->altura = this->sprt.size();
 }
 
 std::string Sprite::getLinha(unsigned l) const
@@ -105,14 +98,11 @@ std::string Sprite::getLinha(unsigned l) const
 
 void Sprite::putAt(const SpriteBase &sprt, unsigned l, unsigned c)
 {
-	if (c >= this->largura)	//se o objeto a ser desenhando estiver além da largura do destino, não faz nada.
+	if (c >= this->getLargura(l) )	//se o objeto a ser desenhando estiver além da largura do destino, não faz nada.
 		return;
 
 	for (int i = 0 ; i < sprt.getAltura() ; i++)
 	{
-		
-		if (i + l >= this->sprt.size()) //se o pedaço do sprite ultrapassar a altura do sprite destino, para
-			break;
 		
 		if (i + l >= this->sprt.size()) //se o pedaço do sprite ultrapassar a altura do sprite destino, para
 			break;

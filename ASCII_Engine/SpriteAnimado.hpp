@@ -22,6 +22,8 @@ public:
 	virtual void setCor(COR::Cor cor);
 	virtual std::string whoami() const {return "SpriteAnimado";}
 	
+	virtual unsigned getLargura(unsigned l) const {return sprites[iSpriteAnim].limits[l].largLinha;}
+	
 	//Cores
 	virtual const ColorHandler &getColorHandler() const { return sprites[iSpriteAnim].getColorHandler(); } 
 	

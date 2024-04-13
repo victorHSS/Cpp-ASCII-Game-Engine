@@ -12,7 +12,8 @@ std::ostream &operator<<(std::ostream &out, const SpriteBuffer &s)
 	return out;
 }
 
-SpriteBuffer::SpriteBuffer(unsigned largura, unsigned altura, char backChar, COR::Cor cor) : SpriteBase(largura,altura,cor), backChar(backChar)
+SpriteBuffer::SpriteBuffer(unsigned largura, unsigned altura, char backChar, COR::Cor cor) : 
+							largura(largura), altura(altura),SpriteBase(cor), backChar(backChar)
 {
 	clearBuffer();
 }
@@ -21,10 +22,10 @@ void SpriteBuffer::clearBuffer()
 {
 	sprt.clear();
 	colorHandler.clear();
-	for (unsigned i = 0 ; i < getAltura() ; i++) {
-		sprt.push_back(std::string(getLargura(),backChar));
-		limits.push_back(LIMITS(0,getLargura() - 1,getLargura()));
-		colorHandler.pushCorLinha( 0, getLargura() );
+	for (unsigned i = 0 ; i < altura ; i++) {
+		sprt.push_back(std::string(largura,backChar));
+		limits.push_back(LIMITS(0,largura - 1,largura));
+		colorHandler.pushCorLinha( 0, largura );
 	}
 }
 
@@ -45,7 +46,7 @@ std::string SpriteBuffer::getLinha(unsigned l) const
 
 void SpriteBuffer::putAt(const SpriteBase &sprt, unsigned l, unsigned c)
 {
-	if (c >= this->getLargura())	//se o objeto a ser desenhando estiver além da largura do destino, não faz nada.
+	if (c >= this->getLargura(l))	//se o objeto a ser desenhando estiver além da largura do destino, não faz nada.
 		return;
 
 	for (int i = 0 ; i < sprt.getAltura() ; i++)

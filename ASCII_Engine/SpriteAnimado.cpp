@@ -13,7 +13,7 @@ std::ostream &operator<<(std::ostream &out, const SpriteAnimado &sa)
 
 SpriteAnimado::SpriteAnimado(std::string nameFile, unsigned velAnim, COR::Cor cor):SpriteBase(cor)
 { 
-	int ns;
+	int ns, altura;
 	
 	this->velAnim = this->stepAnim = velAnim;
 	this->iSpriteAnim = 0;
@@ -36,9 +36,6 @@ SpriteAnimado::SpriteAnimado(std::string nameFile, unsigned velAnim, COR::Cor co
 		} catch(std::runtime_error &e) {
 			throw std::runtime_error("Erro na estrutura de arquivo de SpriteAnimado. Sprite incompleto...");
 		}
-			
-		if (sprites.back().getLargura() > this->largura)
-			this->largura = sprites.back().getLargura();
 	}
 	
 	fanm.close();
@@ -61,7 +58,7 @@ void SpriteAnimado::update()
 
 std::string SpriteAnimado::getLinha(unsigned l) const
 {
-	if (l < sprites[0].getAltura())
+	if (l < sprites[iSpriteAnim].getAltura())
 		return sprites[iSpriteAnim].getLinha(l);
 	else 
 		return "";

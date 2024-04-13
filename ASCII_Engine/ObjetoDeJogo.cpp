@@ -42,8 +42,8 @@ bool ObjetoDeJogo::colideCom(const ObjetoDeJogo &obj) const
 		return (
 		(obj.posL < posL + pSprite->getAltura() &&
 		 obj.posL + obj.getSprite()->getAltura() > posL) &&
-		(obj.posC < posC + pSprite->getLargura() &&
-		 obj.posC + obj.getSprite()->getLargura() > posC)
+		(obj.posC < posC + pSprite->getLargura(posL) &&
+		 obj.posC + obj.getSprite()->getLargura(obj.posL) > posC)
 		);
 	
 	return false;
