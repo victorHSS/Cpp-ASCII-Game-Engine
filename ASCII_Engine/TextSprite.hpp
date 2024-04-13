@@ -12,16 +12,10 @@ public:
 	
 	~TextSprite(){}
 	
-	void setText(std::string text) {
-		this->text = text;
-		limits.clear();
-		limits.push_back(LIMITS(0,text.length()-1,text.length()));
-		colorHandler.clear();
-		colorHandler.pushCorLinha(limits.back().front,limits.back().end + 1);
-	}
+	void setText(std::string text);
 	
 	//SpriteBase
-	virtual void putAt(const SpriteBase &, unsigned = 0, unsigned = 0);
+	virtual void putAt(const SpriteBase &, int = 0, int = 0);
 	virtual std::string whoami() const {return "TextSprite";}
 	
 	//RenderBase

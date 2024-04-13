@@ -21,7 +21,7 @@ public:
 	virtual ~Sprite(){}
 	
 	//SpriteBase
-	virtual void putAt(const SpriteBase &, unsigned = 0, unsigned = 0);
+	virtual void putAt(const SpriteBase &, int = 0, int = 0);
 	virtual std::string whoami() const {return "Sprite";}
 	
 	//RenderBase

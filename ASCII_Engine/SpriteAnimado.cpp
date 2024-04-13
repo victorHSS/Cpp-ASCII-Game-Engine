@@ -64,7 +64,7 @@ std::string SpriteAnimado::getLinha(unsigned l) const
 		return "";
 }
 
-void SpriteAnimado::putAt(const SpriteBase &sprt, unsigned l, unsigned c)
+void SpriteAnimado::putAt(const SpriteBase &sprt, int l, int c)
 {
 	for (int i = 0 ; i < sprites.size() ; i++)
 		sprites[i].putAt(sprt,l,c);

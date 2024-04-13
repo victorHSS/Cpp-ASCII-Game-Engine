@@ -15,7 +15,15 @@ std::string TextSprite::getLinha(unsigned l) const
 		return "";
 }
 
-void TextSprite::putAt(const SpriteBase &sprt, unsigned l, unsigned c)
+void TextSprite::setText(std::string text) {
+	this->text = text;
+	limits.clear();
+	limits.push_back(LIMITS(0,text.length()-1,text.length()));
+	colorHandler.clear();
+	colorHandler.pushCorLinha(limits.back().front,limits.back().end + 1);
+}
+
+void TextSprite::putAt(const SpriteBase &sprt, int l, int c)
 {
 	if (l != 0 || c >= this->text.length())
 		return;

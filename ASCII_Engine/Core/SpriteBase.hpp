@@ -30,7 +30,7 @@ public:
 	virtual unsigned getLargura(unsigned l) const {return this->limits[l].largLinha;}
 	virtual unsigned getAltura() const {return this->limits.size();}
 	
-	virtual void putAt(const SpriteBase &, unsigned , unsigned) = 0;
+	virtual void putAt(const SpriteBase &, int , int) = 0;
 	virtual void putCenter(const SpriteBase &sprt, unsigned l) { putAt(sprt,l,(limits[l].largLinha-sprt.getLimits()[l].largLinha)/2); }
 	//virtual void putLeft(const SpriteBase &, unsigned) = 0;
 	//virtual void putRight(const SpriteBase &, unsigned) = 0;
@@ -55,7 +55,6 @@ public:
 	virtual const std::vector< LIMITS > &getLimits() const {return limits;}
 
 protected:
-	//unsigned largura, altura;
 	
 	std::vector< LIMITS > limits;
 	

@@ -43,14 +43,17 @@ std::string SpriteBuffer::getLinha(unsigned l) const
 		return "";
 }
 
-void SpriteBuffer::putAt(const SpriteBase &sprt, unsigned l, unsigned c)
+void SpriteBuffer::putAt(const SpriteBase &sprt, int l, int c)
 {
-	if (c >= this->getLargura(l))	//se o objeto a ser desenhando estiver além da largura do destino, não faz nada.
-		return;
-
 	for (int i = 0 ; i < sprt.getAltura() ; i++)
 	{
-		if (i + l >= this->sprt.size()) //se o pedaço do sprite ultrapassar a altura do sprite destino, para
+		if (i + l < 0)
+			continue;
+		
+		if (i + l >= this->getAltura()) //se o pedaço do sprite ultrapassar a altura do sprite destino, para
+			break;
+		
+		if (c >= this->getLargura(i))	//se o objeto a ser desenhando estiver além da largura do destino, não faz nada.
 			break;
 		
 		for (int si = sprt.getLimits()[i].front ; si <= sprt.getLimits()[i].end ; si++)
