@@ -23,14 +23,10 @@ protected:
 	};
 	
 public:
-	//SpriteBase(COR::Cor cor = COR::NULL_COLOR):largura(0), altura(0),colorHandler(cor) {}
 	SpriteBase(COR::Cor cor = COR::NULL_COLOR):colorHandler(cor) {}
-	//SpriteBase(unsigned largura, unsigned altura, COR::Cor cor = COR::NULL_COLOR):largura(largura), altura(altura),
-	//												colorHandler(cor) {}
 	
 	virtual ~SpriteBase(){}
 	
-	//ajeitar a largura para contemplar a transparência
 	virtual unsigned getLargura(unsigned l) const {return this->limits[l].largLinha;}
 	virtual unsigned getAltura() const {return this->limits.size();}
 	

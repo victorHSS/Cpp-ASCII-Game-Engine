@@ -23,6 +23,7 @@ public:
 	virtual std::string whoami() const {return "SpriteAnimado";}
 	
 	virtual unsigned getLargura(unsigned l) const {return sprites[iSpriteAnim].limits[l].largLinha;}
+	virtual unsigned getAltura() const {return sprites[iSpriteAnim].getAltura();}
 	
 	//Cores
 	virtual const ColorHandler &getColorHandler() const { return sprites[iSpriteAnim].getColorHandler(); } 

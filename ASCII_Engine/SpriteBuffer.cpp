@@ -1,7 +1,6 @@
 #include "SpriteBuffer.hpp"
 #include <string>
 #include <iostream>
-#include <algorithm>
 
 
 std::ostream &operator<<(std::ostream &out, const SpriteBuffer &s)
