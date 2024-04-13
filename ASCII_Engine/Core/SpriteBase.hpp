@@ -12,10 +12,15 @@ class SpriteBase : public RenderBase
 {
 	//using MapaDeCores = std::vector< std::map<int,COR::Cor> >;
 protected:
-	struct LIMITS { unsigned front, end, larg, head, tail, largLinha;
-					LIMITS(unsigned f, unsigned e, unsigned l):
-						  front(f),end(e),head(f),
-						  tail(l - e - 1), larg(e - f + 1),largLinha(l) {} };
+	struct LIMITS {
+		unsigned front, end, larg, head, tail, largLinha;
+		LIMITS(unsigned f, unsigned e, unsigned l) : front(f), end(e), head(f),
+													 tail(l - e - 1), larg(e - f + 1), largLinha(l) 
+		{
+			if (f == static_cast<unsigned>(std::string::npos))
+				front = end = larg = head = tail = largLinha = 0;
+		}
+	};
 	
 public:
 	SpriteBase(COR::Cor cor = COR::PADRAO):largura(0), altura(0),colorHandler(cor) {}
@@ -23,8 +28,9 @@ public:
 													colorHandler(cor) {}
 	virtual ~SpriteBase(){}
 	
-	unsigned getLargura() const {return this->largura;}
-	unsigned getAltura() const {return this->altura;}
+	//ajeitar a largura para contemplar a transparência
+	virtual unsigned getLargura(unsigned l = 0) const {return this->largura;}
+	virtual unsigned getAltura() const {return this->limits.size();}
 	
 	virtual void putAt(const SpriteBase &, unsigned , unsigned) = 0;
 	virtual void putCenter(const SpriteBase &sprt, unsigned l) { putAt(sprt,l,(largura-sprt.getLimits()[l].largLinha)/2); }

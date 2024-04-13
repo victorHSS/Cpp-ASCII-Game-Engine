@@ -21,15 +21,16 @@ void SpriteBuffer::clearBuffer()
 {
 	sprt.clear();
 	colorHandler.clear();
-	for (unsigned i = 0 ; i < altura ; i++) {
-		sprt.push_back(std::string(largura,backChar));
-		colorHandler.pushCorLinha( 0, largura );
+	for (unsigned i = 0 ; i < getAltura() ; i++) {
+		sprt.push_back(std::string(getLargura(),backChar));
+		limits.push_back(LIMITS(0,getLargura() - 1,getLargura()));
+		colorHandler.pushCorLinha( 0, getLargura() );
 	}
 }
 
 void SpriteBuffer::clear()
 {
-	clearBuffer();					// limpando buffer
+	clearBuffer();						// limpando buffer
 	
 	//colorHandler.clearMapaCores(); 	// limpando cores
 }
@@ -44,31 +45,17 @@ std::string SpriteBuffer::getLinha(unsigned l) const
 
 void SpriteBuffer::putAt(const SpriteBase &sprt, unsigned l, unsigned c)
 {
-	if (c >= this->largura)	//se o objeto a ser desenhando estiver além da largura do destino, não faz nada.
+	if (c >= this->getLargura())	//se o objeto a ser desenhando estiver além da largura do destino, não faz nada.
 		return;
 
 	for (int i = 0 ; i < sprt.getAltura() ; i++)
 	{
-		
 		if (i + l >= this->sprt.size()) //se o pedaço do sprite ultrapassar a altura do sprite destino, para
 			break;
 		
-		std::string linha = sprt.getLinha(i);
-		std::string alvo = this->sprt[l+i];
-		
-		this->sprt[l+i] = alvo.substr(0,c+sprt.getLimits()[i].front); //aproveita a linha base até o ponto onde vamos inserir o sprite novo
-		this->sprt[l+i] += linha.substr(sprt.getLimits()[i].front,std::min(sprt.getLimits()[i].larg,static_cast<unsigned>(alvo.length()-c-sprt.getLimits()[i].front) )); //pega a porção do sprite novo que cabe na linha destino
-		
-		if ( c + linha.length() - sprt.getLimits()[i].tail < alvo.length() ) //pega restante da base (alvo) se ainda puder
-			this->sprt[l+i] += alvo.substr(c+linha.length() - sprt.getLimits()[i].tail,alvo.length()-(c+linha.length())+sprt.getLimits()[i].tail);
-		
-		/* antigo
-		this->sprt[l+i] = alvo.substr(0,c); //aproveita a linha base até o ponto onde vamos inserir o sprite novo
-		this->sprt[l+i] += linha.substr(0,alvo.length()-c); //pega a porção do sprite novo que cabe na linha destino
-		
-		if ( c + linha.length() < alvo.length() ) //pega restante da base (alvo) se ainda puder
-			this->sprt[l+i] += alvo.substr(c+linha.length(),alvo.length()-(c+linha.length()));
-		* */
+		for (int si = sprt.getLimits()[i].front ; si <= sprt.getLimits()[i].end ; si++)
+			if (c + si < this->limits[i].largLinha)
+				this->sprt[l+i][c+si] = sprt.getLinha(i)[si];
 	}
 	colorHandler.mergeCores(sprt.getColorHandler(),l,c);
 }

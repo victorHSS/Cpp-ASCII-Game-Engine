@@ -8,15 +8,14 @@ class TextSprite : public SpriteBase
 {
 	friend std::ostream &operator<<(std::ostream &, const TextSprite &);
 public:
-	TextSprite(std::string text, COR::Cor cor = COR::PADRAO):SpriteBase(0,1,cor){setText(text);}
+	TextSprite(std::string text, COR::Cor cor = COR::PADRAO):SpriteBase(cor){setText(text);}
 	
 	~TextSprite(){}
 	
 	void setText(std::string text) {
 		this->text = text;
-		this->largura = text.length();
 		limits.clear();
-		limits.push_back(LIMITS(text.find_first_not_of(' '),text.find_last_not_of(' '),text.length()));
+		limits.push_back(LIMITS(0,text.length()-1,text.length()));
 		colorHandler.clear();
 		colorHandler.pushCorLinha(limits.back().front,limits.back().end + 1);
 	}

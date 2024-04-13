@@ -17,6 +17,8 @@ public:
 	virtual void putAt(const SpriteBase &, unsigned = 0, unsigned = 0);
 	virtual std::string whoami() const {return "SpriteBuffer";}
 	
+	virtual unsigned getLargura(unsigned l = 0) const {return this->limits[l].largLinha;}
+	
 	//RenderBase
 	virtual void init() {};
 	virtual void update() {};

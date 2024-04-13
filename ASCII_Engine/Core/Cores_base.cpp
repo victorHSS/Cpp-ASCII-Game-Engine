@@ -3,7 +3,7 @@
 namespace COR
 {
 	const char *const NULL_COLOR 		= "";
-	const char *const PADRAO = 			"\e[0m";
+	const char *const PADRAO 			= "\e[0m";
 	
 	//Modo de cores 24-bit true color (R, G, B) ==> "\e[38;2; R ; G ; B m"
 	const char *const BRANCA 			= "\e[38;2;255;255;255m";
