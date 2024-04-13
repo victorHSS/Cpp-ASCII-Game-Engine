@@ -12,14 +12,14 @@ class SpriteBase : public RenderBase
 {
 	//using MapaDeCores = std::vector< std::map<int,COR::Cor> >;
 protected:
-	struct LIMITS { unsigned front, end, larg, head, tail;
+	struct LIMITS { unsigned front, end, larg, head, tail, largLinha;
 					LIMITS(unsigned f, unsigned e, unsigned l):
 						  front(f),end(e),head(f),
-						  tail(l - e - 1), larg(e - f + 1) {} };
+						  tail(l - e - 1), larg(e - f + 1),largLinha(l) {} };
 	
 public:
 	SpriteBase(COR::Cor cor = COR::PADRAO):largura(0), altura(0),colorHandler(cor) {}
-	SpriteBase(unsigned largura=0, unsigned altura=0, COR::Cor cor = COR::PADRAO):largura(largura), altura(altura),
+	SpriteBase(unsigned largura, unsigned altura, COR::Cor cor = COR::PADRAO):largura(largura), altura(altura),
 													colorHandler(cor) {}
 	virtual ~SpriteBase(){}
 	
@@ -27,7 +27,7 @@ public:
 	unsigned getAltura() const {return this->altura;}
 	
 	virtual void putAt(const SpriteBase &, unsigned , unsigned) = 0;
-	virtual void putCenter(const SpriteBase &sprt, unsigned l) { putAt(sprt,l,(largura-sprt.largura)/2); }
+	virtual void putCenter(const SpriteBase &sprt, unsigned l) { putAt(sprt,l,(largura-sprt.getLimits()[l].largLinha)/2); }
 	//virtual void putLeft(const SpriteBase &, unsigned) = 0;
 	//virtual void putRight(const SpriteBase &, unsigned) = 0;
 	//virtual void appendLeft(const SpriteBase &) = 0;
