@@ -1,0 +1,57 @@
+######################################################
+#                                                    #
+#      TODO  -  próximos incrementos na Engine       #
+#                                                    #
+######################################################
+
+DONE
+03/04/2024
+ - Add lançamento de exceção para arquivo inexistente em Sound
+ - Add lançamento de exceção para arquivo inexistente em Sprite
+ - Add lançamento de exceção para SpriteAnimado, caso arquivo não exista,
+		ou caso estrutura (cabeçalho e tamanho dos Sprites) estejam errados.
+ - Bug fix do método putAt. Passou a lidar com qualquer sprite que ultrapassa a tela. 
+
+06/04/2024
+ - Suporte a cores incluído. Apenas cor dos caracteres.
+ - Subdiretório Core adicionado.
+ - Criação da classe ColorHandler.
+ - Sprites com coloração completa.
+ - SaveThePrincess Colorido.
+ 
+DOING
+ - Transparencia e cores ok. Fazer uma revisão no código
+    - Aparentemente tudo ok. Testar no SaveThePrincessColorido
+    --- SaveThePrincessColorido deixou de funcionar...
+	- Estava tentando fazer funcionar fora dos limites da tela. 
+	  -- Se menor que 0 pra cima e esquerda não funciona...
+	  -- direita funciona
+	  -- baixo não funciona
+	  
+	  -- getLargura em SpriteBuffer pode ter default 0
+
+TODO
+
+1 - com a implementação da transparencia por meio dos limits:
+  - corrigir método colideCom
+  - criar um novo método colideComBordas no ObjetoDeJogo
+
+2 - Ver a possibilidade de a Engine aceitar caracteres não ASCII. Parece ser muito simples.
+	Basta alterar todas as strings por wstring. O getline também suporta wstring. É só testar.
+
+XX- kkkkkkk acho que consegui uma forma de fazer a engine rodar direto sem parar -> CTRL + D. Investigar isso.
+
+3 - Adicionar namespace
+
+4 - Adicionar um script (diretório utilitários) para converter arquivos txt advindos do windows para linux
+
+5 - Personalizar as exceções.
+
+6 - Permitir que sprites sejam posicionados em posições negativas??? Nessa caso, considerando apenas as posições válidas.
+
+
+EXTRAS
+  - CORES:
+    estudar links -> https://bureau-it.com/artigos/como-exibir-cores-no-terminal/
+				  -> https://github.com/leilaapsilva/pokemon-terminal/blob/master/jogo.cpp
+				  -> https://www.cin.ufpe.br/~js/tabeladecores.htm <- tabela de cores
