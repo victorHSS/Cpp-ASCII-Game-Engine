@@ -73,6 +73,7 @@ unsigned FaseLevel1::run(SpriteBuffer &screen)
 	std::string ent;
 	
 	//padrão
+	screen.clear();
 	draw(screen);
 	system("clear");
 	show(screen);
@@ -91,7 +92,8 @@ unsigned FaseLevel1::run(SpriteBuffer &screen)
 			hero->moveDown(3);
 		else if (ent == "a" && hero->getPosC() > 12)
 			hero->moveLeft(3);
-		else if (ent == "d" && hero->getPosC() < screen.getLargura() - hero->getSprite()->getLargura() - 13)
+		else if (ent == "d" && hero->getPosC() < screen.getLarguraMaxFit() - hero->getSprite()->getLarguraMaxFit() - 13)
+		//else if (ent == "d" && hero->getPosC() < 250)
 			hero->moveRight(3);
 		else if (ent == "x") {
 			for (int g = 0 ; g < 2 ; g++)
@@ -105,8 +107,8 @@ unsigned FaseLevel1::run(SpriteBuffer &screen)
 			return Fase::END_GAME;
 			
 
-		if (colideComBloco()) 
-			hero->moveTo(posL,posC);
+		if (colideComBloco()) ;
+			//hero->moveTo(posL,posC);
 		
 		
 		//processando eventos
@@ -143,6 +145,7 @@ unsigned FaseLevel1::run(SpriteBuffer &screen)
 		
 		//padrão
 		update();
+		screen.clear();
 		draw(screen);
 		system("clear");
 		show(screen);

@@ -2,7 +2,7 @@
 
 void FaseFinal::init()
 {
-	objs.push_back(new ObjetoDeJogo("Loving",SpriteAnimado("rsc/rescuePrincess.anm",4,COR::AMARELA),24,30));
+	objs.push_back(new ObjetoDeJogo("Loving",SpriteAnimado("rsc/rescuePrincess.anm",4,COR::ROSA),24,30));
 }
 
 unsigned FaseFinal::run(SpriteBuffer &screen)
@@ -10,6 +10,7 @@ unsigned FaseFinal::run(SpriteBuffer &screen)
 	std::string ent;
 	
 	//padrão
+	screen.clear();
 	draw(screen);
 	system("clear");
 	show(screen);
@@ -24,6 +25,7 @@ unsigned FaseFinal::run(SpriteBuffer &screen)
 		
 		//padrão
 		update();
+		screen.clear();
 		draw(screen);
 		system("clear");
 		show(screen);
