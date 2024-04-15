@@ -20,12 +20,12 @@ public:
 	COR::Cor getCorBase() const { return cor; }
 	
 	void pushCorLinha(unsigned front, unsigned end ) {mapaCores.push_back( { {front,cor}, {end,COR::PADRAO} } );}
-	void pushLinhaSemCor() {mapaCores.push_back( { } );}
+	void pushLinhaSemCor() {mapaCores.push_back( { } ); }
 	
-	unsigned getAltura() const { return mapaCores.size(); }
-	unsigned getLargura(unsigned l) const;
+	int getAltura() const { return mapaCores.size(); }
+	int getLargura(int l) const;
 	
-	void mergeCores(const ColorHandler &, unsigned, unsigned);
+	void mergeCores(const ColorHandler &, int, int);
 	
 	const MapaDeCores &getMapaCores() const { return mapaCores; }
 	

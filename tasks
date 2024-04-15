@@ -20,15 +20,13 @@ DONE
  - SaveThePrincess Colorido.
  
 DOING
+ - Ultrapassagem dos limites de buffer e putAt ok.
  - Transparencia e cores ok. Fazer uma revisão no código
+    - Resolvido questão dos limites da tela no putSprite.
+	  Problema das cores fora das margens ok.
+	  
     - Aparentemente tudo ok. Testar no SaveThePrincessColorido
     --- SaveThePrincessColorido deixou de funcionar...
-	- Estava tentando fazer funcionar fora dos limites da tela. 
-	  -- Se menor que 0 pra cima e esquerda não funciona...
-	  -- direita funciona
-	  -- baixo não funciona
-	  
-	  -- getLargura em SpriteBuffer pode ter default 0
 
 TODO
 

@@ -27,8 +27,8 @@ public:
 	
 	virtual ~SpriteBase(){}
 	
-	virtual unsigned getLargura(unsigned l) const {return this->limits[l].largLinha;}
-	virtual unsigned getAltura() const {return this->limits.size();}
+	virtual int getLargura(unsigned l) const {return this->limits[l].largLinha;}
+	virtual int getAltura() const {return this->limits.size();}
 	
 	virtual void putAt(const SpriteBase &, int , int) = 0;
 	virtual void putCenter(const SpriteBase &sprt, unsigned l) { putAt(sprt,l,(limits[l].largLinha-sprt.getLimits()[l].largLinha)/2); }
