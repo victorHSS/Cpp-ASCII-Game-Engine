@@ -26,6 +26,20 @@ public:
 	SpriteBase(COR::Cor cor = COR::NULL_COLOR):colorHandler(cor) {}
 	
 	virtual ~SpriteBase(){}
+
+    virtual int getLarguraMaxFit() const {
+		unsigned lm{0};
+		for (auto itL = limits.cbegin() ; itL != limits.end() ; ++itL)
+			lm = (itL->end + 1 > lm)?itL->end + 1:lm;
+		return lm;
+	}
+	
+	virtual int getLarguraMax() const {
+		unsigned lm{0};
+		for (auto itL = limits.cbegin() ; itL != limits.end() ; ++itL)
+			lm = (itL->largLinha > lm)?itL->largLinha:lm;
+		return lm;
+	}
 	
 	virtual int getLargura(unsigned l) const {return this->limits[l].largLinha;}
 	virtual int getAltura() const {return this->limits.size();}
@@ -45,7 +59,7 @@ public:
 	virtual void init() = 0;
 	virtual void update() = 0;
 	
-	virtual void draw(SpriteBase &screen, unsigned x, unsigned y){screen.putAt(*this,x,y);}
+	virtual void draw(SpriteBase &screen, int x, int y){screen.putAt(*this,x,y);}
 	
 	//Cores
 	virtual void setCor(COR::Cor cor) { colorHandler.setCor(cor); }

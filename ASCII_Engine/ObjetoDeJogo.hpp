@@ -13,16 +13,16 @@
 class ObjetoDeJogo : public RenderBase
 {
 public:
-	ObjetoDeJogo(std::string name, const Sprite &s, unsigned posL, unsigned posC) : 
+	ObjetoDeJogo(std::string name, const Sprite &s, int posL, int posC) : 
 		name(name),pSprite(new Sprite(s)),posL(posL),posC(posC),active(true) {}
 		
-	ObjetoDeJogo(std::string name, const SpriteAnimado &s, unsigned posL, unsigned posC) :
+	ObjetoDeJogo(std::string name, const SpriteAnimado &s, int posL, int posC) :
 		name(name),pSprite(new SpriteAnimado(s)),posL(posL),posC(posC),active(true) {}
 		
-	ObjetoDeJogo(std::string name, const TextSprite &s, unsigned posL, unsigned posC) :
+	ObjetoDeJogo(std::string name, const TextSprite &s, int posL, int posC) :
 		name(name),pSprite(new TextSprite(s)),posL(posL),posC(posC),active(true) {}
 	
-	ObjetoDeJogo(std::string name, const SpriteBuffer &s, unsigned posL, unsigned posC) :
+	ObjetoDeJogo(std::string name, const SpriteBuffer &s, int posL, int posC) :
 		name(name),pSprite(new SpriteBuffer(s)),posL(posL),posC(posC),active(true) {}
 	
 	ObjetoDeJogo(const ObjetoDeJogo&);
@@ -31,17 +31,18 @@ public:
 	
 	const ObjetoDeJogo &operator=(const ObjetoDeJogo &);
 	
-	bool colideCom(const ObjetoDeJogo &) const ;
+	bool colideCom(const ObjetoDeJogo &) const;			//considera os limites do sprite (quadrado)
+	bool colideComBordas(const ObjetoDeJogo &) const;	//considera os limites do desenho propriamente dito
 	
-	void moveTo(unsigned posL, unsigned posC){ this->posL = posL; this->posC = posC;}
-	void moveLeft(int qpos=1)	{ moveTo(posL,posC-qpos); } //modificado
-	void moveRight(int qpos=1)	{ moveTo(posL,posC+qpos); } //modificado
-	void moveUp(int qpos=1)		{ moveTo(posL-qpos,posC); } //modificado
-	void moveDown(int qpos=1)	{ moveTo(posL+qpos,posC); } //modificado
+	void moveTo(int posL, int posC){ this->posL = posL; this->posC = posC;}
+	void moveLeft(int qpos=1)	{ moveTo(posL,posC-qpos); }
+	void moveRight(int qpos=1)	{ moveTo(posL,posC+qpos); }
+	void moveUp(int qpos=1)		{ moveTo(posL-qpos,posC); }
+	void moveDown(int qpos=1)	{ moveTo(posL+qpos,posC); }
 	
 	std::string getName() const {return name;}
-	unsigned getPosL() const {return posL;}
-	unsigned getPosC() const {return posC;}
+	int getPosL() const {return posL;}
+	int getPosC() const {return posC;}
 	const SpriteBase *getSprite() const {return pSprite;}
 	
 	void ativarObj() {this->active = true;};
@@ -51,10 +52,10 @@ public:
 	virtual void init() {};
 	virtual void update() {if (active) pSprite->update();}//lembrar de chamar esta nas derivadas...
 	
-	virtual void draw(SpriteBase &screen, unsigned x, unsigned y) {if (active) pSprite->draw(screen,x,y);}
+	virtual void draw(SpriteBase &screen, int x, int y) {if (active) pSprite->draw(screen,x,y);}
 private:
 	std::string name;
-	unsigned   posL, posC;
+	int	posL, posC;
 	SpriteBase *pSprite;
 	
 	bool active;

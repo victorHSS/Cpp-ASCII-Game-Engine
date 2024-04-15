@@ -22,17 +22,14 @@ DONE
 DOING
  - Ultrapassagem dos limites de buffer e putAt ok.
  - Transparencia e cores ok. Fazer uma revisão no código
-    - Resolvido questão dos limites da tela no putSprite.
-	  Problema das cores fora das margens ok.
+ - Objeto de jogo teve o método colideCom revisado
+ - criando método colideComBordas
 	  
     - Aparentemente tudo ok. Testar no SaveThePrincessColorido
-    --- SaveThePrincessColorido deixou de funcionar...
+    - Pequeno problema com cores na sobreposição de sprites animados.
 
 TODO
 
-1 - com a implementação da transparencia por meio dos limits:
-  - corrigir método colideCom
-  - criar um novo método colideComBordas no ObjetoDeJogo
 
 2 - Ver a possibilidade de a Engine aceitar caracteres não ASCII. Parece ser muito simples.
 	Basta alterar todas as strings por wstring. O getline também suporta wstring. É só testar.

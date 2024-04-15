@@ -42,9 +42,19 @@ bool ObjetoDeJogo::colideCom(const ObjetoDeJogo &obj) const
 		return (
 		(obj.posL < posL + pSprite->getAltura() &&
 		 obj.posL + obj.getSprite()->getAltura() > posL) &&
-		(obj.posC < posC + pSprite->getLargura(posL) &&
-		 obj.posC + obj.getSprite()->getLargura(obj.posL) > posC)
+		(obj.posC < posC + pSprite->getLarguraMax() &&
+		 obj.posC + obj.getSprite()->getLarguraMax() > posC)
 		);
+	
+	return false;
+}
+
+bool ObjetoDeJogo::colideComBordas(const ObjetoDeJogo &) const
+{
+	if (active && obj.active)
+	{
+		//concluir
+	}
 	
 	return false;
 }
