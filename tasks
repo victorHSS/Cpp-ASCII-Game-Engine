@@ -25,11 +25,17 @@ DOING
  - Objeto de jogo teve o método colideCom revisado
  - criando método colideComBordas
 	  
-    - Aparentemente tudo ok. Testar no SaveThePrincessColorido
-    - Pequeno problema com cores na sobreposição de sprites animados.
+	  
+	   Testar o colideComBordas
+	   
+	   
+ - Pequeno problema com cores na sobreposição de sprites animados.
 
 TODO
 
+0 - O limits pode ter um campo empty, para indicar se a linha é vazia, evitando assim a análise de front e end ou larg.
+
+1 - Tenho como juntar os dois loadFromFile de Sprite usando uma flag no parâmetro
 
 2 - Ver a possibilidade de a Engine aceitar caracteres não ASCII. Parece ser muito simples.
 	Basta alterar todas as strings por wstring. O getline também suporta wstring. É só testar.

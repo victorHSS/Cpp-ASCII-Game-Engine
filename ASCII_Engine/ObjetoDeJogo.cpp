@@ -1,5 +1,7 @@
 #include "ObjetoDeJogo.hpp"
 
+#include <algorithm>
+
 ObjetoDeJogo::ObjetoDeJogo(const ObjetoDeJogo &o) : name(o.name),posL(o.posL),posC(o.posC),active(true)
 {
 	//trick
@@ -53,7 +55,14 @@ bool ObjetoDeJogo::colideComBordas(const ObjetoDeJogo &) const
 {
 	if (active && obj.active)
 	{
-		//concluir
+		//concluir....
+		int maxPosLini = std::max(posL,obj.posL);
+		int minPosLfim = std::min(posL+pSprite()->getAltura(),obj.posL+obj.pSprite()->getAltura());
+		for (int l = maxPosLini ; l < minPosLfim ; l++)
+			if (obj.posC + obj.getSprite()->limits.front <= posC + pSprite->limits.end &&
+				obj.posC + obj.getSprite()->limits.end >= posC + pSprite->limits.front)
+				
+				return true;
 	}
 	
 	return false;
