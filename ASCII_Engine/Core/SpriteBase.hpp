@@ -10,7 +10,6 @@
 
 class SpriteBase : public RenderBase
 {
-	//using MapaDeCores = std::vector< std::map<int,COR::Cor> >;
 protected:
 	struct LIMITS {
 		unsigned front, end, larg, head, tail, largLinha;
@@ -45,9 +44,9 @@ public:
 	virtual int getAltura() const {return this->limits.size();}
 	
 	virtual void putAt(const SpriteBase &, int , int) = 0;
-	virtual void putCenter(const SpriteBase &sprt, unsigned l) { putAt(sprt,l,(limits[l].largLinha-sprt.getLimits()[l].largLinha)/2); }
-	//virtual void putLeft(const SpriteBase &, unsigned) = 0;
-	//virtual void putRight(const SpriteBase &, unsigned) = 0;
+	virtual void putCenter(const SpriteBase &sprt, int l) { putAt(sprt,l,(limits[l].largLinha-sprt.getLimits()[l].largLinha)/2); }
+	//virtual void putLeft(const SpriteBase &sprt, int l) { putAt(sprt,l,0); }
+	//virtual void putRight(const SpriteBase &sprt, int l) { putAt(sprt,l,limits[l].largLinha-sprt.limits[l]); };
 	//virtual void appendLeft(const SpriteBase &) = 0;
 	//virtual void appendRight(const SpriteBase &) = 0;
 	

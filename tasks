@@ -28,11 +28,11 @@ DOING
 	  
 	   Testar o colideComBordas
 	   
-	   
+BUGs
  - Pequeno problema com cores na sobreposição de sprites animados.
 
 TODO
-
+0 - Acredito que seja interessante criar um método auxiliar chamada normaliza, que deixa todas as linhas do sprite com o mesmo tamanho
 0 - O limits pode ter um campo empty, para indicar se a linha é vazia, evitando assim a análise de front e end ou larg.
 
 1 - Tenho como juntar os dois loadFromFile de Sprite usando uma flag no parâmetro
