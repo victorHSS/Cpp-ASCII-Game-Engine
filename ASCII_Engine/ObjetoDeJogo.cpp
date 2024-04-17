@@ -55,7 +55,6 @@ bool ObjetoDeJogo::colideComBordas(const ObjetoDeJogo &) const
 {
 	if (active && obj.active)
 	{
-		//concluir....
 		int maxPosLini = std::max(posL,obj.posL);
 		int minPosLfim = std::min(posL+pSprite()->getAltura(),obj.posL+obj.pSprite()->getAltura());
 		for (int l = maxPosLini ; l < minPosLfim ; l++)
