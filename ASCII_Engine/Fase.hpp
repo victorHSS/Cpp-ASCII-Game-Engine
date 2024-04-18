@@ -42,7 +42,7 @@ public:
 	//RenderBase
 	virtual void init() = 0;
 	virtual void update();
-	virtual void draw(SpriteBase &screen, unsigned x = 0, unsigned y = 0);
+	virtual void draw(SpriteBase &screen, int x = 0, int y = 0);
 
 protected:
 	std::string name;

@@ -97,7 +97,7 @@ unsigned FaseLevel1::run(SpriteBuffer &screen)
 			hero->moveRight(3);
 		else if (ent == "x") {
 			for (int g = 0 ; g < 2 ; g++)
-				if (hero->colideCom(*guardas[g])) {
+				if (hero->colideComBordas(*guardas[g])) {
 					guardas[g]->sofrerAtaque(hero->atacar());
 					if (!guardas[g]->isAlive())
 						guardas[g]->desativarObj();
@@ -113,7 +113,7 @@ unsigned FaseLevel1::run(SpriteBuffer &screen)
 		
 		//processando eventos
 		for (int g = 0 ; g < 2 ; g++)
-				if (hero->colideCom(*guardas[g])) {
+				if (hero->colideComBordas(*guardas[g])) {
 					hero->sofrerAtaque(guardas[g]->atacar());
 					
 					if (!hero->isAlive())
@@ -122,22 +122,22 @@ unsigned FaseLevel1::run(SpriteBuffer &screen)
 					life->setText(std::string(hero->getLife()/5,'#'));
 				}
 		
-		if (hero->colideCom(*chave))
+		if (hero->colideComBordas(*chave))
 		{
 			chave->desativarObj();
 			miniChave->ativarObj();
 			hero->pegarChave();
 		}
-		else if (hero->colideCom(*tapetePorta) && hero->possuiChave())
+		else if (hero->colideComBordas(*tapetePorta) && hero->possuiChave())
 		{
 			porta->openTheDoor();
 		}
-		else if (hero->colideCom(*princesa))
+		else if (hero->colideComBordas(*princesa))
 		{
 			princesa->desativarObj();
 			hero->salvarPrincesa();
 		}
-		else if (hero->colideCom(*portao) && hero->salvouPrincesa())
+		else if (hero->colideComBordas(*portao) && hero->salvouPrincesa())
 		{
 			return Fase::LEVEL_COMPLETE;
 		}

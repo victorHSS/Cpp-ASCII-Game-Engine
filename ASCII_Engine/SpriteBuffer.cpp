@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 
+
 std::ostream &operator<<(std::ostream &out, const SpriteBuffer &s)
 {
 	unsigned li{0};
@@ -10,7 +11,8 @@ std::ostream &operator<<(std::ostream &out, const SpriteBuffer &s)
 	return out;
 }
 
-SpriteBuffer::SpriteBuffer(unsigned largura, unsigned altura, COR::Cor cor) : SpriteBase(largura,altura,cor)
+SpriteBuffer::SpriteBuffer(unsigned largura, unsigned altura, char backChar, COR::Cor cor) : 
+							largura(largura), altura(altura),SpriteBase(cor), backChar(backChar)
 {
 	clearBuffer();
 }
@@ -18,15 +20,20 @@ SpriteBuffer::SpriteBuffer(unsigned largura, unsigned altura, COR::Cor cor) : Sp
 void SpriteBuffer::clearBuffer()
 {
 	sprt.clear();
-	for (unsigned i = 0 ; i < altura ; i++)
-		sprt.push_back(std::string(largura,' '));
+	colorHandler.clear();
+	limits.clear();
+	for (unsigned i = 0 ; i < altura ; i++) {
+		sprt.push_back(std::string(largura,backChar));
+		limits.push_back(LIMITS(0,largura - 1,largura));
+		colorHandler.pushCorLinha( 0, largura );
+	}
 }
 
 void SpriteBuffer::clear()
 {
-	clearBuffer();					// limpando buffer
+	clearBuffer();						// limpando buffer
 	
-	colorHandler.clearMapaCores(); 	// limpando cores
+	//colorHandler.clearMapaCores(); 	// limpando cores
 }
 
 std::string SpriteBuffer::getLinha(unsigned l) const
@@ -37,24 +44,27 @@ std::string SpriteBuffer::getLinha(unsigned l) const
 		return "";
 }
 
-void SpriteBuffer::putAt(const SpriteBase &sprt, unsigned l, unsigned c)
+void SpriteBuffer::putAt(const SpriteBase &sprt, int l, int c)
 {
-	if (c >= this->largura)	//se o objeto a ser desenhando estiver além da largura do destino, não faz nada.
-		return;
-
 	for (int i = 0 ; i < sprt.getAltura() ; i++)
 	{
+
+		if (i + l < 0) 					//se a linha atual estiver antes do sprite, avança
+			continue;
 		
-		if (i + l >= this->sprt.size()) //se o pedaço do sprite ultrapassar a altura do sprite destino, para
+		if (i + l >= this->getAltura()) //se o pedaço do sprite ultrapassar a altura do sprite destino, para
 			break;
 		
-		std::string linha = sprt.getLinha(i);
-		std::string alvo = this->sprt[l+i];
-		this->sprt[l+i] = alvo.substr(0,c); //aproveita a linha base até o ponto onde vamos inserir o sprite novo
-		this->sprt[l+i] += linha.substr(0,alvo.length()-c); //pega a porção do sprite novo que cabe na linha destino
+		if (c >= this->getLargura(i))	//se o objeto a ser desenhando estiver além da largura do destino, faz nada.
+			break;
+			
+		if (!sprt.getLimits()[i].largLinha) //se linha do objeto foz vazia, faz nada
+			continue;
 		
-		if ( c + linha.length() < alvo.length() ) //pega restante da base (alvo) se ainda puder
-			this->sprt[l+i] += alvo.substr(c+linha.length(),alvo.length()-(c+linha.length()));
+		for (int si = sprt.getLimits()[i].front ; si <= sprt.getLimits()[i].end ; si++) {
+			if (c + si >= 0 && c + si < this->limits[i].largLinha)
+				this->sprt[l+i][c+si] = sprt.getLinha(i)[si];
+		}
 	}
 	colorHandler.mergeCores(sprt.getColorHandler(),l,c);
 }

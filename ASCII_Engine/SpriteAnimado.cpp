@@ -11,9 +11,9 @@ std::ostream &operator<<(std::ostream &out, const SpriteAnimado &sa)
 	return out;
 }
 
-SpriteAnimado::SpriteAnimado(std::string nameFile, unsigned velAnim, COR::Cor cor):SpriteBase()
+SpriteAnimado::SpriteAnimado(std::string nameFile, unsigned velAnim, COR::Cor cor):SpriteBase(cor)
 { 
-	int ns;
+	int ns, altura;
 	
 	this->velAnim = this->stepAnim = velAnim;
 	this->iSpriteAnim = 0;
@@ -36,14 +36,9 @@ SpriteAnimado::SpriteAnimado(std::string nameFile, unsigned velAnim, COR::Cor co
 		} catch(std::runtime_error &e) {
 			throw std::runtime_error("Erro na estrutura de arquivo de SpriteAnimado. Sprite incompleto...");
 		}
-			
-		if (sprites.back().getLargura() > this->largura)
-			this->largura = sprites.back().getLargura();
 	}
 	
 	fanm.close();
-	
-	colorHandler = ColorHandler(this->largura, this->altura, sprites[0].getColorHandler().getCorBase());
 }
 
 
@@ -63,22 +58,20 @@ void SpriteAnimado::update()
 
 std::string SpriteAnimado::getLinha(unsigned l) const
 {
-	if (l < sprites[0].getAltura())
+	if (l < sprites[iSpriteAnim].getAltura())
 		return sprites[iSpriteAnim].getLinha(l);
 	else 
 		return "";
 }
 
-void SpriteAnimado::putAt(const SpriteBase &sprt, unsigned l, unsigned c)
+void SpriteAnimado::putAt(const SpriteBase &sprt, int l, int c)
 {
 	for (int i = 0 ; i < sprites.size() ; i++)
 		sprites[i].putAt(sprt,l,c);
-	colorHandler = sprites[0].colorHandler;
 }
 
 void SpriteAnimado::setCor(COR::Cor cor)
 {
-	SpriteBase::setCor(cor);
 	for (int i = 0 ; i < sprites.size() ; i++)
-		sprites[i].colorHandler = colorHandler;
+		sprites[i].colorHandler.setCor(cor);
 }

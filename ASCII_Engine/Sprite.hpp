@@ -17,15 +17,11 @@ class Sprite : public SpriteBase
 public:
 	Sprite(std::string, COR::Cor = COR::PADRAO);
 	Sprite(std::ifstream &, COR::Cor = COR::PADRAO);
-	Sprite(std::ifstream &,unsigned, COR::Cor = COR::PADRAO);
+	Sprite(std::ifstream &, unsigned, COR::Cor = COR::PADRAO);
 	virtual ~Sprite(){}
 	
-	void loadFromFile(std::string);
-	void loadFromFile(std::ifstream &);
-	void loadFromFile(std::ifstream &,unsigned);
-	
 	//SpriteBase
-	virtual void putAt(const SpriteBase &, unsigned = 0, unsigned = 0);
+	virtual void putAt(const SpriteBase &, int = 0, int = 0);
 	virtual std::string whoami() const {return "Sprite";}
 	
 	//RenderBase
@@ -35,6 +31,10 @@ public:
 
 private:
 	std::vector<std::string> sprt;
+	
+	void loadFromFile(std::string);
+	void loadFromFile(std::ifstream &);
+	void loadFromFile(std::ifstream &,unsigned);
 	
 	//SpriteBase
 	virtual std::string getLinha(unsigned) const;

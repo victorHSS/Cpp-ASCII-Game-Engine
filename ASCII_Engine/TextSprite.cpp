@@ -15,19 +15,22 @@ std::string TextSprite::getLinha(unsigned l) const
 		return "";
 }
 
-void TextSprite::putAt(const SpriteBase &sprt, unsigned l, unsigned c)
+void TextSprite::setText(std::string text) {
+	this->text = text;
+	limits.clear();
+	limits.push_back(LIMITS(0,text.length()-1,text.length()));
+	colorHandler.clear();
+	colorHandler.pushCorLinha(limits.back().front,limits.back().end + 1);
+}
+
+void TextSprite::putAt(const SpriteBase &sprt, int l, int c)
 {
 	if (l != 0 || c >= this->text.length())
 		return;
-		
-	std::string linha = sprt.getLinha(0);
-	std::string alvo = this->text;
 	
-	this->text = alvo.substr(0,c);
-	this->text += linha.substr(0,alvo.length()-c);
-	
-	if ( c + linha.length() < alvo.length() ) //pega restante da base (alvo) se ainda puder
-		this->text += alvo.substr(c+linha.length(),alvo.length()-(c+linha.length()));
+	for (int si = sprt.getLimits()[0].front ; si <= sprt.getLimits()[0].end ; si++)
+		if (c + si < this->limits[0].largLinha)
+			this->text[c+si] = sprt.getLinha(0)[si];
 	
 	colorHandler.mergeCores(sprt.getColorHandler(),l,c);
 }

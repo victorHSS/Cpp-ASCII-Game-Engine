@@ -18,9 +18,21 @@ public:
 	Sprite operator[](int) const;
 	
 	//SpriteBase
-	virtual void putAt(const SpriteBase &, unsigned = 0, unsigned = 0);
+	virtual void putAt(const SpriteBase &, int = 0, int = 0);
 	virtual void setCor(COR::Cor cor);
 	virtual std::string whoami() const {return "SpriteAnimado";}
+	
+	virtual int getLarguraMaxFit() const { return sprites[iSpriteAnim].getLarguraMaxFit(); }
+	virtual int getLarguraMax() const { return sprites[iSpriteAnim].getLarguraMax(); }
+	
+	virtual int getLargura(unsigned l) const {return sprites[iSpriteAnim].limits[l].largLinha;}
+	virtual int getAltura() const {return sprites[iSpriteAnim].getAltura();}
+	
+	//Cores
+	virtual const ColorHandler &getColorHandler() const { return sprites[iSpriteAnim].getColorHandler(); } 
+	
+	//Transp
+	virtual const std::vector< LIMITS > &getLimits() const {return sprites[iSpriteAnim].getLimits();}
 	
 	//RenderBase
 	virtual void init() {};

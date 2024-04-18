@@ -13,23 +13,19 @@ std::ostream &operator<<(std::ostream &out, const Sprite &s)
 	return out;
 }
 
-
-Sprite::Sprite(std::string nameFile, COR::Cor cor) : SpriteBase()
+Sprite::Sprite(std::string nameFile, COR::Cor cor) : SpriteBase(cor)
 {
 	this->loadFromFile(nameFile);
-	colorHandler = ColorHandler(this->largura, this->altura, cor);
 }
 
-Sprite::Sprite(std::ifstream &fsprt, COR::Cor cor) : SpriteBase()
+Sprite::Sprite(std::ifstream &fsprt, COR::Cor cor) : SpriteBase(cor)
 {
 	this->loadFromFile(fsprt);
-	colorHandler = ColorHandler(this->largura, this->altura, cor);
 }
 
-Sprite::Sprite(std::ifstream &fsprt, unsigned n, COR::Cor cor) : SpriteBase()
+Sprite::Sprite(std::ifstream &fsprt, unsigned n, COR::Cor cor) : SpriteBase(cor)
 {
 	this->loadFromFile(fsprt, n);
-	colorHandler = ColorHandler(this->largura, this->altura, cor);
 }
 
 void Sprite::loadFromFile(std::string nameFile)
@@ -44,11 +40,11 @@ void Sprite::loadFromFile(std::string nameFile)
 void Sprite::loadFromFile(std::ifstream &fsprt)
 {
 	this->sprt.clear();
+	this->limits.clear();
+	this->colorHandler.clear();
 	
 	if (!fsprt.is_open())
 		throw std::runtime_error("Erro ao ler arquivo de Sprite...");
-	
-	this->largura = 0;
 	
 	std::string tmp;
 	
@@ -56,22 +52,22 @@ void Sprite::loadFromFile(std::ifstream &fsprt)
 	{
 		sprt.push_back(tmp);
 		
-		if (tmp.length() > this->largura)
-			this->largura = tmp.length();
-		
+		limits.push_back(LIMITS(tmp.find_first_not_of(' '),tmp.find_last_not_of(' '),tmp.length()));
+		if (limits.back().larg != 0)
+			colorHandler.pushCorLinha( limits.back().front, limits.back().end + 1 );
+		else
+			colorHandler.pushLinhaSemCor();
 	}
-	
-	this->altura = this->sprt.size();
 }
 
 void Sprite::loadFromFile(std::ifstream &fsprt, unsigned n)
 {
 	this->sprt.clear();
+	this->limits.clear();
+	this->colorHandler.clear();
 	
 	if (!fsprt.is_open())
 		throw std::runtime_error("Erro ao ler arquivo de Sprite...");
-	
-	this->largura = 0;
 	
 	std::string tmp;
 	
@@ -79,15 +75,17 @@ void Sprite::loadFromFile(std::ifstream &fsprt, unsigned n)
 	while(getline(fsprt,tmp) && nn--)
 	{
 		sprt.push_back(tmp);
-				
-		if (tmp.length() > this->largura)
-			this->largura = tmp.length();
+		
+		limits.push_back(LIMITS(tmp.find_first_not_of(' '),tmp.find_last_not_of(' '),tmp.length()));
+		
+		if (limits.back().larg != 0)
+			colorHandler.pushCorLinha( limits.back().front, limits.back().end + 1 );
+		else
+			colorHandler.pushLinhaSemCor();
 	}
 	
 	if ( (!fsprt && nn > 0) || (fsprt && nn >= 0) )
 		throw std::runtime_error("Sprite Incompleto...");
-	
-	this->altura = this->sprt.size();
 }
 
 std::string Sprite::getLinha(unsigned l) const
@@ -98,24 +96,26 @@ std::string Sprite::getLinha(unsigned l) const
 		return "";
 }
 
-void Sprite::putAt(const SpriteBase &sprt, unsigned l, unsigned c)
+void Sprite::putAt(const SpriteBase &sprt, int l, int c)
 {
-	if (c >= this->largura)	//se o objeto a ser desenhando estiver além da largura do destino, não faz nada.
-		return;
-
 	for (int i = 0 ; i < sprt.getAltura() ; i++)
 	{
+		if (i + l < 0) 					//se a linha atual estiver antes do sprite, avança
+			continue;
 		
-		if (i + l >= this->sprt.size()) //se o pedaço do sprite ultrapassar a altura do sprite destino, para
+		if (i + l >= this->getAltura()) //se o pedaço do sprite ultrapassar a altura do sprite destino, para
 			break;
 		
-		std::string linha = sprt.getLinha(i);
-		std::string alvo = this->sprt[l+i];
-		this->sprt[l+i] = alvo.substr(0,c); //aproveita a linha base até o ponto onde vamos inserir o sprite novo
-		this->sprt[l+i] += linha.substr(0,alvo.length()-c); //pega a porção do sprite novo que cabe na linha destino
+		if (c >= this->getLargura(i))	//se o objeto a ser desenhando estiver além da largura do destino, faz nada.
+			break;
 		
-		if ( c + linha.length() < alvo.length() ) //pega restante da base (alvo) se ainda puder
-			this->sprt[l+i] += alvo.substr(c+linha.length(),alvo.length()-(c+linha.length()));
+		if (!sprt.getLimits()[i].largLinha) //se linha do objeto foz vazia, faz nada
+			continue;
+		
+		for (int si = sprt.getLimits()[i].front ; si <= sprt.getLimits()[i].end ; si++) {
+			if (c + si >= 0 && c + si < this->limits[i].largLinha)
+				this->sprt[l+i][c+si] = sprt.getLinha(i)[si];
+		}
 	}
 	colorHandler.mergeCores(sprt.getColorHandler(),l,c);
 }

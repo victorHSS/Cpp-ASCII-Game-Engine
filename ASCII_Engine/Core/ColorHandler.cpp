@@ -3,7 +3,9 @@
 #include <string>
 #include <cstring>
 
-#include <iostream>
+#include <stdexcept>
+
+#include <algorithm>
 
 std::string ColorHandler::colorir(const std::string &linha, unsigned li) const
 {
@@ -18,30 +20,38 @@ std::string ColorHandler::colorir(const std::string &linha, unsigned li) const
 	}
 	
 	return lColorida;
-
 }
 
+int ColorHandler::getLargura(int l) const
+{
+	if (l < 0 && l >= mapaCores.size())
+		throw std::runtime_error("Linha inexistente no mapa de cores.");
+	return mapaCores[l].rbegin()->first;
+}
 
 void ColorHandler::clearMapaCores()
 {
-	mapaCores.clear();
-	
-	for (int i = 0 ; i < altura ; i++)
-		mapaCores.push_back( { {0,cor}, {largura,COR::PADRAO} } ); //{ pair<int,COR::Cor>, pair<int,COR::Cor> }
+	for (int i = 0 ; i < getAltura() ; i++)
+	{
+		if (!mapaCores[i].size()) continue;
+		
+		mapaCores[i] = std::map<int,COR::Cor>( { {mapaCores[i].begin()->first,cor}, {mapaCores[i].rbegin()->first,COR::PADRAO} } );
+	}
 }
 
-#define DEBUG 0
-
-void ColorHandler::mergeCores(const ColorHandler &oCoHa, unsigned l, unsigned c)
+void ColorHandler::mergeCores(const ColorHandler &oCoHa, int l, int c)
 {
 	const MapaDeCores &oMapCol = oCoHa.getMapaCores();
-	unsigned larg = oCoHa.getLargura();
 	
-	for (int iL = l ; iL < l + oCoHa.getAltura() ; iL++)
+	for (int iL = std::max(0,l) ; iL < l + oCoHa.getAltura() ; iL++)
 	{
-		if (iL >= this->altura)
+		if (iL >= this->getAltura())
 			break;
 		
+		if (!oCoHa.mapaCores[(iL-l)].size()) continue;		//se não tem cor pra trazer, prox
+		unsigned larg = oCoHa.getLargura(iL-l);
+		
+		//descobrindo cor anterior ao limite da largura da linha que está chegando
 		auto itCorAnt = mapaCores[iL].cend();
 		auto itCorProx = mapaCores[iL].cbegin();
 		while (itCorProx != mapaCores[iL].cend() && itCorProx->first <= c + larg) {itCorAnt = itCorProx; ++itCorProx;}
@@ -52,13 +62,17 @@ void ColorHandler::mergeCores(const ColorHandler &oCoHa, unsigned l, unsigned c)
 		
 		for (auto itC = oMapCol[iL-l].cbegin() ; itC != oMapCol[iL-l].cend() ; ++itC)
 		{
-			if (c + itC->first > this->largura)
-				break;
-				
+			//if (c + itC->first > this->getLargura(iL)) //retirei e funcionou, mas revisar...
+			//	break;
+			if (c + itC->first < 0) {
+				mapaCores[iL][0] = itC->second;
+				continue;
+			}
+			
 			mapaCores[iL][c + itC->first] = itC->second;
 		}
 		
-		if ( c + larg <= this->largura )
+		if ( c + larg <= this->getLargura(iL) )
 			mapaCores[iL][c + larg] = corAnt;
 	}
 }

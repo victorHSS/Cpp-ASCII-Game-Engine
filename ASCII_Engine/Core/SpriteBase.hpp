@@ -6,23 +6,47 @@
 #include "Cores_base.hpp"
 
 #include <string>
+#include <vector>
 
 class SpriteBase : public RenderBase
 {
-	//using MapaDeCores = std::vector< std::map<int,COR::Cor> >;
+protected:
+	struct LIMITS {
+		unsigned front, end, larg, head, tail, largLinha;
+		LIMITS(unsigned f, unsigned e, unsigned l) : front(f), end(e), head(f),
+													 tail(l - e - 1), larg(e - f + 1), largLinha(l) 
+		{
+			if (f == static_cast<unsigned>(std::string::npos))
+				front = end = larg = head = tail = largLinha = 0;
+		}
+	};
 	
 public:
-	SpriteBase(unsigned largura=0, unsigned altura=0, COR::Cor cor = COR::PADRAO):largura(largura), altura(altura),
-													colorHandler(largura, altura, cor) {}
+	SpriteBase(COR::Cor cor = COR::NULL_COLOR):colorHandler(cor) {}
+	
 	virtual ~SpriteBase(){}
+
+    virtual int getLarguraMaxFit() const {
+		unsigned lm{0};
+		for (auto itL = limits.cbegin() ; itL != limits.end() ; ++itL)
+			lm = (itL->end + 1 > lm)?itL->end + 1:lm;
+		return lm;
+	}
 	
-	unsigned getLargura() const {return this->largura;}
-	unsigned getAltura() const {return this->altura;}
+	virtual int getLarguraMax() const {
+		unsigned lm{0};
+		for (auto itL = limits.cbegin() ; itL != limits.end() ; ++itL)
+			lm = (itL->largLinha > lm)?itL->largLinha:lm;
+		return lm;
+	}
 	
-	virtual void putAt(const SpriteBase &, unsigned , unsigned) = 0;
-	//virtual void putCenter(const SpriteBase &, unsigned) = 0; //acho que essas eu consiga ja implementar aqui
-	//virtual void putLeft(const SpriteBase &, unsigned) = 0;
-	//virtual void putRight(const SpriteBase &, unsigned) = 0;
+	virtual int getLargura(unsigned l) const {return this->limits[l].largLinha;}
+	virtual int getAltura() const {return this->limits.size();}
+	
+	virtual void putAt(const SpriteBase &, int , int) = 0;
+	virtual void putCenter(const SpriteBase &sprt, int l) { putAt(sprt,l,(limits[l].largLinha-sprt.getLimits()[l].largLinha)/2); }
+	//virtual void putLeft(const SpriteBase &sprt, int l) { putAt(sprt,l,0); }
+	//virtual void putRight(const SpriteBase &sprt, int l) { putAt(sprt,l,limits[l].largLinha-sprt.limits[l]); };
 	//virtual void appendLeft(const SpriteBase &) = 0;
 	//virtual void appendRight(const SpriteBase &) = 0;
 	
@@ -34,28 +58,20 @@ public:
 	virtual void init() = 0;
 	virtual void update() = 0;
 	
-	virtual void draw(SpriteBase &screen, unsigned x, unsigned y){screen.putAt(*this,x,y);}
+	virtual void draw(SpriteBase &screen, int x, int y){screen.putAt(*this,x,y);}
 	
 	//Cores
 	virtual void setCor(COR::Cor cor) { colorHandler.setCor(cor); }
-	const ColorHandler &getColorHandler() const { return colorHandler; } 
+	virtual const ColorHandler &getColorHandler() const { return colorHandler; } 
 	
-	//void mergeCores(const MapaDeCores &, unsigned, unsigned);
-	//const MapaDeCores &getMapaCores() const { return mapaCores; }
-	//void clearMapaCores();
-	
+	//Transp
+	virtual const std::vector< LIMITS > &getLimits() const {return limits;}
 
 protected:
-	unsigned largura, altura;
+	
+	std::vector< LIMITS > limits;
 	
 	ColorHandler colorHandler;
-	
-	//Coloração
-	//COR::Cor cor; //cor base
-	
-	//mapa de cores
-	//MapaDeCores mapaCores;
-	
 };
 
 #endif // SPRITEBASE_HPP
