@@ -5,4 +5,4 @@ Oferece suporte a Textos, Sprites, Sprites Animados, Objetos de Jogo e Fase, o k
 
 Atualização: Adicionada Classe Sound para tocar músicas/sons. Só funciona no terminal Linux.
 
-Atualização: Adicionado suporte a cores nos sprites. Só funciona no terminal Linux.
+Atualização: Adicionado suporte a cores e transparência simples nos sprites. As cores só funcionam no terminal Linux.
