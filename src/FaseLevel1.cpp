@@ -107,8 +107,8 @@ unsigned FaseLevel1::run(SpriteBuffer &screen)
 			return Fase::END_GAME;
 			
 
-		if (colideComBloco()) ;
-			//hero->moveTo(posL,posC);
+		if (colideComBloco())
+			hero->moveTo(posL,posC);
 		
 		
 		//processando eventos
