@@ -31,23 +31,19 @@ BUGs
  - Pequeno problema com cores na sobreposição de sprites animados.
 
 TODO
-0 - Acredito que seja interessante criar um método auxiliar chamada normaliza, que deixa todas as linhas do sprite com o mesmo tamanho
-0 - O limits pode ter um campo empty, para indicar se a linha é vazia, evitando assim a análise de front e end ou larg.
+ - Acredito que seja interessante criar um método auxiliar chamada normaliza, que deixa todas as linhas do sprite com o mesmo tamanho
 
-1 - Tenho como juntar os dois loadFromFile de Sprite usando uma flag no parâmetro
+ - O limits pode ter um campo empty, para indicar se a linha é vazia, evitando assim a análise de front e end ou larg.
 
-2 - Ver a possibilidade de a Engine aceitar caracteres não ASCII. Parece ser muito simples.
+ - Tenho como juntar os dois loadFromFile de Sprite usando uma flag no parâmetro
+
+ - Ver a possibilidade de a Engine aceitar caracteres não ASCII. Parece ser muito simples.
 	Basta alterar todas as strings por wstring. O getline também suporta wstring. É só testar.
 
-XX- kkkkkkk acho que consegui uma forma de fazer a engine rodar direto sem parar -> CTRL + D. Investigar isso.
+ - Adicionar um script (diretório utilitários) para converter arquivos txt advindos do windows para linux
 
-3 - Adicionar namespace
+ - Personalizar as exceções.
 
-4 - Adicionar um script (diretório utilitários) para converter arquivos txt advindos do windows para linux
-
-5 - Personalizar as exceções.
-
-6 - Permitir que sprites sejam posicionados em posições negativas??? Nessa caso, considerando apenas as posições válidas.
 
 
 EXTRAS
