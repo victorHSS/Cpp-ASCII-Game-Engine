@@ -53,7 +53,7 @@ void Fase::update()
 		(*it)->update();
 }
 
-void Fase::draw(SpriteBase &screen, unsigned x, unsigned y)
+void Fase::draw(SpriteBase &screen, int x, int y)
 {
 	background->draw(screen,0,0);
 	for (auto it = objs.begin() ; it != objs.end() ; ++it)
