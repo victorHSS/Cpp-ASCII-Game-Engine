@@ -35,6 +35,8 @@ TODO
 
  - O limits pode ter um campo empty, para indicar se a linha é vazia, evitando assim a análise de front e end ou larg.
 
+ - Criar gerenciador de entrada para teclado, baseado em kbhit e read
+
  - Tenho como juntar os dois loadFromFile de Sprite usando uma flag no parâmetro
 
  - Ver a possibilidade de a Engine aceitar caracteres não ASCII. Parece ser muito simples.
