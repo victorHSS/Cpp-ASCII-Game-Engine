@@ -18,15 +18,14 @@ DONE
  - Criação da classe ColorHandler.
  - Sprites com coloração completa.
  - SaveThePrincess Colorido.
- 
+
+17/04/2024
+ - Transparência e suporte a cores estendido.
+ - Suporte à ultrapassagem dos sprites pelas bordas de outro.
+ - Adição do método colideComBordas
+
 DOING
- - Ultrapassagem dos limites de buffer e putAt ok.
- - Transparencia e cores ok. Fazer uma revisão no código
- - Objeto de jogo teve o método colideCom revisado
- - criando método colideComBordas
 	  
-	  
-	   Testar o colideComBordas
 	   
 BUGs
  - Pequeno problema com cores na sobreposição de sprites animados.
