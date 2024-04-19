@@ -24,11 +24,14 @@ DONE
  - Suporte à ultrapassagem dos sprites pelas bordas de outro.
  - Adição do método colideComBordas
 
+18/04/2024
+ - Correção do bug das cores com sprite animado
+
 DOING
 	  
 	   
 BUGs
- - Pequeno problema com cores na sobreposição de sprites animados.
+
 
 TODO
  - Acredito que seja interessante criar um método auxiliar chamada normaliza, que deixa todas as linhas do sprite com o mesmo tamanho
