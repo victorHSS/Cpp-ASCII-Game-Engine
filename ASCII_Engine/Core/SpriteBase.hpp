@@ -25,6 +25,8 @@ public:
 	SpriteBase(COR::Cor cor = COR::NULL_COLOR):colorHandler(cor) {}
 	
 	virtual ~SpriteBase(){}
+	
+	virtual SpriteBase *copia() const = 0;
 
     virtual int getLarguraMaxFit() const {
 		unsigned lm{0};
@@ -51,8 +53,6 @@ public:
 	//virtual void appendRight(const SpriteBase &) = 0;
 	
 	virtual std::string getLinha(unsigned) const = 0;
-	
-	virtual std::string whoami() const = 0;
 	
 	//RenderBase
 	virtual void init() = 0;

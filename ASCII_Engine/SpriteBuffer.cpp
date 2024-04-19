@@ -14,26 +14,28 @@ std::ostream &operator<<(std::ostream &out, const SpriteBuffer &s)
 SpriteBuffer::SpriteBuffer(unsigned largura, unsigned altura, char backChar, COR::Cor cor) : 
 							largura(largura), altura(altura),SpriteBase(cor), backChar(backChar)
 {
-	clearBuffer();
+	clear();
 }
 
-void SpriteBuffer::clearBuffer()
+void SpriteBuffer::fillBack()
 {
 	sprt.clear();
-	colorHandler.clear();
 	limits.clear();
+	colorHandler.clear();
+	for (unsigned i = 0 ; i < altura ; i++)
+		sprt.push_back(std::string(largura,backChar));
+}
+
+void SpriteBuffer::clear()
+{
+	sprt.clear();
+	limits.clear();
+	colorHandler.clear();
 	for (unsigned i = 0 ; i < altura ; i++) {
 		sprt.push_back(std::string(largura,backChar));
 		limits.push_back(LIMITS(0,largura - 1,largura));
 		colorHandler.pushCorLinha( 0, largura );
 	}
-}
-
-void SpriteBuffer::clear()
-{
-	clearBuffer();						// limpando buffer
-	
-	//colorHandler.clearMapaCores(); 	// limpando cores
 }
 
 std::string SpriteBuffer::getLinha(unsigned l) const

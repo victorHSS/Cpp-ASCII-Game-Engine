@@ -19,8 +19,7 @@ public:
 	
 	//SpriteBase
 	virtual void putAt(const SpriteBase &, int = 0, int = 0);
-	virtual void setCor(COR::Cor cor);
-	virtual std::string whoami() const {return "SpriteAnimado";}
+	virtual SpriteBase *copia() const { return new SpriteAnimado(*this);}
 	
 	virtual int getLarguraMaxFit() const { return sprites[iSpriteAnim].getLarguraMaxFit(); }
 	virtual int getLarguraMax() const { return sprites[iSpriteAnim].getLarguraMax(); }
@@ -29,6 +28,7 @@ public:
 	virtual int getAltura() const {return sprites[iSpriteAnim].getAltura();}
 	
 	//Cores
+	virtual void setCor(COR::Cor cor);
 	virtual const ColorHandler &getColorHandler() const { return sprites[iSpriteAnim].getColorHandler(); } 
 	
 	//Transp

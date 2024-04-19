@@ -4,15 +4,7 @@
 
 ObjetoDeJogo::ObjetoDeJogo(const ObjetoDeJogo &o) : name(o.name),posL(o.posL),posC(o.posC),active(true)
 {
-	//trick
-	if (o.pSprite->whoami() == "Sprite")
-		pSprite = new Sprite(*(dynamic_cast<Sprite*>(o.pSprite)));
-	else if (o.pSprite->whoami() == "SpriteAnimado")
-		pSprite = new SpriteAnimado(*(dynamic_cast<SpriteAnimado*>(o.pSprite)));
-	else if (o.pSprite->whoami() == "TextSprite")
-		pSprite = new TextSprite(*(dynamic_cast<TextSprite*>(o.pSprite)));
-	else if (o.pSprite->whoami() == "SpriteBuffer")
-		pSprite = new SpriteBuffer(*(dynamic_cast<SpriteBuffer*>(o.pSprite)));
+	pSprite = o.pSprite->copia();
 }
 
 const ObjetoDeJogo &ObjetoDeJogo::operator=(const ObjetoDeJogo &o)
@@ -25,15 +17,7 @@ const ObjetoDeJogo &ObjetoDeJogo::operator=(const ObjetoDeJogo &o)
 		this->active = o.active;
 		delete this->pSprite;
 		
-		//trick
-		if (o.pSprite->whoami() == "Sprite")
-			pSprite = new Sprite(*(dynamic_cast<Sprite*>(o.pSprite)));
-		else if (o.pSprite->whoami() == "SpriteAnimado")
-			pSprite = new SpriteAnimado(*(dynamic_cast<SpriteAnimado*>(o.pSprite)));
-		else if (o.pSprite->whoami() == "TextSprite")
-			pSprite = new TextSprite(*(dynamic_cast<TextSprite*>(o.pSprite)));
-		else if (o.pSprite->whoami() == "SpriteBuffer")
-			pSprite = new SpriteBuffer(*(dynamic_cast<SpriteBuffer*>(o.pSprite)));
+		pSprite = o.pSprite->copia();
 	}
 	return *this;
 }

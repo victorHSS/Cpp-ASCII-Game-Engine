@@ -13,17 +13,8 @@
 class ObjetoDeJogo : public RenderBase
 {
 public:
-	ObjetoDeJogo(std::string name, const Sprite &s, int posL, int posC) : 
-		name(name),pSprite(new Sprite(s)),posL(posL),posC(posC),active(true) {}
-		
-	ObjetoDeJogo(std::string name, const SpriteAnimado &s, int posL, int posC) :
-		name(name),pSprite(new SpriteAnimado(s)),posL(posL),posC(posC),active(true) {}
-		
-	ObjetoDeJogo(std::string name, const TextSprite &s, int posL, int posC) :
-		name(name),pSprite(new TextSprite(s)),posL(posL),posC(posC),active(true) {}
-	
-	ObjetoDeJogo(std::string name, const SpriteBuffer &s, int posL, int posC) :
-		name(name),pSprite(new SpriteBuffer(s)),posL(posL),posC(posC),active(true) {}
+	ObjetoDeJogo(std::string name, const SpriteBase &s, int posL, int posC) : 
+		name(name),pSprite(s.copia()),posL(posL),posC(posC),active(true) {}
 	
 	ObjetoDeJogo(const ObjetoDeJogo&);
 	

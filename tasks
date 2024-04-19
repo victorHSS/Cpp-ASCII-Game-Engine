@@ -32,7 +32,6 @@ DONE
 
 DOING
 
-  
 BUGs
 
 
@@ -48,11 +47,9 @@ TODO
  - Criar gerenciador de entrada para teclado, baseado em kbhit e read
     Detalhes nos Apontamentos
 
-
  - Adicionar um script (diretório utilitários) para converter arquivos txt advindos do windows para linux
 
  - Personalizar as exceções.
-
 
 
 EXTRAS
