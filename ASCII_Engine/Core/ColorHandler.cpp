@@ -58,7 +58,7 @@ void ColorHandler::mergeCores(const ColorHandler &oCoHa, int l, int c)
 		
 		COR::Cor corAnt = (itCorAnt != mapaCores[iL].cend()?itCorAnt->second:COR::PADRAO); 
 		
-		mapaCores[iL].erase(mapaCores[iL].upper_bound(c),mapaCores[iL].lower_bound(c+larg));
+		mapaCores[iL].erase(mapaCores[iL].upper_bound(oCoHa.mapaCores[(iL-l)].cbegin()->first + c) , mapaCores[iL].lower_bound(c+larg));
 		
 		for (auto itC = oMapCol[iL-l].cbegin() ; itC != oMapCol[iL-l].cend() ; ++itC)
 		{
