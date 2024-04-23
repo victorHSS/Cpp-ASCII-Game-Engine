@@ -27,9 +27,12 @@ DONE
 18/04/2024
  - Correção do bug das cores com sprite animado
 
+22/04/2024
+ - Tenho como juntar os dois loadFromFile de Sprite usando uma flag no parâmetro
+
 DOING
-	- Tenho como juntar os dois loadFromFile de Sprite usando uma flag no parâmetro
-	   
+
+  
 BUGs
 
 
