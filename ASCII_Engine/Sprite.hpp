@@ -11,7 +11,6 @@ class Sprite : public SpriteBase
 {
 	friend class SpriteAnimado;
 	
-	//temporarios
 	friend std::ostream &operator<<(std::ostream &, const Sprite &);
 	
 public:
