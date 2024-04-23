@@ -18,12 +18,7 @@ Sprite::Sprite(std::string nameFile, COR::Cor cor) : SpriteBase(cor)
 	this->loadFromFile(nameFile);
 }
 
-Sprite::Sprite(std::ifstream &fsprt, COR::Cor cor) : SpriteBase(cor)
-{
-	this->loadFromFile(fsprt);
-}
-
-Sprite::Sprite(std::ifstream &fsprt, unsigned n, COR::Cor cor) : SpriteBase(cor)
+Sprite::Sprite(std::ifstream &fsprt, int n, COR::Cor cor) : SpriteBase(cor)
 {
 	this->loadFromFile(fsprt, n);
 }
@@ -37,8 +32,11 @@ void Sprite::loadFromFile(std::string nameFile)
 	fsprt.close();
 }
 
-void Sprite::loadFromFile(std::ifstream &fsprt)
+void Sprite::loadFromFile(std::ifstream &fsprt, int n)
 {
+	bool flagIgnoreN = (n == -1);
+	std::string tmp;
+	
 	this->sprt.clear();
 	this->limits.clear();
 	this->colorHandler.clear();
@@ -46,33 +44,7 @@ void Sprite::loadFromFile(std::ifstream &fsprt)
 	if (!fsprt.is_open())
 		throw std::runtime_error("Erro ao ler arquivo de Sprite...");
 	
-	std::string tmp;
-	
-	while(getline(fsprt,tmp))
-	{
-		sprt.push_back(tmp);
-		
-		limits.push_back(LIMITS(tmp.find_first_not_of(' '),tmp.find_last_not_of(' '),tmp.length()));
-		if (limits.back().larg != 0)
-			colorHandler.pushCorLinha( limits.back().front, limits.back().end + 1 );
-		else
-			colorHandler.pushLinhaSemCor();
-	}
-}
-
-void Sprite::loadFromFile(std::ifstream &fsprt, unsigned n)
-{
-	this->sprt.clear();
-	this->limits.clear();
-	this->colorHandler.clear();
-	
-	if (!fsprt.is_open())
-		throw std::runtime_error("Erro ao ler arquivo de Sprite...");
-	
-	std::string tmp;
-	
-	int nn = n;
-	while(getline(fsprt,tmp) && nn--)
+	while(getline(fsprt,tmp) && (flagIgnoreN || n--) )
 	{
 		sprt.push_back(tmp);
 		
@@ -84,7 +56,7 @@ void Sprite::loadFromFile(std::ifstream &fsprt, unsigned n)
 			colorHandler.pushLinhaSemCor();
 	}
 	
-	if ( (!fsprt && nn > 0) || (fsprt && nn >= 0) )
+	if ( (!fsprt && n > 0) || (fsprt && n >= 0) )
 		throw std::runtime_error("Sprite Incompleto...");
 }
 

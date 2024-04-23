@@ -28,22 +28,23 @@ DONE
  - Correção do bug das cores com sprite animado
 
 DOING
-	  
+	- Tenho como juntar os dois loadFromFile de Sprite usando uma flag no parâmetro
 	   
 BUGs
 
 
 TODO
+
  - Acredito que seja interessante criar um método auxiliar chamada normaliza, que deixa todas as linhas do sprite com o mesmo tamanho
 
  - O limits pode ter um campo empty, para indicar se a linha é vazia, evitando assim a análise de front e end ou larg.
 
- - Criar gerenciador de entrada para teclado, baseado em kbhit e read
-
- - Tenho como juntar os dois loadFromFile de Sprite usando uma flag no parâmetro
-
  - Ver a possibilidade de a Engine aceitar caracteres não ASCII. Parece ser muito simples.
 	Basta alterar todas as strings por wstring. O getline também suporta wstring. É só testar.
+
+ - Criar gerenciador de entrada para teclado, baseado em kbhit e read
+    Detalhes nos Apontamentos
+
 
  - Adicionar um script (diretório utilitários) para converter arquivos txt advindos do windows para linux
 

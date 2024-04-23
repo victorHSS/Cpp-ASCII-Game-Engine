@@ -16,8 +16,7 @@ class Sprite : public SpriteBase
 	
 public:
 	Sprite(std::string, COR::Cor = COR::PADRAO);
-	Sprite(std::ifstream &, COR::Cor = COR::PADRAO);
-	Sprite(std::ifstream &, unsigned, COR::Cor = COR::PADRAO);
+	Sprite(std::ifstream &, int = -1, COR::Cor = COR::PADRAO);
 	virtual ~Sprite(){}
 	
 	//SpriteBase
@@ -33,8 +32,7 @@ private:
 	std::vector<std::string> sprt;
 	
 	void loadFromFile(std::string);
-	void loadFromFile(std::ifstream &);
-	void loadFromFile(std::ifstream &,unsigned);
+	void loadFromFile(std::ifstream &, int = -1);
 	
 	//SpriteBase
 	virtual std::string getLinha(unsigned) const;
