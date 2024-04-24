@@ -1,14 +1,16 @@
 #include "Keyboard_base.hpp"
 
+#include <stdlib.h>
+
 KeyboardInputBase::KeyboardInputBase(unsigned mode)
 {
 	if (tcgetattr(0, &old) < 0)
 		throw KeyboardError("tcgetattr");
-		
+	
 	old.c_lflag &= ~ICANON;
 	old.c_lflag &= ~ECHO;
 	old.c_cc[VMIN] = mode;
-	old.c_cc[VTIME] = mode?0:1;
+	old.c_cc[VTIME] = 0; //mode?0:1;
 	
 	if (tcsetattr(0, TCSANOW, &old) < 0)
 		throw KeyboardError("tcsetattr");

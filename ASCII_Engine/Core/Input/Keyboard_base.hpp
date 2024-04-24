@@ -17,11 +17,11 @@ class KeyboardInputBase
 public:
 
 	enum {
-		UNBLOCKING_MODE = 0,
+		NONBLOCKING_MODE = 0,
 		BLOCKING_MODE	= 1
 	};
 
-	KeyboardInputBase(unsigned = UNBLOCKING_MODE);
+	KeyboardInputBase(unsigned = NONBLOCKING_MODE);
 	~KeyboardInputBase();
 	char getInput();
 
