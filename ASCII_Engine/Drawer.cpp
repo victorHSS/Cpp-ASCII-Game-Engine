@@ -1,6 +1,9 @@
 #include "Drawer.hpp"
 
 #include <cmath>
+#include <vector>
+#include <utility>
+#include <algorithm>
 
 #include <iostream>
 
@@ -27,26 +30,51 @@ SpriteBuffer Drawer::rectangle(unsigned largura, unsigned altura, char pencil, c
 
 SpriteBuffer Drawer::circle(int raio, char pencil, char back)
 {
-	SpriteBuffer circ(raio * 2+1,raio * 2+1,back);
+	SpriteBuffer circ(raio * 2,raio * 2,back);
 	circ.limits.clear();
 	circ.colorHandler.clear();
 	
 	const double PI = 3.141596;
+	double incr = (1.0 / raio);
 	
-	for (double i = 0 ; i < 2*PI ; i+=.1)
+	std::vector< std::pair<int,int> > vLimits(raio*2,{0,raio*2-1});
+	
+	for (double i = PI/2 ; i < PI ; i+=incr)
 	{
-		std::cout << "Ang " << i << " l " << raio + static_cast<int>((sin(i)*raio)) 
-							<< " c " << raio + static_cast<int>((cos(i)*raio)) << std::endl;
-		circ.sprt[raio + static_cast<int>((sin(i)*raio))][raio + static_cast<int>((cos(i)*raio))] = pencil;
+		int sinE = static_cast<int>(round(raio - sin(i)*raio));
+		int sinD = static_cast<int>(round(raio + sin(i)*raio) - 1);
+		int cosE = static_cast<int>(round(raio - cos(i)*raio) - 1);
+		int cosD = static_cast<int>(round(raio + cos(i)*raio));
+		/*
+		std::cout << "Ang " << i << " l1 " << sinE
+							<< " l2 " << sinD
+							<< " c1 " << cosE
+							<< " c2 " << cosD << std::endl;
+		*/
+		circ.sprt[sinD].at(cosE) = pencil;
+		circ.sprt[sinE].at(cosE) = pencil;
+		circ.sprt[sinD].at(cosD) = pencil;
+		circ.sprt[sinE].at(cosD) = pencil;
+		
+		vLimits[sinD] = std::pair<int,int> (std::min(vLimits[sinD].second,cosD),std::max(vLimits[sinD].first,cosE));
+		vLimits[sinE] = std::pair<int,int> (std::min(vLimits[sinE].second,cosD),std::max(vLimits[sinE].first,cosE));
 	}
-	for (int i = 0 ; i < raio * 2+1 ; i++)
+	for (int i = 0 ; i < raio * 2 ; i++)
 	{
-		for (int j = 0 ; j < raio * 2+1 ; j++)
+		circ.limits.push_back( {vLimits[i].first,vLimits[i].second,vLimits[i].second+1} );
+		circ.colorHandler.pushCorLinha( vLimits[i].first, vLimits[i].second+1 );
+	}
+	/*
+	std::cout << "-----" << std::endl;
+	for (int i = 0 ; i < raio * 2 ; i++)
+	{
+		for (int j = 0 ; j < raio * 2 ; j++)
 			std::cout << circ.sprt[i][j];
-		std::cout << std::endl;
+		std::cout << "|" << vLimits[i].first << " " << vLimits[i].second << std::endl;
 	}
+	std::cout << "-----" << std::endl;
 	std::cin.get();
-	
+	*/
 	return circ;
 }
 
