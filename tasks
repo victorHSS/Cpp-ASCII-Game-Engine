@@ -30,12 +30,21 @@ DONE
 22/04/2024
  - Tenho como juntar os dois loadFromFile de Sprite usando uma flag no parâmetro
 
+01/05/2024
+ - Adicionada classe Drawer
+
 DOING
 
 BUGs
-
+ - tem um bug no mergeColor, quando o sprite passa do buffer, a cor passa tbm, mas o sprite não
 
 TODO
+
+- Criar gerenciador de entrada para teclado, baseado em kbhit e read
+	ver se consigo controlar o time da repetição da entrada
+	talvez um array de alto nível como em python e allegro seja interessante, bem como uma classe para dizer se a
+	   tecla foi pressionada, liberada, ou temEstadoPressionada
+    Detalhes nos Apontamentos
 
  - Acredito que seja interessante criar um método auxiliar chamada normaliza, que deixa todas as linhas do sprite com o mesmo tamanho
 
@@ -44,16 +53,7 @@ TODO
  - Ver a possibilidade de a Engine aceitar caracteres não ASCII. Parece ser muito simples.
 	Basta alterar todas as strings por wstring. O getline também suporta wstring. É só testar.
 
- - Criar gerenciador de entrada para teclado, baseado em kbhit e read
-    Detalhes nos Apontamentos
-
  - Adicionar um script (diretório utilitários) para converter arquivos txt advindos do windows para linux
 
  - Personalizar as exceções.
 
-
-EXTRAS
-  - CORES:
-    estudar links -> https://bureau-it.com/artigos/como-exibir-cores-no-terminal/
-				  -> https://github.com/leilaapsilva/pokemon-terminal/blob/master/jogo.cpp
-				  -> https://www.cin.ufpe.br/~js/tabeladecores.htm <- tabela de cores

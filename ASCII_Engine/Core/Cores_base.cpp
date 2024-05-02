@@ -23,3 +23,12 @@ namespace COR
 	
 	//defina mais cores aqui...
 }
+
+/*
+ * Para mais detalhes...
+ * 
+ * -> https://bureau-it.com/artigos/como-exibir-cores-no-terminal/
+ * -> https://github.com/leilaapsilva/pokemon-terminal/blob/master/jogo.cpp
+ * -> https://www.cin.ufpe.br/~js/tabeladecores.htm <- tabela de cores
+ * 
+ * */
