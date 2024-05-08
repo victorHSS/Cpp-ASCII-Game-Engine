@@ -1,8 +1,8 @@
 #ifndef DRAWER_HPP
 #define DRAWER_HPP
 
-#include "SpriteBuffer.hpp"
-#include "TextSprite.hpp"
+#include "../SpriteBuffer.hpp"
+#include "../TextSprite.hpp"
 #include <string>
 class Drawer {
 
