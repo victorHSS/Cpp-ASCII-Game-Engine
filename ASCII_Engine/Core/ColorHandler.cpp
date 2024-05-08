@@ -50,6 +50,7 @@ void ColorHandler::mergeCores(const ColorHandler &oCoHa, int l, int c)
 		
 		if (!oCoHa.mapaCores[(iL-l)].size()) continue;		//se não tem cor pra trazer, prox
 		unsigned larg = oCoHa.getLargura(iL-l);
+		unsigned largThis = getLargura(iL-l);
 		
 		//descobrindo cor anterior ao limite da largura da linha que está chegando
 		auto itCorAnt = mapaCores[iL].cend();
@@ -62,8 +63,11 @@ void ColorHandler::mergeCores(const ColorHandler &oCoHa, int l, int c)
 		
 		for (auto itC = oMapCol[iL-l].cbegin() ; itC != oMapCol[iL-l].cend() ; ++itC)
 		{
-			//if (c + itC->first > this->getLargura(iL)) //retirei e funcionou, mas revisar...
-			//	break;
+			if (c + itC->first >= largThis) {		//se a cor estiver passando...
+				mapaCores[iL][largThis] = corAnt;
+				break;
+			}
+				
 			if (c + itC->first < 0) {
 				mapaCores[iL][0] = itC->second;
 				continue;
@@ -72,7 +76,7 @@ void ColorHandler::mergeCores(const ColorHandler &oCoHa, int l, int c)
 			mapaCores[iL][c + itC->first] = itC->second;
 		}
 		
-		if ( c + larg <= this->getLargura(iL) )
+		if ( c + larg < largThis )
 			mapaCores[iL][c + larg] = corAnt;
 	}
 }

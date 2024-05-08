@@ -47,12 +47,8 @@ SpriteBuffer Drawer::circle(int raio, char pencil, COR::Cor cor, char back)
 		unsigned sinD = static_cast<unsigned>(round(raio + sin(i)*raio) - 1);
 		unsigned cosE = static_cast<unsigned>(round(raio - cos(i)*raio) - 1);
 		unsigned cosD = static_cast<unsigned>(round(raio + cos(i)*raio));
-		/*
-		std::cout << "Ang " << i << " l1 " << sinE
-							<< " l2 " << sinD
-							<< " c1 " << cosE
-							<< " c2 " << cosD << std::endl;
-		*/
+
+
 		circ.sprt[sinD].at(cosE) = pencil;
 		circ.sprt[sinE].at(cosE) = pencil;
 		circ.sprt[sinD].at(cosD) = pencil;
@@ -66,17 +62,7 @@ SpriteBuffer Drawer::circle(int raio, char pencil, COR::Cor cor, char back)
 		circ.limits.push_back( {vLimits[i].first,vLimits[i].second,vLimits[i].second+1} );
 		circ.colorHandler.pushCorLinha( vLimits[i].first, vLimits[i].second+1 );
 	}
-	/*
-	std::cout << "-----" << std::endl;
-	for (int i = 0 ; i < raio * 2 ; i++)
-	{
-		for (int j = 0 ; j < raio * 2 ; j++)
-			std::cout << circ.sprt[i][j];
-		std::cout << "|" << vLimits[i].first << " " << vLimits[i].second << std::endl;
-	}
-	std::cout << "-----" << std::endl;
-	std::cin.get();
-	*/
+
 	return circ;
 }
 
