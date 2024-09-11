@@ -40,11 +40,15 @@ BUGs
 
 TODO
 
+- Criar método para inverter lateralmente o sprite. Ver como encaixar isso na engine.
+
 - Criar gerenciador de entrada para teclado, baseado em kbhit e read
 	ver se consigo controlar o time da repetição da entrada
 	talvez um array de alto nível como em python e allegro seja interessante, bem como uma classe para dizer se a
 	   tecla foi pressionada, liberada, ou temEstadoPressionada
     Detalhes nos Apontamentos
+
+    Criar um jogo estilo pong para demonstrar.
 
  - Acredito que seja interessante criar um método auxiliar chamada normaliza, que deixa todas as linhas do sprite com o mesmo tamanho
 
@@ -54,4 +58,9 @@ TODO
 	Basta alterar todas as strings por wstring. O getline também suporta wstring. É só testar.
 
  - Personalizar as exceções.
+
+ - Criar um app baseado na engine para colorir os sprites de forma personalizada.
+    Com isso, terei que salvar o mapa de cores de alguma forma, e atualizar a leitura dos sprites pra já carregar o mapa de cores.
+
+ - Começar a pensar em uma camada de mais alto nível para jogos específicos: RPG, Plataforma etc.
 
