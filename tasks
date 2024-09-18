@@ -46,6 +46,8 @@ TODO
 	ver se consigo controlar o time da repetição da entrada
 	talvez um array de alto nível como em python e allegro seja interessante, bem como uma classe para dizer se a
 	   tecla foi pressionada, liberada, ou temEstadoPressionada
+    Criar enum com teclas ... KEY_UP, KEY_DOWN ...
+	
     Detalhes nos Apontamentos
 
     Criar um jogo estilo pong para demonstrar.
