@@ -31,6 +31,9 @@ char KeyboardInputBase::getInput()
 	
 	if (read(0, &buf, 1) < 0)
 		throw KeyboardError("read");
+
+	tcflush(STDIN_FILENO, TCIFLUSH);
 	
 	return buf;
 }
+
