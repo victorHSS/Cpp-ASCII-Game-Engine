@@ -7,8 +7,7 @@ KeyboardInputBase::KeyboardInputBase(unsigned mode)
 	if (tcgetattr(0, &old) < 0)
 		throw KeyboardError("tcgetattr");
 	
-	old.c_lflag &= ~ICANON;
-	old.c_lflag &= ~ECHO;
+	old.c_lflag &= ~(ICANON | ECHO);
 	old.c_cc[VMIN] = mode;
 	old.c_cc[VTIME] = 0; //mode?0:1;
 	
