@@ -17,8 +17,8 @@ class KeyboardInputBase
 public:
 
 	enum {
-		NONBLOCKING_MODE = 0,
-		BLOCKING_MODE	= 1
+		NONBLOCKING_MODE	= 0,
+		BLOCKING_MODE		= 1
 	};
 
 	KeyboardInputBase(unsigned = NONBLOCKING_MODE);
