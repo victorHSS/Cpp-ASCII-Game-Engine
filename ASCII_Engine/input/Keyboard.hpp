@@ -21,10 +21,10 @@ enum KEY
 	KEY_7,	KEY_8,	KEY_9,
 	
 	KEY_A		=	'a',
-	KEY_B,	KEY_B,	KEY_C, 	KEY_D,	KEY_E,	KEY_F,	KEY_G,
-	KEY_H,	KEY_I,	KEY_J, 	KEY_K,	KEY_L,	KEY_M,	KEY_N,
-	KEY_O,	KEY_P,	KEY_Q, 	KEY_R,	KEY_S,	KEY_T,	KEY_U,
-	KEY_V,	KEY_W,	KEY_X, 	KEY_Y,	KEY_Z,
+	KEY_B,	KEY_C, 	KEY_D,	KEY_E,	KEY_F,	KEY_G,	KEY_H,
+	KEY_I,	KEY_J, 	KEY_K,	KEY_L,	KEY_M,	KEY_N,
+	KEY_O,	KEY_P,	KEY_Q, 	KEY_R,	KEY_S,	KEY_T,
+	KEY_U,	KEY_V,	KEY_W,	KEY_X, 	KEY_Y,	KEY_Z,
 	//...
 	KEY_ENTER	=	13,
 	KEY_SPACE	=	32
@@ -36,26 +36,25 @@ public:
 	~Keyboard();
 
 	enum {
-		NONBLOCKING_MODE	= 0,
-		BLOCKING_MODE		= 1
+		NONBLOCKING	= 0,
+		BLOCKING	= 1
 	};
 	
 	//impedindo a cópia do objeto
 	Keyboard(const Keyboard&) = delete;
 	Keyboard &operator=(const Keyboard &) = delete;
 	
-	//queremos um singleton
-	Keyboard(const Keyboard &&kb) { this->old = kb.old; }
 	
-	static Keyboard getKeyboard(unsigned = BLOCKING_MODE);
+	static void setMode( unsigned );
 	
-	char read();
+	static char read();
 
 private:
 	//queremos um singleton
-	Keyboard(unsigned);
-
-	struct termios old;
+	Keyboard( unsigned = BLOCKING );
+	
+	static unsigned mode;
+	static struct termios old;
 };
 
 #endif

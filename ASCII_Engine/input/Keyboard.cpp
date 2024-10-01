@@ -2,12 +2,10 @@
 
 #include <cstdlib>
 
-Keyboard Keyboard::getKeyboard(unsigned mode)
-{
-	return Keyboard{mode};
-}
+unsigned Keyboard::mode{Keyboard::BLOCKING};
+struct termios Keyboard::old{};
 
-Keyboard::Keyboard(unsigned mode)
+void Keyboard::setMode(unsigned mode)
 {
 	if (tcgetattr(0, &old) < 0)
 		throw KeyboardError("tcgetattr");
@@ -20,6 +18,11 @@ Keyboard::Keyboard(unsigned mode)
 		throw KeyboardError("tcsetattr");
 }
 
+Keyboard::Keyboard(unsigned mode)
+{
+	setMode(mode);
+}
+
 Keyboard::~Keyboard()
 {
 	old.c_lflag |= (ICANON | ECHO);
@@ -30,6 +33,8 @@ Keyboard::~Keyboard()
 
 char Keyboard::read()
 {
+	static Keyboard kb{mode};
+	
 	char buf;
 	
 	if (::read(0, &buf, 1) < 0)
