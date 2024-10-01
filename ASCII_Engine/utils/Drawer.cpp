@@ -99,3 +99,8 @@ SpriteBuffer Drawer::textbox(const TextSprite &str, COR::Cor cor, char back)
 	
 	return tbox;
 }
+
+SpriteBuffer boxFromModel(std::string, unsigned, unsigned, COR::Cor = COR::PADRAO)
+{
+	//...
+}
