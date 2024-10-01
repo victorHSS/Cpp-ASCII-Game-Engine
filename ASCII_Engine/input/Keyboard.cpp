@@ -1,8 +1,13 @@
-#include "Keyboard_base.hpp"
+#include "Keyboard.hpp"
 
-#include <stdlib.h>
+#include <cstdlib>
 
-KeyboardInputBase::KeyboardInputBase(unsigned mode)
+Keyboard Keyboard::getKeyboard(unsigned mode)
+{
+	return Keyboard{mode};
+}
+
+Keyboard::Keyboard(unsigned mode)
 {
 	if (tcgetattr(0, &old) < 0)
 		throw KeyboardError("tcgetattr");
@@ -15,21 +20,20 @@ KeyboardInputBase::KeyboardInputBase(unsigned mode)
 		throw KeyboardError("tcsetattr");
 }
 
-KeyboardInputBase::~KeyboardInputBase()
+Keyboard::~Keyboard()
 {
-	old.c_lflag |= ICANON;
-	old.c_lflag |= ECHO;
+	old.c_lflag |= (ICANON | ECHO);
 	
 	if (tcsetattr(0, TCSADRAIN, &old) < 0)
 		throw KeyboardError("tcsetattr");
 }
 
-char KeyboardInputBase::getInput()
+char Keyboard::read()
 {
 	char buf;
 	
-	if (read(0, &buf, 1) < 0)
-		throw KeyboardError("read");
+	if (::read(0, &buf, 1) < 0)
+		throw KeyboardError("read error");
 
 	tcflush(STDIN_FILENO, TCIFLUSH);
 	
