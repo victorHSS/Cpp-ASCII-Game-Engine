@@ -5,14 +5,14 @@
 unsigned Keyboard::mode{Keyboard::BLOCKING};
 struct termios Keyboard::old{};
 
-void Keyboard::setMode(unsigned mode)
+void Keyboard::setMode(unsigned m)
 {
 	if (tcgetattr(0, &old) < 0)
 		throw KeyboardError("tcgetattr");
 	
 	old.c_lflag &= ~(ICANON | ECHO);
-	old.c_cc[VMIN] = mode;
-	old.c_cc[VTIME] = 0; //mode?0:1;
+	old.c_cc[VMIN] = mode = m;
+	old.c_cc[VTIME] = 0;
 	
 	if (tcsetattr(0, TCSANOW, &old) < 0)
 		throw KeyboardError("tcsetattr");

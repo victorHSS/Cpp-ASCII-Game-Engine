@@ -13,7 +13,7 @@ public:
 };
 
 
-enum KEY
+enum class KEY
 {
 	KEY_0		=	'0',
 	KEY_1,	KEY_2,	KEY_3,
