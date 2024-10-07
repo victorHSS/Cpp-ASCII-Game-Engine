@@ -36,6 +36,8 @@ public:
 	int getPosC() const {return posC;}
 	const SpriteBase *getSprite() const {return pSprite;}
 	
+	inline bool isActive() const { return active; }
+	
 	void ativarObj() {this->active = true;};
 	void desativarObj() {this->active = false;};
 	
@@ -44,11 +46,13 @@ public:
 	virtual void update() {if (active) pSprite->update();}//lembrar de chamar esta nas derivadas...
 	
 	virtual void draw(SpriteBase &screen, int x, int y) {if (active) pSprite->draw(screen,x,y);}
+
+
 private:
 	std::string name;
 	int	posL, posC;
 	SpriteBase *pSprite;
-	
+
 	bool active;
 };
 
