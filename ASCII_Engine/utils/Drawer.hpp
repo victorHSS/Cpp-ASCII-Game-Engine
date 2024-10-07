@@ -3,7 +3,9 @@
 
 #include "../SpriteBuffer.hpp"
 #include "../TextSprite.hpp"
+
 #include <string>
+
 class Drawer {
 
 public:

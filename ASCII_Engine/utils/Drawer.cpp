@@ -7,6 +7,8 @@
 
 #include <iostream>
 
+#include "../Sprite.hpp"
+
 SpriteBuffer Drawer::rectangle(unsigned largura, unsigned altura, char pencil, COR::Cor cor, char back)
 {
 	SpriteBuffer rect(largura,altura,back);
@@ -100,7 +102,8 @@ SpriteBuffer Drawer::textbox(const TextSprite &str, COR::Cor cor, char back)
 	return tbox;
 }
 
-SpriteBuffer boxFromModel(std::string, unsigned, unsigned, COR::Cor = COR::PADRAO)
+SpriteBuffer boxFromModel(std::string nomeArq, unsigned largura, unsigned altura, COR::Cor)
 {
-	//...
+	Sprite sprt(nomeArq);
+	SpriteBuffer tbox;
 }
