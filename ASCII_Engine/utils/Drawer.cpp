@@ -102,8 +102,26 @@ SpriteBuffer Drawer::textbox(const TextSprite &str, COR::Cor cor, char back)
 	return tbox;
 }
 
-SpriteBuffer boxFromModel(std::string nomeArq, unsigned largura, unsigned altura, COR::Cor)
+SpriteBuffer Drawer::boxFromModel(std::string nomeArq, unsigned largura, unsigned altura, COR::Cor cor)
 {
 	Sprite sprt(nomeArq);
-	SpriteBuffer tbox;
+	
+	int midLarg{sprt.getLarguraMax()/2}, midAlt{sprt.getAltura()/2};
+	SpriteBuffer tbox(largura + midLarg * 2, altura + midAlt * 2, cor;
+	
+	for (int a{0} ; a < tbox.getAltura() ; a++)
+	{
+		for (int l1{0} ; l1 < midLarg ; l1++)
+		{
+			tbox.sprt[a][l1] = sprt.sprt[a][l1];
+			tbox.sprt[a][midLarg + largura] = sprt.sprt[a][midLarg + l1 + 1];
+		}
+		
+		for (int lm{0} ; lm < largura ; lm++)
+		{
+			tbox.sprt[a][lm] = sprt.sprt[a][midLarg];
+		}
+	}
+	
+	return tbox;
 }
