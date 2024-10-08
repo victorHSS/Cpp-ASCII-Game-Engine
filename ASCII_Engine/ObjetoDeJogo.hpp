@@ -53,6 +53,8 @@ protected:
 		posL(posL),
 		posC(posC),
 		active(true) {}
+	
+	void setSprite(SpriteBase *pSprite) { if (pSprite) delete pSprite; this->pSprite = pSprite; };
 
 private:
 	std::string name;

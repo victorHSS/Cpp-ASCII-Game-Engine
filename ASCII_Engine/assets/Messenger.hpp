@@ -3,19 +3,20 @@
 
 #include <string>
 #include <string_view>
-#include <forward_list>
+#include <list>
 
 #include "../SpriteBuffer.hpp"
 #include "../TextSprite.hpp"
+#include "../ObjetoDeJogo.hpp"
 
 class Messenger : public ObjetoDeJogo {
 public:
 	Messenger(std::string name, int posL, int posC) : 
-		ObjetoDeJogo{name, posL, posC};
+		ObjetoDeJogo{name, posL, posC} {}
 	
 	virtual ~Messenger() = default;
 	
-	void setBox(const SpriteBuffer &sb, int textWidth, int textHeight, int offsetL = 0, int offsetC = 0);
+	void setBox(const SpriteBase &sb, int textWidth, int textHeight, int offsetL = 0, int offsetC = 0);
 	void setText(const std::string &text, COR::Cor textColor = COR::PADRAO);
 
 	void restart();
@@ -24,7 +25,6 @@ public:
 
 	//void setGradually(bool = false); // de quantos em quantos caracteres
 	
-	virtual void update() override;
 	virtual void draw(SpriteBase &screen, int x, int y) override;
 private:
 	void toTextSpriteList();
@@ -33,9 +33,9 @@ private:
 	int offsetL, offsetC;
 	
 	COR::Cor textColor;
-	std::forward_list< TextSprite > lTS;
+	std::list< ObjetoDeJogo > lTS;
 
-	std::string text
+	std::string text;
 	std::string_view partialText;
 };
 
