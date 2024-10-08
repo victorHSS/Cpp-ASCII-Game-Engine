@@ -5,11 +5,11 @@
 #include "../TextSprite.hpp"
 
 #include <string>
+#include <stdexcept>
 
-class DrawerError : public std::runtime_error
-{
+class DrawerError : public std::runtime_error {
 public:
-	DrawerError(const char *error) : std::runtime_error(error){}
+	DrawerError(const char *error) : std::runtime_error(error) {}
 };
 
 class Drawer {
