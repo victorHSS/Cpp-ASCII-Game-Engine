@@ -6,6 +6,12 @@
 
 #include <string>
 
+class DrawerError : public std::runtime_error
+{
+public:
+	DrawerError(const char *error) : std::runtime_error(error){}
+};
+
 class Drawer {
 
 public:
