@@ -20,6 +20,7 @@ void Messenger::setText(const std::string &text, COR::Cor textColor)
 void Messenger::restart()
 {
 	partialText = text;
+	lTS.clear();	
 	toTextSpriteList();
 }
 
@@ -69,9 +70,10 @@ void Messenger::draw(SpriteBase &screen, int x, int y)
 		ts.moveTo(lp++,offsetC);
 		
 		if (getSprite())
-			ts.draw(*const_cast<SpriteBase*> (getSprite()),ts.getPosL(),ts.getPosC());
+			//const_cast<SpriteBase*> (getSprite())->putAt(*dynamic_cast<TextSprite*>(const_cast<SpriteBase*>(ts.getSprite())),ts.getPosL(),ts.getPosC());
+			ts.draw(*const_cast<SpriteBase*> (getSprite()),ts.getPosL(),ts.getPosC()); //erro aqui...??
 		else
-			ts.draw(screen,x + ts.getPosL(), y + ts.getPosC());
+			ts.draw(screen, x + ts.getPosL(), y + ts.getPosC());
 		
 		if (! --lines)
 			break;
