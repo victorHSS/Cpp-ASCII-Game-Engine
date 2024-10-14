@@ -8,5 +8,5 @@ Oferece suporte a Textos, Sprites, Sprites Animados, Objetos de Jogo e Fase, o k
  - Adicionado suporte a cores e transparência simples (laterais) nos sprites.
  - Adicionada Classe Drawer, que faz desenhos bidimensionais: quadrado, círculo, caixa e caixa de texto.
  - Classe Keyboard para leitura de entrada bloqueante e não bloqueante.
-
+ -
 
