@@ -3,8 +3,10 @@ Apenas uma Engine para criação de jogos em ASCII usando a biblioteca padrão d
 
 Oferece suporte a Textos, Sprites, Sprites Animados, Objetos de Jogo e Fase, o kit básico e fundamental para criação de qualquer jogo em ASCII. 
 
-Atualização: Adicionada Classe Sound para tocar músicas/sons. Só funciona no terminal Linux.
+## Demais features suportadas: 
+ > Adicionada Classe Sound para tocar músicas/sons. Só funciona no terminal Linux.
+ > Adicionado suporte a cores e transparência simples (laterais) nos sprites.
+ > Adicionada Classe Drawer, que faz desenhos bidimensionais: quadrado, círculo, caixa e caixa de texto.
+ > Classe Keyboard para leitura de entrada bloqueante e não bloqueante.
 
-Atualização: Adicionado suporte a cores e transparência simples nos sprites. As cores só funcionam no terminal Linux.
 
-Atualização: Adicionada Classe Drawer, que faz desenhos bidimensionais: quadrado, círculo, caixa e caixa de texto.
