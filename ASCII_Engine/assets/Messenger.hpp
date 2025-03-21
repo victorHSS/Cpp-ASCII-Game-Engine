@@ -12,7 +12,8 @@
 class Messenger : public ObjetoDeJogo {
 public:
 	Messenger(std::string name, int posL, int posC) : 
-		ObjetoDeJogo{name, posL, posC} {}
+		ObjetoDeJogo{name, posL, posC}, textWidth{}, textHeight{}, offsetL{}, offsetC{},
+		lineByLine{true} {}
 	
 	virtual ~Messenger() = default;
 	
@@ -22,9 +23,11 @@ public:
 	void restart();
 	bool isTalking() const;
 	void next();
-
-	//void setGradually(bool = false); // de quantos em quantos caracteres
 	
+	//modos de funcionamento
+	void setLineByLine(bool lineByLine = true) { this->lineByLine = lineByLine; }
+	//void setGradually(bool = false); // de quantos em quantos caracteres
+
 	virtual void draw(SpriteBase &screen, int x, int y) override;
 private:
 	void toTextSpriteList();
@@ -37,6 +40,9 @@ private:
 
 	std::string text;
 	std::string_view partialText;
+	
+	//modos
+	bool lineByLine;
 };
 
 #endif

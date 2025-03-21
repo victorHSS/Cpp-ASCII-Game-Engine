@@ -39,6 +39,8 @@ public:
 	void ativarObj() 	{this->active = true;};
 	void desativarObj() {this->active = false;};
 	
+	bool getActive() const { return this->active; }
+	
 	//RenderBase
 	virtual void init() {};
 	//lembrar de chamar update nas derivadas se elas sobrescreverem
@@ -54,7 +56,7 @@ protected:
 		posC(posC),
 		active(true) {}
 	
-	void setSprite(SpriteBase *pSprite) { if (pSprite) delete pSprite; this->pSprite = pSprite; };
+	void setSprite(SpriteBase *pSprite) { if (this->pSprite) delete this->pSprite; this->pSprite = pSprite; };
 
 private:
 	std::string name;
