@@ -18,12 +18,12 @@ public:
 	
 	ObjetoDeJogo(const ObjetoDeJogo&);
 	
-	virtual ~ObjetoDeJogo(){ delete pSprite;}
+	virtual ~ObjetoDeJogo(){ if (pSprite) delete pSprite;}
 	
 	const ObjetoDeJogo &operator=(const ObjetoDeJogo &);
 	
 	bool colideCom(const ObjetoDeJogo &) const;			//considera os limites do sprite (quadrado)
-	bool colideComBordas(const ObjetoDeJogo &) const;	//considera os limites do desenho propriamente dito
+	bool colideComBordas(const ObjetoDeJogo &) const;	//considera as linhas do desenho propriamente dito
 	
 	void moveTo(int posL, int posC){ this->posL = posL; this->posC = posC;}
 	void moveLeft(int qpos=1)	{ moveTo(posL,posC-qpos); }
@@ -36,14 +36,28 @@ public:
 	int getPosC() const {return posC;}
 	const SpriteBase *getSprite() const {return pSprite;}
 	
-	void ativarObj() {this->active = true;};
+	void ativarObj() 	{this->active = true;};
 	void desativarObj() {this->active = false;};
+	
+	bool getActive() const { return this->active; }
 	
 	//RenderBase
 	virtual void init() {};
-	virtual void update() {if (active) pSprite->update();}//lembrar de chamar esta nas derivadas...
+	//lembrar de chamar update nas derivadas se elas sobrescreverem
+	virtual void update() {if (pSprite && active) pSprite->update();} 
 	
-	virtual void draw(SpriteBase &screen, int x, int y) {if (active) pSprite->draw(screen,x,y);}
+	virtual void draw(SpriteBase &screen, int x, int y) {if (pSprite && active) pSprite->draw(screen,x,y);}
+
+protected:
+	ObjetoDeJogo(std::string name, int posL, int posC) : 
+		name(name),
+		pSprite(nullptr),
+		posL(posL),
+		posC(posC),
+		active(true) {}
+	
+	void setSprite(SpriteBase *pSprite) { if (this->pSprite) delete this->pSprite; this->pSprite = pSprite; };
+
 private:
 	std::string name;
 	int	posL, posC;

@@ -7,6 +7,8 @@
 
 #include <iostream>
 
+#include "../Sprite.hpp"
+
 SpriteBuffer Drawer::rectangle(unsigned largura, unsigned altura, char pencil, COR::Cor cor, char back)
 {
 	SpriteBuffer rect(largura,altura,back);
@@ -96,6 +98,48 @@ SpriteBuffer Drawer::textbox(const TextSprite &str, COR::Cor cor, char back)
 {
 	SpriteBuffer tbox = box(str.getLarguraMax() + 4, 3, cor, back);
 	tbox.putCenter(str,1);
+	
+	return tbox;
+}
+
+SpriteBuffer Drawer::boxFromModel(std::string nomeArq, unsigned largura, unsigned altura, COR::Cor cor)
+{
+	Sprite sprt(nomeArq);
+	
+	if (sprt.getLarguraMax() % 2 == 0 || sprt.getAltura() % 2 == 0)
+		throw DrawerError("Modelo deve ter um número ímpar de linhas e colunas.");
+	
+	const unsigned	midLarg{static_cast<unsigned>(sprt.getLarguraMax()/2)},
+					midAlt{static_cast<unsigned>(sprt.getAltura()/2)};
+					
+	SpriteBuffer tbox(largura + midLarg * 2, altura + midAlt * 2, '.', cor);
+	
+	auto convA {
+		[midAlt , altura](unsigned a)
+		{
+			if (a < midAlt)
+				return a;
+			
+			if (a < midAlt + altura)
+				return midAlt;
+			
+			return a - altura + 1;
+		}
+	};
+	
+	for (unsigned a{0} ; a < tbox.getAltura() ; a++)
+	{
+		for (unsigned l1{0} ; l1 < midLarg ; l1++)
+		{
+			tbox.sprt[a][l1] = sprt.sprt[convA(a)][l1];
+			tbox.sprt[a][midLarg + largura + l1] = sprt.sprt[convA(a)][midLarg + l1 + 1];
+		}
+		
+		for (unsigned lm{0} ; lm < largura ; lm++)
+		{
+			tbox.sprt[a][midLarg + lm] = sprt.sprt[convA(a)][midLarg];
+		}
+	}
 	
 	return tbox;
 }

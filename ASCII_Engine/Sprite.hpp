@@ -10,6 +10,7 @@
 class Sprite : public SpriteBase
 {
 	friend class SpriteAnimado;
+	friend class Drawer;
 	
 	friend std::ostream &operator<<(std::ostream &, const Sprite &);
 	
