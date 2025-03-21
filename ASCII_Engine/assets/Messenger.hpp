@@ -21,12 +21,17 @@ public:
 	void setText(const std::string &text, COR::Cor textColor = COR::PADRAO);
 
 	void restart();
-	bool isTalking() const;
+	void close() { desativarObj(); }
+	bool isTalking() const; //se ainda tem pagina de texto para exibir
 	void next();
+	
+	//FUTURE
+	//bool isWriting() const; //se pagina atual ainda está sendo escrita (setGradually != 0)
 	
 	//modos de funcionamento
 	void setLineByLine(bool lineByLine = true) { this->lineByLine = lineByLine; }
-	//void setGradually(bool = false); // de quantos em quantos caracteres
+	//FUTURE
+	//void setGradually(int speed = 0);
 
 	virtual void draw(SpriteBase &screen, int x, int y) override;
 private:
