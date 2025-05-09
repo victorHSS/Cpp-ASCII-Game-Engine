@@ -1,3 +1,5 @@
 trab/
 *.project
 tasks
+.clang-format
+.clangd
