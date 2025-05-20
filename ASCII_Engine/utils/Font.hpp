@@ -34,7 +34,7 @@ public:
 		size_t heigth, width;
 	};
 	
-	Font(std::string fontFile = "defaultFont.fnt");
+	Font(std::string fontFile = "ASCII_Engine/assets/fonts/defaultFont.fnt");
 	~Font() = default;
 	
 	FontChar operator[](std::string);
