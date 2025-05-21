@@ -3,6 +3,15 @@
 
 #include <ranges>
 
+std::ostream &operator<<(std::ostream &out, const FontSprite &s)
+{
+	unsigned li{0};
+	for (auto it = s.sprt.begin() ; it != s.sprt.end() ; ++it)
+		out << s.colorHandler.colorir(*it, li++) << std::endl;
+	
+	return out;
+}
+
 FontSprite::FontSprite(std::string text, const Font &font, size_t wOffset, size_t hOffset, COR::Cor cor)
 	: SpriteBase(cor), font{font}, wOffset{wOffset}, hOffset{hOffset}
 {
