@@ -38,6 +38,7 @@ public:
 	~Font() = default;
 	
 	FontChar operator[](std::string);
+	FontChar operator[](char ch) { return operator[](std::string(1,ch)); }
 private:
 	TextContainer font;
 };
