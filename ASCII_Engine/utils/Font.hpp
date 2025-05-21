@@ -7,6 +7,11 @@
 
 class Font
 {
+	friend std::ostream &operator<<(std::ostream &out, const Font &f)
+	{
+		out << f.font;
+		return out;
+	}
 public:
 
 	class FontChar
