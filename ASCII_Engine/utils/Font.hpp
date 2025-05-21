@@ -14,24 +14,24 @@ public:
 		friend std::ostream &operator<<(std::ostream &out, const FontChar &fc)
 		{
 			out << fc.charF << std::endl 
-				<< fc.heigth << " " << fc.width << std::endl;
+				<< fc.height << " " << fc.width << std::endl;
 			return out;
 		}
 	public:
-		FontChar(std::string charF, size_t heigth, size_t width):
+		FontChar(std::string charF, size_t height, size_t width):
 			charF{charF},
-			heigth{heigth},
+			height{height},
 			width{width} {}
 
 		~FontChar() = default;
 		
 		std::string getChar() const { return charF; }
-		size_t getHeigth() const { return heigth; }
+		size_t getHeight() const { return height; }
 		size_t getWidth() const { return width; }
 		
 	private:
 		std::string charF;
-		size_t heigth, width;
+		size_t height, width;
 	};
 	
 	Font(std::string fontFile = "ASCII_Engine/assets/fonts/defaultFont.fnt");
