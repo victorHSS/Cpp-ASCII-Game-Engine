@@ -16,19 +16,18 @@ public:
 	
 	//SpriteBase
 	virtual void putAt(const SpriteBase &, int = 0, int = 0);
-	virtual SpriteBase *copia() const { return new TextSprite(*this);}
+	virtual SpriteBase *copia() const { return new FontSprite(*this);}
 	
 	//RenderBase
 	virtual void init() {};
 	virtual void update() {};
 private:
 	std::vector<std::string> sprt;
-	std::string text;//REMOVER
 	Font font;
 	size_t wOffset, hOffset;
 	
 	//SpriteBase
-	virtual std::string getLinha(unsigned) const;
+	virtual std::string getLinha(unsigned) const { return ( ( l < sprt.size() ) ? sprt[l] : "" ); }
 };
 
 #endif // FONTSPRITE_HPP
