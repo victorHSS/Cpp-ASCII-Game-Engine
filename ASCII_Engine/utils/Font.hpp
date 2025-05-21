@@ -13,8 +13,8 @@ public:
 	{
 		friend std::ostream &operator<<(std::ostream &out, const FontChar &fc)
 		{
-			out << fc.charF << std::endl 
-				<< fc.height << " " << fc.width << std::endl;
+			out << "'" << fc.charF << "'" << std::endl 
+				<< fc.height << " " << fc.width << " " << fc.charF.size() << std::endl;
 			return out;
 		}
 	public:
