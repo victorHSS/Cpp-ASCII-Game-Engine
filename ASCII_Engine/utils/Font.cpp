@@ -3,6 +3,7 @@
 #include <string_view>
 #include <algorithm>
 #include <ranges>
+#include <format>
 
 Font::Font(std::string fontFile)
 {
@@ -14,7 +15,7 @@ Font::FontChar Font::operator[](std::string key)
 	std::string value{font.getText(key)};
 	
 	if (value.empty())
-		throw std::runtime_error{"Char da fonte não encontrado..."};
+		throw std::runtime_error{std::format("Char '{}' da fonte não encontrado...", key)};
 	
 	size_t height{std::ranges::count(value, '\n') + 1ul};
 	
