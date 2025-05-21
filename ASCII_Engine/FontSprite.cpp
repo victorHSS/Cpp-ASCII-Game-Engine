@@ -25,20 +25,57 @@ void FontSprite::setText(std::string text)
 	{
 		size_t posC{0};
 		std::string line{subt.cbegin(),subt.cend()}, lRes{};
-		for (size_t l{} ; l < altChar ; l++)
-		{
-			for (char &ch : line)
+		
+		//offset de linha
+		if (posL) {
+			for (size_t i{0} ; i < hOffset ; i++)
 			{
-				if (ch == " ")
-					lRes = std::string(spaceChar + 2*wOffset, ' ');
-				else
-					lRes = font[ch].getValue();//MUDAR A LOGICA pq getValue retorna o char com \n
-				sprt.push_back(lRes);
-				
+				sprt.push_back("");
+				limits.push_back(LIMITS(0,0,0));
+				colorHandler.pushLinhaSemCor();
 			}
+			posL += hOffset;
 		}
-		sprt.push_back("\n");
+		
+		for (const char ch : line)
+		{
+			size_t largChar{}, localL{0};
+			
+			if (ch == ' ')
+			{
+				largChar = spaceChar;
+				
+				for (size_t lSpace{0} ; lSpace < altChar ; lSpace++)
+				{
+					if (!posC) //se começo de linha
+						sprt.push_back(std::string{largChar, ' '});
+					else
+						sprt[posL + localL] += std::string{wOffset = spaceChar, ' '} // add wOffset + spacesize
+						
+					localL++;
+				}
+			}
+			else
+			{
+				largChar = font[ch].getWidth();
+				
+				for (const auto& linhaChar : font[ch].getChar() | std::ranges::views::split('\n'))
+				{
+					if (!posC) //se começo de linha
+						sprt.emplace_back(linhaChar.begin(), linhaChar.end());
+					else
+						sprt[posL + localL] += std::string{wOffset, ' '} // add wOffset
+											+  std::string{linhaChar.begin(), linhaChar.end()};
+					
+					localL++;
+				}
+			}
+			posC += ( (!posC) ? (wOffset + largChar) : (largChar) );
+			
+			limits.push_back(LIMITS(0,posC-1,posC));
+			colorHandler.pushCorLinha(limits.back().front,limits.back().end + 1);
+		}
+		
+		posL += altChar;
 	}
-	sprt.pop_back(); // remove último \n
-	
 }
