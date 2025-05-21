@@ -49,7 +49,8 @@ void TextContainer::addFromFile(std::string nameFile, std::string title)
 		}
 	}
 	
-	textMap[textTitle].erase(textMap[textTitle].find_last_not_of(" \t\n") + 1);
+	if (rTrim)
+		textMap[textTitle].erase(textMap[textTitle].find_last_not_of(" \t\n") + 1);
 	
 	fsprt.close();
 }
