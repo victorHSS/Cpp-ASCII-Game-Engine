@@ -1,0 +1,34 @@
+#ifndef FONTSPRITE_HPP
+#define FONTSPRITE_HPP
+
+#include <string>
+#include "Core/SpriteBase.hpp"
+#include "utils/Font.hpp"
+#include "SpriteBuffer.hpp"
+
+class FontSprite : public SpriteBase
+{
+public:
+	FontSprite(std::string text, const Font &font = Font{}, unsigned size_t = 1ul, size_t hOffset = 1ul, COR::Cor cor = COR::PADRAO);
+	~FontSprite() = default;
+	
+	void setText(std::string text);
+	
+	//SpriteBase
+	virtual void putAt(const SpriteBase &, int = 0, int = 0);
+	virtual SpriteBase *copia() const { return new TextSprite(*this);}
+	
+	//RenderBase
+	virtual void init() {};
+	virtual void update() {};
+private:
+	std::vector<std::string> sprt;
+	std::string text;//REMOVER
+	Font font;
+	size_t wOffset, hOffset;
+	
+	//SpriteBase
+	virtual std::string getLinha(unsigned) const;
+};
+
+#endif // FONTSPRITE_HPP
