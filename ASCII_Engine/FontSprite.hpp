@@ -9,7 +9,7 @@
 class FontSprite : public SpriteBase
 {
 public:
-	FontSprite(std::string text, const Font &font = Font{}, unsigned size_t = 1ul, size_t hOffset = 1ul, COR::Cor cor = COR::PADRAO);
+	FontSprite(std::string text, const Font &font = Font{}, size_t wOffset = 1ul, size_t hOffset = 1ul, COR::Cor cor = COR::PADRAO);
 	~FontSprite() = default;
 	
 	void setText(std::string text);
@@ -27,7 +27,7 @@ private:
 	size_t wOffset, hOffset;
 	
 	//SpriteBase
-	virtual std::string getLinha(unsigned) const { return ( ( l < sprt.size() ) ? sprt[l] : "" ); }
+	virtual std::string getLinha(unsigned l) const { return ( ( l < sprt.size() ) ? sprt[l] : "" ); }
 };
 
 #endif // FONTSPRITE_HPP
