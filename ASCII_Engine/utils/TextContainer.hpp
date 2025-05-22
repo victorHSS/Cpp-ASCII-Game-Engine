@@ -9,7 +9,7 @@ class TextContainer
 {
 	friend std::ostream &operator<<(std::ostream &, const TextContainer &);
 public:
-	TextContainer() : textMap{ {"empty",""} } {}
+	TextContainer() : textMap{ {"empty",""} }, rTrim{true} {}
 	
 	void addText(std::string , std::string);
 	void addFromFile(std::string , std::string = "<title>");
@@ -18,6 +18,7 @@ public:
 	
 private:
 	std::unordered_map< std::string , std::string > textMap;
+	bool rTrim;
 };
 
 #endif

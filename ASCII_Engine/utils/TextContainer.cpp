@@ -1,8 +1,8 @@
 #include "TextContainer.hpp"
 
 #include <iostream>
+#include <iomanip>
 #include <fstream>
-
 
 std::ostream &operator<<(std::ostream &out, const TextContainer &tc)
 {
@@ -15,7 +15,6 @@ std::ostream &operator<<(std::ostream &out, const TextContainer &tc)
 	
 	return out;
 }
-
 
 void TextContainer::addText(std::string title, std::string text)
 {
@@ -42,14 +41,17 @@ void TextContainer::addFromFile(std::string nameFile, std::string title)
 		}
 		else	//tratando título
 		{
-			textMap[textTitle].erase(textMap[textTitle].find_last_not_of(" \t\n") + 1);
+			if (!textMap[textTitle].empty()) 
+				textMap[textTitle].pop_back(); //removendo último \n do texto do título anterior
+			
 			line.erase(0,title.length());
 			textTitle = line.substr(line.find_first_not_of(" \t"));
+			textTitle = textTitle.substr(0,textTitle.find_last_not_of(" \t") + 1); // OK
 			textFlag = true;
 		}
 	}
-	
-	textMap[textTitle].erase(textMap[textTitle].find_last_not_of(" \t\n") + 1);
+	if (!textMap[textTitle].empty()) 
+		textMap[textTitle].pop_back(); //removendo último \n do texto do título anterior
 	
 	fsprt.close();
 }
