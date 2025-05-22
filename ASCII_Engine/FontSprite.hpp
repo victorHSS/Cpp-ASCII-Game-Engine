@@ -11,7 +11,7 @@ class FontSprite : public SpriteBase
 {
 	friend std::ostream &operator<<(std::ostream &, const FontSprite &);
 public:
-	FontSprite(std::string text, const Font &font = Font{}, size_t wOffset = 1ul, size_t hOffset = 1ul, COR::Cor cor = COR::PADRAO);
+	FontSprite(std::string text, size_t wOffset = 1ul, size_t hOffset = 1ul, const Font &font = Font{}, COR::Cor cor = COR::PADRAO);
 	~FontSprite() = default;
 	
 	void setText(std::string text);

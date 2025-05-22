@@ -2,18 +2,20 @@
 #include "utils/Font.hpp"
 
 #include <ranges>
+#include <format>
 
 std::ostream &operator<<(std::ostream &out, const FontSprite &s)
 {
 	unsigned li{0};
+	out << "\"\n";
 	for (auto it = s.sprt.begin() ; it != s.sprt.end() ; ++it)
-		out << s.colorHandler.colorir(*it, li++) << std::endl;
-	
+		out <<  s.colorHandler.colorir(*it, li++) << ": Chars-> " << it->size() << std::endl;
+	out << "\"\nTotal Linhas: " << s.sprt.size() << std::endl;
 	return out;
 }
 
-FontSprite::FontSprite(std::string text, const Font &font, size_t wOffset, size_t hOffset, COR::Cor cor)
-	: SpriteBase(cor), font{font}, wOffset{wOffset}, hOffset{hOffset}
+FontSprite::FontSprite(std::string text, size_t wOffset, size_t hOffset, const Font &font, COR::Cor cor)
+	: SpriteBase(cor), wOffset{wOffset}, hOffset{hOffset}, font{font}
 {
 	setText(text);
 }
@@ -53,7 +55,7 @@ void FontSprite::setText(std::string text)
 	}
 	
 	size_t altChar{ font[text[0]].getHeight() };
-	size_t spaceChar{ 3 * wOffset };
+	size_t spaceChar{ (!wOffset)?1:wOffset };
 	
 	size_t posL{0};
 	
@@ -106,12 +108,12 @@ void FontSprite::setText(std::string text)
 					localL++;
 				}
 			}
-			posC += ( (!posC) ? (wOffset + largChar) : (largChar) );
+			posC += ( (posC) ? (wOffset + largChar) : (largChar) );
 		}
 		
 		for (size_t i{0} ; i < altChar ; i++)
 		{
-			limits.push_back(LIMITS(0,posC,posC + 1));
+			limits.push_back(LIMITS(0,posC - 1,posC));
 			colorHandler.pushCorLinha(limits.back().front,limits.back().end + 1);
 		}
 		
