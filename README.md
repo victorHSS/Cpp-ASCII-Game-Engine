@@ -9,3 +9,4 @@ Oferece suporte a Textos, Sprites, Sprites Animados, Cores, Transparências (lat
  - Classe Keyboard para leitura de entrada bloqueante e não bloqueante (apenas terminal Linux).
  - Classe TextContainer para armazenamento de textos (scripts para falas, p.e.)
  - Classe Messenger para chats
+ - Classes Font e FontSprite para escrever na tela com fontes personalizadas.
