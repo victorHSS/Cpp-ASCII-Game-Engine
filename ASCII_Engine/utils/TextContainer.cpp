@@ -42,12 +42,15 @@ void TextContainer::addFromFile(std::string nameFile, std::string title)
 		}
 		else	//tratando título
 		{
-			textMap[textTitle].erase(textMap[textTitle].find_last_not_of(" \t\n") + 1);
+			//textMap[textTitle].erase(textMap[textTitle].find_last_not_of(" \t\n") + 1); //?? //APAGAR
 			line.erase(0,title.length());
 			textTitle = line.substr(line.find_first_not_of(" \t"));
+			//textTitle = textTitle.substr(0,textTitle.find_last_not_of(" \t")); // VERIFICAR
 			textFlag = true;
 		}
 	}
+	
+	//textMap[textTitle].pop_back(); //apaga o último \n inserido
 	
 	if (rTrim)
 		textMap[textTitle].erase(textMap[textTitle].find_last_not_of(" \t\n") + 1);
