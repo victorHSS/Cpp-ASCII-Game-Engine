@@ -49,9 +49,10 @@ void FontSprite::setText(std::string text)
 		sprt.clear();
 		colorHandler.clear();
 		limits.clear();
+		return;
 	}
 	
-	size_t altChar{font[text[0]].getHeight()};
+	size_t altChar{ font[text[0]].getHeight() };
 	size_t spaceChar{ 3 * wOffset };
 	
 	size_t posL{0};
@@ -106,8 +107,11 @@ void FontSprite::setText(std::string text)
 				}
 			}
 			posC += ( (!posC) ? (wOffset + largChar) : (largChar) );
-			
-			limits.push_back(LIMITS(0,posC-1,posC));
+		}
+		
+		for (size_t i{0} ; i < altChar ; i++)
+		{
+			limits.push_back(LIMITS(0,posC,posC + 1));
 			colorHandler.pushCorLinha(limits.back().front,limits.back().end + 1);
 		}
 		
