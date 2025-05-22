@@ -16,8 +16,6 @@ public:
 	
 	const std::string &getText(std::string); //const;
 	
-	void setRTrim(bool rTrim) { this->rTrim = rTrim; };
-	
 private:
 	std::unordered_map< std::string , std::string > textMap;
 	bool rTrim;

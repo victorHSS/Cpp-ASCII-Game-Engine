@@ -7,7 +7,6 @@
 
 Font::Font(std::string fontFile)
 {
-	font.setRTrim(false);
 	font.addFromFile(fontFile, "<key>");
 }
 
