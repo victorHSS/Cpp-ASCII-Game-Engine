@@ -3,4 +3,5 @@ trab/
 tasks
 .clang-format
 .clangd
+obj
 game
