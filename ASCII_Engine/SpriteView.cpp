@@ -1,10 +1,62 @@
 #include "SpriteView.hpp"
+#include <stdexcept>
 
-SpriteView::SpriteView()
+
+SpriteView::SpriteView(SpriteBase &spbase, int lin, int col, int height, int width, COR::Cor cor = COR::NULL_COLOR)
+		: SpriteBase{cor}, sbase{spbase}, lin{lin}, col{col}, height{height}, width{width}
 {
+	//preencher os Limits do sprite view
+	if (height > spbase.getAltura())
+		throw std::invalid_argument{"Altura do SpriteView maior que altura do Sprite base."};
+
+	if (width > spbase.getLarguraMax())
+		throw std::invalid_argument{"Largura do SpriteView maior que altura do Sprite base."};
+	
+	moveTo(lin, col);
 }
 
-SpriteView::~SpriteView()
+void SpriteView::moveTo(int l, int c)
 {
+	limits.clear();
+	colorHandler.clear();
+	lin = l;
+	col = c;
+	
+	for (int i{} ; i < height ; i++)
+	{
+		for (int j{} ; j < width ; j++)
+		{
+			limits.push_back( 
+				LIMITS{ std::max(c, spbase.getLimits().front),
+						std::min(c + width - 1, spbase.getLimits().end),
+						width
+				}
+			);
+			
+			colorHandler.pushCorLinha(limits.back().front, limits.back().end + 1);
+		}
+	}
 }
 
+void SpriteView::setAltura(int height)
+{
+	this->height = height;
+	moveTo(lin, col);
+}
+
+void SpriteView::setLargura(int width)
+{
+	this->width = width;
+	moveTo(lin, col);
+}
+
+std::string SpriteView::getLinha(unsigned l) const
+{
+	//corrigir para considerar os limits do view
+	return ( ( l < limits.size() ) ? spbase.getLinha(l).substr(limits.front,limits.larg) : "" );
+}
+
+void SpriteView::putAt(const SpriteBase &sprt, int l, int c)
+{
+	throw std::runtime_error{"SpriteView é um view passivo."};
+}
