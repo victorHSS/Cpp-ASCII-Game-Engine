@@ -4,3 +4,4 @@ tasks
 .clang-format
 .clangd
 game
+obj/
