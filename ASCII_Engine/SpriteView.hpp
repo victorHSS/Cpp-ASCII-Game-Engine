@@ -3,6 +3,14 @@
 
 #include "Core/SpriteBase.hpp"
 
+/*
+ *  O SpriteView está implementado de forma que o view possa "sair"
+ * da área do spritebase. Isso pode ser ajustado no moveTo, analisando se
+ * a nova posição permite que o view permaneça dentro dos limites do
+ * sprite base.
+ * 
+ */
+
 class SpriteView : public SpriteBase
 {
 public:
@@ -24,7 +32,8 @@ public:
 	
 	//RenderBase
 	virtual void init() {};
-	virtual void update() final {}; //o SpriteView é apenas um observador passivo
+	virtual void update() {}; //o SpriteView é apenas um observador passivo
+	virtual void draw(SpriteBase &screen, int x, int y){screen.putAt(*this,x+lin,y-col);}
 	
 private:
 	SpriteBase &spbase;
