@@ -6,7 +6,7 @@ Oferece suporte a Textos, Sprites, Sprites Animados, Cores, Transparências (lat
 >Agora com um Makefile para otimizar compilação do projeto!!
 
 ## Demais features suportadas: 
- - Classe Sound para tocar músicas/sons (apenas terminal Linux).
+ - Classe Sound para tocar músicas/sons (apenas terminal Linux - requer pacote mpg321).
  - Classe Drawer, que faz desenhos bidimensionais: quadrado, círculo, caixas e caixa de texto.
  - Classe Keyboard para leitura de entrada bloqueante e não bloqueante (apenas terminal Linux).
  - Classe TextContainer para armazenamento de textos (scripts para falas, p.e.)
