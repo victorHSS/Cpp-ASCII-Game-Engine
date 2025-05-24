@@ -14,9 +14,14 @@ Oferece suporte a Textos, Sprites, Sprites Animados, Cores, Transparências (lat
 
 # Para rodar no GNU/Linux:
 1 - Clone o repositório
-2 - 
+
+2 - Siga os passos:
 ```shell
 cd Cpp-ASCII-Game-Engine
+```
+```shell
 make
+```
+```shell
 ./game
 ```
