@@ -6,7 +6,7 @@
 class SpriteView : public SpriteBase
 {
 public:
-	SpriteView(SpriteBase &spbase, int lin, int col, int height, int width, COR::Cor cor = COR::PADRAO);
+	SpriteView(SpriteBase &spbase, int lin, int col, int height, int width, COR::Cor cor = COR::NULL_COLOR);
 	~SpriteView() = default;
 	
 	void moveTo(int l, int c);
@@ -15,7 +15,7 @@ public:
 	
 	virtual SpriteView *copia() const { return new SpriteView{*this}; }
 	
-	virtual void putAt(const SpriteBase &, int , int) = 0;
+	virtual void putAt(const SpriteBase &, int , int);
 	
 	//RenderBase
 	virtual void init() {};
