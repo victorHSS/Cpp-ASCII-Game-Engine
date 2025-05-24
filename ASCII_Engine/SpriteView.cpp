@@ -28,17 +28,15 @@ void SpriteView::moveTo(int l, int c)
 	
 	for (int i{} ; i < height ; i++)
 	{
-		for (int j{} ; j < width ; j++)
-		{
-			limits.push_back( 
-				LIMITS{ std::max(c, static_cast<int> (spbase.getLimits()[lin + i].front)),
-						std::min(c + width - 1, static_cast<int> (spbase.getLimits()[lin + i].end)),
-						width
-				}
-			);
-			
-			colorHandler.pushCorLinha(limits.back().front, limits.back().end + 1);
-		}
+		limits.push_back( 
+			LIMITS{ std::max(c, 0),
+					std::min(c + width - 1, static_cast<int> (spbase.getLimits()[lin + i].largLinha) - c),
+					width
+			}
+			//LIMITS{c, c + width - 1, width}
+		);
+		
+		colorHandler.pushCorLinha(limits.back().front, limits.back().end + 1);
 	}
 }
 

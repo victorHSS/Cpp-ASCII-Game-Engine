@@ -10,6 +10,11 @@ public:
 	~SpriteView() = default;
 	
 	void moveTo(int l, int c);
+	void moveLeft(int qpos = 1)	 { moveTo(lin,col-qpos); }
+	void moveRight(int qpos = 1) { moveTo(lin,col+qpos); }
+	void moveUp(int qpos = 1)	 { moveTo(lin-qpos,col); }
+	void moveDown(int qpos = 1)	 { moveTo(lin+qpos,col); }
+	
 	void setAltura(int height);
 	void setLargura(int width);
 	
