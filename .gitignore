@@ -1,6 +1,5 @@
 trab/
 *.project
-tasks
 .clang-format
 .clangd
 game
