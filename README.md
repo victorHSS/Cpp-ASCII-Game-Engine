@@ -3,7 +3,8 @@ Apenas uma Engine para criação de jogos em ASCII usando a biblioteca padrão d
 
 Oferece suporte a Textos, Sprites, Sprites Animados, Cores, Transparências (laterais), Objetos de Jogo e Fase, o kit básico e fundamental para criação de qualquer jogo em ASCII. 
 
-Agora com um Makefile para otimizar compilação do projeto!!
+>[!tip] Dica
+>Agora com um Makefile para otimizar compilação do projeto!!
 
 ## Demais features suportadas: 
  - Classe Sound para tocar músicas/sons (apenas terminal Linux).
