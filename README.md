@@ -10,3 +10,13 @@ Oferece suporte a Textos, Sprites, Sprites Animados, Cores, Transparências (lat
  - Classe TextContainer para armazenamento de textos (scripts para falas, p.e.)
  - Classe Messenger para chats
  - Classes Font e FontSprite para escrever na tela com fontes personalizadas.
+ - Classe SpriteView para criar um view a partir de um sprite (qualquer um dos suportados).
+
+# Para rodar no GNU/Linux:
+1 - Clone o repositório
+2 - 
+```shell
+cd Cpp-ASCII-Game-Engine
+make
+./game
+```
