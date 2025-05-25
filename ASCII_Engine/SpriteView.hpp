@@ -1,7 +1,7 @@
 #ifndef SPRITEVIEW_HPP
 #define SPRITEVIEW_HPP
 
-#include "Core/SpriteBase.hpp"
+#include "core/SpriteBase.hpp"
 
 /*
  *  O SpriteView está implementado de forma que o view possa "sair"

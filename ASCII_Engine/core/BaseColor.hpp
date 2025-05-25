@@ -1,5 +1,5 @@
-#ifndef CORES_BASE_HPP
-#define CORES_BASE_HPP
+#ifndef BASECOLOR_HPP
+#define BASECOLOR_HPP
 
 namespace COR
 {
@@ -27,4 +27,4 @@ namespace COR
 	//declare mais cores aqui...
 }
 
-#endif // CORES_HPP
+#endif // BASECOLOR_HPP

@@ -1,4 +1,4 @@
-#include "Cores_base.hpp"
+#include "BaseColor.hpp"
 
 namespace COR
 {

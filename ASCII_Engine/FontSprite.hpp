@@ -3,7 +3,7 @@
 
 #include <string>
 #include <iostream>
-#include "Core/SpriteBase.hpp"
+#include "core/SpriteBase.hpp"
 #include "utils/Font.hpp"
 #include "SpriteBuffer.hpp"
 

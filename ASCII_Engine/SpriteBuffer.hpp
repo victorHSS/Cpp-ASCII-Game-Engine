@@ -1,7 +1,7 @@
 #ifndef SPRITEBUFFER_HPP
 #define SPRITEBUFFER_HPP
 
-#include "Core/SpriteBase.hpp"
+#include "core/SpriteBase.hpp"
 #include <vector>
 
 class Drawer;
