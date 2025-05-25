@@ -20,7 +20,6 @@ public:
 	virtual ~Sprite(){}
 	
 	//SpriteBase
-	virtual void putAt(const SpriteBase &, int = 0, int = 0);
 	virtual SpriteBase *copia() const { return new Sprite(*this);}
 	
 	//RenderBase
@@ -29,7 +28,6 @@ public:
 	
 
 private:
-	std::vector<std::string> sprt;
 	
 	void loadFromFile(std::string);
 	void loadFromFile(std::ifstream &, int = -1);

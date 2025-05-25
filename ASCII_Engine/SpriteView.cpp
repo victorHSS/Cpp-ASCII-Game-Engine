@@ -52,9 +52,6 @@ void SpriteView::setLargura(int width)
 
 std::string SpriteView::getLinha(unsigned l) const
 {
-	//corrigir para considerar os limits do view
-	//return ( ( l < limits.size() ) ? spbase.getLinha(lin + l).substr(limits[l].front,limits[l].larg) : "" );
-	
 	return ( ( l < limits.size() ) ? spbase.getLinha(lin + l) : "" );
 }
 

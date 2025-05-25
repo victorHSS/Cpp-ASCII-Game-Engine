@@ -20,7 +20,6 @@ public:
 	void setBackChar(char backChar) {this->backChar = backChar;}
 	
 	//SpriteBase
-	virtual void putAt(const SpriteBase &, int = 0, int = 0);
 	virtual SpriteBase *copia() const { return new SpriteBuffer(*this);}
 	
 	virtual int getLargura(unsigned l) const {return this->limits[l].largLinha;}
@@ -32,8 +31,6 @@ public:
 private:
 	
 	unsigned largura, altura;
-
-	std::vector<std::string> sprt;
 	
 	char backChar;
 	

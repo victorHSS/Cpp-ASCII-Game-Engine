@@ -17,14 +17,12 @@ public:
 	void setText(std::string text);
 	
 	//SpriteBase
-	virtual void putAt(const SpriteBase &, int = 0, int = 0);
 	virtual SpriteBase *copia() const { return new FontSprite(*this);}
 	
 	//RenderBase
 	virtual void init() {};
 	virtual void update() {};
 private:
-	std::vector<std::string> sprt;
 	Font font;
 	size_t wOffset, hOffset;
 	
