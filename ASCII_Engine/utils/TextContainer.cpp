@@ -56,10 +56,10 @@ void TextContainer::addFromFile(std::string nameFile, std::string title)
 	fsprt.close();
 }
 	
-const std::string &TextContainer::getText(std::string title)// const
+const std::string &TextContainer::getText(std::string title) const
 {
 	if (textMap.find(title) == textMap.end())
-		return textMap["empty"];
+		return textMap.at("empty");
 	
-	return textMap[title];
+	return textMap.at(title);
 }
