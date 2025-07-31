@@ -33,7 +33,7 @@ public:
 	//RenderBase
 	virtual void init() {};
 	virtual void update() {}; //o SpriteView é apenas um observador passivo
-	virtual void draw(SpriteBase &screen, int x, int y){screen.putAt(*this,x+lin,y-col);}
+	virtual void draw(SpriteBase &screen, int x, int y){screen.putAt(*this,x,y-col);}
 	
 private:
 	SpriteBase &spbase;
